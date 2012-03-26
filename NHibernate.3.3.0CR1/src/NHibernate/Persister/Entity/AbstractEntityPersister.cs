@@ -132,7 +132,7 @@ namespace NHibernate.Persister.Entity
 		private readonly bool hasSubselectLoadableCollections;
 		protected internal string rowIdName;
 
-		private readonly ISet<string> lazyProperties;
+		private readonly IESI.ISet<string> lazyProperties;
 
 		private readonly string sqlWhereString;
 		private readonly string sqlWhereStringTemplate;
@@ -633,7 +633,7 @@ namespace NHibernate.Persister.Entity
 			get { return PropertySpaces; }
 		}
 
-		protected internal ISet<string> LazyProperties
+		protected internal IESI.ISet<string> LazyProperties
 		{
 			get { return lazyProperties; }
 		}

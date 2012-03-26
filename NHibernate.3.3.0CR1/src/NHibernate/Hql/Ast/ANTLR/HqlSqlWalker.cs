@@ -18,7 +18,6 @@ using NHibernate.Util;
 
 namespace NHibernate.Hql.Ast.ANTLR
 {
-	[CLSCompliant(false)]
 	public partial class HqlSqlWalker
 	{
 		private static readonly IInternalLogger log = LoggerProvider.LoggerFor(typeof(HqlSqlWalker));
@@ -45,7 +44,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 		private readonly AliasGenerator _aliasGenerator = new AliasGenerator();
 		private readonly ASTPrinter _printer = new ASTPrinter();
 
-		private readonly ISet<string> _querySpaces = new IESI.HashedSet<string>();
+		private readonly IESI.ISet<string> _querySpaces = new IESI.HashedSet<string>();
 
 		private readonly LiteralProcessor _literalProcessor;
 
@@ -72,6 +71,11 @@ namespace NHibernate.Hql.Ast.ANTLR
 			_tokenReplacements = tokenReplacements;
 			_collectionFilterRole = collectionRole;
 		}
+
+        public AstTreeRuleReturnScope<IASTNode, IASTNode> Statement()
+        {
+            return statement();
+        }
 
 		public override void ReportError(RecognitionException e)
 		{
@@ -110,7 +114,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 			get { return _aliasGenerator; }
 		}
 
-		public ISet<string> QuerySpaces
+		public IESI.ISet<string> QuerySpaces
 		{
 			get { return _querySpaces; }
 		}
@@ -625,11 +629,8 @@ namespace NHibernate.Hql.Ast.ANTLR
 				IASTNode fromElement = (IASTNode)adaptor.Create(FILTER_ENTITY, collectionElementEntityName);
 				IASTNode alias = (IASTNode)adaptor.Create(ALIAS, "this");
 
-                ((HqlSqlWalkerTreeNodeStream)input).InsertChild(fromClauseInput, fromElement);
-                ((HqlSqlWalkerTreeNodeStream)input).InsertChild(fromClauseInput, alias);
-
-//				fromClauseInput.AddChild(fromElement);
-//				fromClauseInput.AddChild(alias);
+				fromClauseInput.AddChild(fromElement);
+				fromClauseInput.AddChild(alias);
 
 				// Show the modified AST.
 				if (log.IsDebugEnabled)
@@ -1080,7 +1081,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 				}
 				SqlGenerator sql = new SqlGenerator(_sessionFactoryHelper.Factory, new CommonTreeNodeStream(adaptor, hqlSqlWithNode.GetChild(0)));
 
-				sql.whereExpr();
+				sql.WhereExpr();
 
 				var withClauseFragment = new SqlString("(", sql.GetSQL(), ")");
 				fromElement.SetWithClauseFragment(visitor.GetJoinAlias(), withClauseFragment);
@@ -1190,6 +1191,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 		{
 			return _joinAlias;
 		}
+
 	}
 
 }

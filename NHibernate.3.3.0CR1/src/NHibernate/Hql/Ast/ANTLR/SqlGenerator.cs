@@ -18,7 +18,6 @@ namespace NHibernate.Hql.Ast.ANTLR
 	/// Author: Joshua Davis, Steve Ebersole
 	/// Ported By: Steve Strong
 	/// </summary>
-	[CLSCompliant(false)]
 	public partial class SqlGenerator : IErrorReporter
 	{
 		private readonly List<IParameterSpecification> collectedParameters = new List<IParameterSpecification>();
@@ -377,6 +376,31 @@ namespace NHibernate.Hql.Ast.ANTLR
 			}
 			queryWriter.Take = Convert.ToInt32(node.Text);
 		}
+
+        public void WhereClause()
+        {
+            whereClause();
+        }
+
+        public void Statement()
+        {
+            statement();
+        }
+
+        public void WhereExpr()
+        {
+            whereExpr();
+        }
+
+        public void ComparisonExpr(bool parens)
+        {
+            comparisonExpr(parens);
+        }
+
+        public TreeRuleReturnScope<IASTNode> SimpleExpr()
+        {
+            return simpleExpr();
+        }
 
 		#region Nested type: DefaultWriter
 

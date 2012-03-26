@@ -6,7 +6,7 @@ namespace NHibernate.Test.NHSpecificTest.NH1785
 	public class Entity1
 	{
 		public virtual Guid Id { get; set; }
-		public virtual ISet<Entity2> Entities2 { get; set; }
+		public virtual IESI.ISet<Entity2> Entities2 { get; set; }
 	}
 
 	public class Entity2Id

@@ -31,7 +31,7 @@ namespace NHibernate.Criterion
 	public class Example : AbstractCriterion
 	{
 		private readonly object _entity;
-		private readonly ISet<string> _excludedProperties = new IESI.HashedSet<string>();
+        private readonly IESI.ISet<string> _excludedProperties = new IESI.HashedSet<string>();
 		private IPropertySelector _selector;
 		private bool _isLikeEnabled;
 		private char? escapeCharacter;

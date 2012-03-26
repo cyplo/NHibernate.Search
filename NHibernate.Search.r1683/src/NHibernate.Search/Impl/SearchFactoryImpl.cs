@@ -67,7 +67,7 @@ namespace NHibernate.Search.Impl
             Analyzer analyzer = InitAnalyzer(cfg);
             InitDocumentBuilders(cfg, analyzer);
 
-            ISet<System.Type> classes = new IESI.HashedSet<System.Type>(documentBuilders.Keys);
+            IESI.ISet<System.Type> classes = new IESI.HashedSet<System.Type>(documentBuilders.Keys);
             foreach (DocumentBuilder documentBuilder in documentBuilders.Values)
                 documentBuilder.PostInitialize(classes);
             worker = WorkerFactory.CreateWorker(cfg, this);

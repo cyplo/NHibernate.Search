@@ -8,7 +8,7 @@ namespace NHibernate.Test.Cascade
 		private long id;
 		private string data;
 		private A a;
-		private ISet<G> gs; // G * <-> * H
+		private IESI.ISet<G> gs; // G * <-> * H
 		
 		public H() : this(null)
 		{
@@ -38,7 +38,7 @@ namespace NHibernate.Test.Cascade
 			set { a = value; }
 		}
 		
-		public virtual ISet<G> Gs
+		public virtual IESI.ISet<G> Gs
 		{
 			get { return gs; }
 			set { gs = value; }

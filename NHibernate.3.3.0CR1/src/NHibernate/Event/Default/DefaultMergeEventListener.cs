@@ -59,7 +59,7 @@ namespace NHibernate.Event.Default
 				
 				if (transientCopyCache.Count > 0)
 				{
-					ISet<string> transientEntityNames = new IESI.HashedSet<string>();
+					IESI.ISet<string> transientEntityNames = new IESI.HashedSet<string>();
 					
 					foreach (object transientEntity in transientCopyCache.Keys)
 					{

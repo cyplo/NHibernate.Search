@@ -9,7 +9,7 @@ namespace NHibernate.Test.NHSpecificTest.NH2280
     {
         public virtual Guid OrganisationId { get; set; }
 
-        public virtual ISet<OrganisationCode> Codes { get; protected internal set; }
+        public virtual IESI.ISet<OrganisationCode> Codes { get; protected internal set; }
 
         public virtual string LegalName { get; set; }
         public virtual string Abn { get; set; }

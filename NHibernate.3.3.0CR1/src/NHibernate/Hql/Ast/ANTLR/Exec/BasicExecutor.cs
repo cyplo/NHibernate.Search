@@ -30,7 +30,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Exec
 			try
 			{
 				var gen = new SqlGenerator(Factory, new CommonTreeNodeStream(statement));
-				gen.statement();
+				gen.Statement();
 				sql = gen.GetSQL();
 				gen.ParseErrorHandler.ThrowQueryException();
 				Parameters = gen.GetCollectedParameters();

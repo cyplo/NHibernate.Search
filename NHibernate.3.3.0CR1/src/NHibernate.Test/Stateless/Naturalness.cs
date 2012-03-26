@@ -23,12 +23,12 @@ namespace NHibernate.Test.Stateless
 
 	public class Family<T> where T: Animal
 	{
-		private ISet<T> childs;
+		private IESI.ISet<T> childs;
 
 		public virtual int Id { get; protected set; }
 		public virtual T Father { get; set; }
 		public virtual T Mother { get; set; }
-		public virtual ISet<T> Childs
+		public virtual IESI.ISet<T> Childs
 		{
 			get { return childs; }
 			set { childs = value; }

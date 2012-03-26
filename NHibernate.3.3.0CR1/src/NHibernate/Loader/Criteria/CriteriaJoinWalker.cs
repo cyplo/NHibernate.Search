@@ -20,7 +20,7 @@ namespace NHibernate.Loader.Criteria
 		//      this class depends directly upon CriteriaImpl in the impl package...
 
 		private readonly CriteriaQueryTranslator translator;
-		private readonly ISet<string> querySpaces;
+		private readonly IESI.ISet<string> querySpaces;
 		private readonly IType[] resultTypes;
 		//the user visible aliases, which are unknown to the superclass,
 		//these are not the actual "physical" SQL aliases
@@ -99,7 +99,7 @@ namespace NHibernate.Loader.Criteria
 			get { return base.WhereFragment.Append(((IQueryable) Persister).FilterFragment(Alias, EnabledFilters)); }
 		}
 
-		public ISet<string> QuerySpaces
+		public IESI.ISet<string> QuerySpaces
 		{
 			get { return querySpaces; }
 		}

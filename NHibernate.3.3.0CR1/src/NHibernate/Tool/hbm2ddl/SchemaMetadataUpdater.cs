@@ -19,7 +19,7 @@ namespace NHibernate.Tool.hbm2ddl
 
 		public static void QuoteTableAndColumns(Configuration configuration)
 		{
-			ISet<string> reservedDb = GetReservedWords(configuration.GetDerivedProperties());
+			IESI.ISet<string> reservedDb = GetReservedWords(configuration.GetDerivedProperties());
 			foreach (var cm in configuration.ClassMappings)
 			{
 				QuoteTable(cm.Table, reservedDb);
@@ -30,16 +30,16 @@ namespace NHibernate.Tool.hbm2ddl
 			}
 		}
 
-		private static ISet<string> GetReservedWords(IDictionary<string, string> cfgProperties)
+		private static IESI.ISet<string> GetReservedWords(IDictionary<string, string> cfgProperties)
 		{
 			var dialect = Dialect.Dialect.GetDialect(cfgProperties);
 			var connectionHelper = new ManagedProviderConnectionHelper(cfgProperties);
 			return GetReservedWords(dialect, connectionHelper);
 		}
 
-		private static ISet<string> GetReservedWords(Dialect.Dialect dialect, IConnectionHelper connectionHelper)
+		private static IESI.ISet<string> GetReservedWords(Dialect.Dialect dialect, IConnectionHelper connectionHelper)
 		{
-			ISet<string> reservedDb = new IESI.HashedSet<string>();
+			IESI.ISet<string> reservedDb = new IESI.HashedSet<string>();
 			connectionHelper.Prepare();
 			try
 			{

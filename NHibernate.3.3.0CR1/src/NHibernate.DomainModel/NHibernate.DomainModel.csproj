@@ -15,7 +15,7 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -31,6 +31,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,10 +63,6 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\net\3.5\Iesi.Collections.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="A.cs" />
@@ -279,12 +276,6 @@
     <EmbeddedResource Include="Northwind\Mappings\User.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NHibernate\NHibernate.csproj">
-      <Project>{5909BFE7-93CF-4E5F-BE22-6293368AF01D}</Project>
-      <Name>NHibernate %28NHibernate\Projects\Core\NHibernate%29</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="NHSpecific\GetSetHelper.hbm.xml" />
     <EmbeddedResource Include="NHSpecific\Optimistic.hbm.xml" />
   </ItemGroup>
@@ -313,6 +304,16 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Iesi.Collections\Iesi.Collections.csproj">
+      <Project>{4c251e3e-6ea1-4a51-bbcb-f9c42ae55344}</Project>
+      <Name>Iesi.Collections</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NHibernate\NHibernate.csproj">
+      <Project>{5909bfe7-93cf-4e5f-be22-6293368af01d}</Project>
+      <Name>NHibernate %28NHibernate\Projects\Core\NHibernate%29</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

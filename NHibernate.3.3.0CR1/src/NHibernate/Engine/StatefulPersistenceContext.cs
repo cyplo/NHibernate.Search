@@ -69,7 +69,7 @@ namespace NHibernate.Engine
 		private readonly IESI.HashedSet<EntityKey> nullifiableEntityKeys;
 
 		// properties that we have tried to load, and not found in the database
-		private ISet<AssociationKey> nullAssociations;
+		private IESI.ISet<AssociationKey> nullAssociations;
 
 		// A list of collection wrappers that were instantiating during result set
 		// processing, that we will need to initialize at the end of the query

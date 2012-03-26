@@ -39,7 +39,7 @@ namespace NHibernate.Type
 
 		public override System.Type ReturnedClass
 		{
-			get { return typeof(ISet<T>); }
+			get { return typeof(IESI.ISet<T>); }
 		}
 
 		/// <summary>
@@ -52,12 +52,12 @@ namespace NHibernate.Type
 		/// </returns>
 		public override IPersistentCollection Wrap(ISessionImplementor session, object collection)
 		{
-		    var set = collection as ISet<T>;
+		    var set = collection as IESI.ISet<T>;
             if(set==null)
             {
                 var stronglyTypedCollection = collection as ICollection<T>;
                 if(stronglyTypedCollection==null)
-                    throw new HibernateException(Role + " must be an implementation of ISet<T> or ICollection<T>");
+                    throw new HibernateException(Role + " must be an implementation of IESI.ISet<T> or ICollection<T>");
                 set = new IESI.HashedSet<T>(stronglyTypedCollection);
             }
 		    return new PersistentGenericSet<T>(session, set);

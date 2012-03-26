@@ -12,9 +12,9 @@ namespace NHibernate.Test.NHSpecificTest.NH1905
 			set { _Id = value; }
 		}
 
-		private ISet<El> _Els;
+		private IESI.ISet<El> _Els;
 
-		public virtual ISet<El> Els
+		public virtual IESI.ISet<El> Els
 		{
 			get { return _Els; }
 			set { _Els = value; }

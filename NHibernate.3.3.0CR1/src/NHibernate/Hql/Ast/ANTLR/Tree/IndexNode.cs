@@ -114,7 +114,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 
 			try 
 			{
-				gen.simpleExpr(); //TODO: used to be exprNoParens! was this needed?
+				gen.SimpleExpr(); //TODO: used to be exprNoParens! was this needed?
 			}
 			catch ( RecognitionException e ) 
 			{

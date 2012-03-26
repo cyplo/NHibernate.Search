@@ -6,7 +6,7 @@ namespace NHibernate.DomainModel.Northwind.Entities
 {
     public class ProductCategory
     {
-        private readonly ISet<Product> _products;
+        private readonly IESI.ISet<Product> _products;
         private string _description;
         private string _name;
         private int _categoryId;

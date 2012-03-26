@@ -100,7 +100,8 @@ namespace NHibernate.Impl
 		[NonSerialized] private readonly IDictionary<string, ICollectionMetadata> collectionMetadata;
 		[NonSerialized] private readonly Dictionary<string, ICollectionPersister> collectionPersisters;
 
-		[NonSerialized] private readonly IDictionary<string, ISet<string>> collectionRolesByEntityParticipant;
+        [NonSerialized]
+        private readonly IDictionary<string, IESI.ISet<string>> collectionRolesByEntityParticipant;
 		[NonSerialized] private readonly ICurrentSessionContext currentSessionContext;
 		[NonSerialized] private readonly IEntityNotFoundDelegate entityNotFoundDelegate;
 		[NonSerialized] private readonly IDictionary<string, IEntityPersister> entityPersisters;
@@ -234,7 +235,7 @@ namespace NHibernate.Impl
 			}
 			classMetadata = new UnmodifiableDictionary<string, IClassMetadata>(classMeta);
 
-			Dictionary<string, ISet<string>> tmpEntityToCollectionRoleMap = new Dictionary<string, ISet<string>>();
+            Dictionary<string, IESI.ISet<string>> tmpEntityToCollectionRoleMap = new Dictionary<string, IESI.ISet<string>>();
 			collectionPersisters = new Dictionary<string, ICollectionPersister>();
 			foreach (Mapping.Collection model in cfg.CollectionMappings)
 			{
@@ -251,7 +252,7 @@ namespace NHibernate.Impl
 				if (indexType != null && indexType.IsAssociationType && !indexType.IsAnyType)
 				{
 					string entityName = ((IAssociationType) indexType).GetAssociatedEntityName(this);
-					ISet<string> roles;
+                    IESI.ISet<string> roles;
 					if (!tmpEntityToCollectionRoleMap.TryGetValue(entityName, out roles))
 					{
 						roles = new IESI.HashedSet<string>();
@@ -263,7 +264,7 @@ namespace NHibernate.Impl
 				if (elementType.IsAssociationType && !elementType.IsAnyType)
 				{
 					string entityName = ((IAssociationType) elementType).GetAssociatedEntityName(this);
-					ISet<string> roles;
+                    IESI.ISet<string> roles;
 					if (!tmpEntityToCollectionRoleMap.TryGetValue(entityName, out roles))
 					{
 						roles = new IESI.HashedSet<string>();
@@ -278,7 +279,7 @@ namespace NHibernate.Impl
 				tmpcollectionMetadata.Add(collectionPersister.Key, collectionPersister.Value.CollectionMetadata);
 			}
 			collectionMetadata = new UnmodifiableDictionary<string, ICollectionMetadata>(tmpcollectionMetadata);
-			collectionRolesByEntityParticipant = new UnmodifiableDictionary<string, ISet<string>>(tmpEntityToCollectionRoleMap);
+            collectionRolesByEntityParticipant = new UnmodifiableDictionary<string, IESI.ISet<string>>(tmpEntityToCollectionRoleMap);
 			#endregion
 
 			#region Named Queries
@@ -489,9 +490,9 @@ namespace NHibernate.Impl
 			return value;
 		}
 
-		public ISet<string> GetCollectionRolesByEntityParticipant(string entityName)
+        public IESI.ISet<string> GetCollectionRolesByEntityParticipant(string entityName)
 		{
-			ISet<string> result;
+            IESI.ISet<string> result;
 			collectionRolesByEntityParticipant.TryGetValue(entityName, out result);
 			return result;
 		}

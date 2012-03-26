@@ -2,6 +2,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using NHibernate.Engine;
 using NHibernate.Type;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Proxy
 {
@@ -37,7 +38,7 @@ namespace NHibernate.Proxy
         /// Essentially equivalent to constructor injection, but contracted
         /// here via interface.
         /// </remarks>
-        void PostInstantiate(string entityName, System.Type persistentClass, ISet<System.Type> interfaces,
+        void PostInstantiate(string entityName, System.Type persistentClass, IESI.ISet<System.Type> interfaces,
             MethodInfo getIdentifierMethod, MethodInfo setIdentifierMethod, IAbstractComponentType componentIdType);
 
         /// <summary>

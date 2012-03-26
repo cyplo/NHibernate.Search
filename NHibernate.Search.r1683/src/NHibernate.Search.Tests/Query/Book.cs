@@ -10,7 +10,7 @@ namespace NHibernate.Search.Tests.Query
         private int id;
         private String summary;
         private String body;
-        private ISet<Author> authors = new IESI.HashedSet<Author>();
+        private IESI.ISet<Author> authors = new IESI.HashedSet<Author>();
         private Author mainAuthor;
         private DateTime publicationDate;
 
@@ -55,7 +55,7 @@ namespace NHibernate.Search.Tests.Query
             set { mainAuthor = value; }
         }
                 
-        public virtual ISet<Author> Authors
+        public virtual IESI.ISet<Author> Authors
         {
             get { return authors; }
             set { authors = value; }

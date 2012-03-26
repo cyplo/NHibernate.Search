@@ -1155,7 +1155,7 @@ namespace NHibernate.Impl
 		/// </summary>
 		/// <param name="querySpaces"></param>
 		/// <returns></returns>
-		private bool AutoFlushIfRequired(ISet<string> querySpaces)
+		private bool AutoFlushIfRequired(IESI.ISet<string> querySpaces)
 		{
 			using (new SessionIdLoggingContext(SessionId))
 			{
@@ -1931,7 +1931,7 @@ namespace NHibernate.Impl
 				int size = implementors.Length;
 
 				CriteriaLoader[] loaders = new CriteriaLoader[size];
-				ISet<string> spaces = new IESI.HashedSet<string>();
+				IESI.ISet<string> spaces = new IESI.HashedSet<string>();
 
 				for (int i = 0; i < size; i++)
 				{

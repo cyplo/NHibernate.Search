@@ -54,8 +54,8 @@ namespace NHibernate.Hql.Classic
 		private readonly IDictionary<string, JoinSequence> joins = new LinkedHashMap<string, JoinSequence>();
 		private readonly IList<SqlString> orderByTokens = new List<SqlString>();
 		private readonly IList<SqlString> groupByTokens = new List<SqlString>();
-		private readonly ISet<string> querySpaces = new IESI.HashedSet<string>();
-		private readonly ISet<string> entitiesToFetch = new IESI.HashedSet<string>();
+        private readonly IESI.ISet<string> querySpaces = new IESI.HashedSet<string>();
+        private readonly IESI.ISet<string> entitiesToFetch = new IESI.HashedSet<string>();
 
 		private readonly IDictionary<string, string> pathAliases = new Dictionary<string, string>();
 		private readonly IDictionary<string, JoinSequence> pathJoins = new Dictionary<string, JoinSequence>();
@@ -1242,7 +1242,7 @@ namespace NHibernate.Hql.Classic
 			}
 		}
 
-		public ISet<string> QuerySpaces
+        public IESI.ISet<string> QuerySpaces
 		{
 			get { return querySpaces; }
 		}

@@ -159,7 +159,7 @@ namespace NHibernate.Engine
 		/// <returns> 
 		/// Set of all the collection roles in which the given entityName participates.
 		/// </returns>
-		ISet<string> GetCollectionRolesByEntityParticipant(string entityName);
+		IESI.ISet<string> GetCollectionRolesByEntityParticipant(string entityName);
 
 		#region NHibernate specific
 

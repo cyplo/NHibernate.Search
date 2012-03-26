@@ -9,8 +9,8 @@ namespace NHibernate.Test.Cascade.Circle
 		private long nodeId;
 		private long version;
 		private string name;
-		private ISet<Transport> deliveryTransports = new IESI.HashedSet<Transport>();
-		private ISet<Transport> pickupTransports = new IESI.HashedSet<Transport>();
+		private IESI.ISet<Transport> deliveryTransports = new IESI.HashedSet<Transport>();
+		private IESI.ISet<Transport> pickupTransports = new IESI.HashedSet<Transport>();
 		private Route route = null;
 		private Tour tour;
 		private string transientField = "node original value";
@@ -33,13 +33,13 @@ namespace NHibernate.Test.Cascade.Circle
 			set { name = value; }
 		}
 		
-		public virtual ISet<Transport> DeliveryTransports
+		public virtual IESI.ISet<Transport> DeliveryTransports
 		{
 			get { return deliveryTransports; }
 			set { deliveryTransports = value; }
 		}
 		
-		public virtual ISet<Transport> PickupTransports
+		public virtual IESI.ISet<Transport> PickupTransports
 		{
 			get { return pickupTransports; }
 			set { pickupTransports = value; }

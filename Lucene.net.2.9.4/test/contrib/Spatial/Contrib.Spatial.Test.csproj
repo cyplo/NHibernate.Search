@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
 
  Licensed to the Apache Software Foundation (ASF) under one
@@ -19,7 +19,6 @@
  under the License.
 
 -->
-
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -74,7 +73,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework">
-      <HintPath>..\..\..\lib\NUnit.org\NUnit\2.5.9\bin\net-2.0\nunit.framework.dll</HintPath>
+      <HintPath>..\..\..\..\dependencies\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -110,7 +109,7 @@
       <Name>Contrib.Spatial</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\src\core\Lucene.Net.csproj">
-      <Project>{5D4AD9BE-1FFB-41AB-9943-25737971BF57}</Project>
+      <Project>{5d4ad9be-1ffb-41ab-9943-25737971bf57}</Project>
       <Name>Lucene.Net</Name>
     </ProjectReference>
   </ItemGroup>

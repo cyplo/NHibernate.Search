@@ -16,7 +16,7 @@ namespace NHibernate.Search.Store
             }
 
             FileInfo[] sources = source.GetFiles();
-            ISet<string> srcNames = new IESI.HashedSet<string>();
+            IESI.ISet<string> srcNames = new IESI.HashedSet<string>();
             foreach (FileInfo fileInfo in sources)
             {
                 srcNames.Add(fileInfo.Name);

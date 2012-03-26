@@ -9,8 +9,8 @@ namespace NHibernate.Test.NHSpecificTest.NH1217
 
 		String Label { get; set; }
 
-		ISet<IEdge> FromEdges { get; set; }
+		IESI.ISet<IEdge> FromEdges { get; set; }
 
-		ISet<IEdge> ToEdges { get; set; }
+		IESI.ISet<IEdge> ToEdges { get; set; }
 	}
 }

@@ -19,6 +19,7 @@
 
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Security;
 
 #if (!SSCLI)
 //
@@ -129,3 +130,4 @@ using System.Runtime.CompilerServices;
 // We do not use a CSP key for strong naming
 // [assembly: AssemblyKeyName("")]
 
+[assembly: SecurityRules(SecurityRuleSet.Level1, SkipVerificationInFullTrust = true)]

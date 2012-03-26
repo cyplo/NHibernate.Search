@@ -24,7 +24,7 @@ namespace NHibernate.Loader.Criteria
 	public class CriteriaLoader : OuterJoinLoader
 	{
 		private readonly CriteriaQueryTranslator translator;
-		private readonly ISet<string> querySpaces;
+		private readonly IESI.ISet<string> querySpaces;
 		private readonly IType[] resultTypes;
 		//the user visible aliases, which are unknown to the superclass,
 		//these are not the actual "physical" SQL aliases
@@ -51,7 +51,7 @@ namespace NHibernate.Loader.Criteria
 
 		// Not ported: scroll (not supported)
 
-		public ISet<string> QuerySpaces
+		public IESI.ISet<string> QuerySpaces
 		{
 			get { return querySpaces; }
 		}

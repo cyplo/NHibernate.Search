@@ -403,7 +403,7 @@ namespace NHibernate.Tuple.Entity
 			}
 		}
 
-		public ISet<string> SubclassEntityNames
+		public IESI.ISet<string> SubclassEntityNames
 		{
 			get { return subclassEntityNames; }
 		}

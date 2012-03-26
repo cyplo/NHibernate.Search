@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using NHibernate.Persister.Entity;
 using NHibernate.SqlCommand;
 using NHibernate.Util;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Engine
 {
@@ -11,10 +12,10 @@ namespace NHibernate.Engine
 		private readonly ILoadable loadable;
 		private readonly QueryParameters queryParameters;
 		private readonly SqlString queryString;
-		private readonly ISet<EntityKey> resultingEntityKeys;
+        private readonly IESI.ISet<EntityKey> resultingEntityKeys;
 
 		public SubselectFetch(string alias, ILoadable loadable, QueryParameters queryParameters,
-		                      ISet<EntityKey> resultingEntityKeys)
+                              IESI.ISet<EntityKey> resultingEntityKeys)
 		{
 			this.resultingEntityKeys = resultingEntityKeys;
 			this.queryParameters = queryParameters;
@@ -29,7 +30,7 @@ namespace NHibernate.Engine
 			get { return queryParameters; }
 		}
 
-		public ISet<EntityKey> Result
+        public IESI.ISet<EntityKey> Result
 		{
 			get { return resultingEntityKeys; }
 		}

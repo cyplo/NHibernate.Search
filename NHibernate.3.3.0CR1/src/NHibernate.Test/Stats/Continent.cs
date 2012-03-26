@@ -6,7 +6,7 @@ namespace NHibernate.Test.Stats
 	{
 		private int id;
 		private string name;
-		private ISet<Country> countries;
+		private IESI.ISet<Country> countries;
 
 		public virtual int Id
 		{
@@ -20,7 +20,7 @@ namespace NHibernate.Test.Stats
 			set { name = value; }
 		}
 
-		public virtual ISet<Country> Countries
+		public virtual IESI.ISet<Country> Countries
 		{
 			get { return countries; }
 			set { countries = value; }

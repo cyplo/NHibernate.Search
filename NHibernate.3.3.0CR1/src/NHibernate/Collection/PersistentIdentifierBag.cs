@@ -175,7 +175,7 @@ namespace NHibernate.Collection
 		public override bool EqualsSnapshot(ICollectionPersister persister)
 		{
 			IType elementType = persister.ElementType;
-			var snap = (ISet<SnapshotElement>) GetSnapshot();
+			var snap = (IESI.ISet<SnapshotElement>) GetSnapshot();
 			if (snap.Count != values.Count)
 			{
 				return false;
@@ -201,7 +201,7 @@ namespace NHibernate.Collection
 
 		public override IEnumerable GetDeletes(ICollectionPersister persister, bool indexIsFormula)
 		{
-			var snap = (ISet<SnapshotElement>)GetSnapshot();
+			var snap = (IESI.ISet<SnapshotElement>)GetSnapshot();
 			ArrayList deletes = new ArrayList(snap.Select(x=> x.Id).ToArray());
 			for (int i = 0; i < values.Count; i++)
 			{
@@ -225,14 +225,14 @@ namespace NHibernate.Collection
 
 		public override object GetSnapshotElement(object entry, int i)
 		{
-			var snap = (ISet<SnapshotElement>)GetSnapshot();
+			var snap = (IESI.ISet<SnapshotElement>)GetSnapshot();
 			object id = GetIdentifier(i);
 			return snap.Where(x => Equals(x.Id, id)).Select(x => x.Value).FirstOrDefault();
 		}
 
 		public override bool NeedsInserting(object entry, int i, IType elemType)
 		{
-			var snap = (ISet<SnapshotElement>)GetSnapshot();
+			var snap = (IESI.ISet<SnapshotElement>)GetSnapshot();
 			object id = GetIdentifier(i);
 			object valueFound = snap.Where(x => Equals(x.Id, id)).Select(x => x.Value).FirstOrDefault();
 
@@ -245,7 +245,7 @@ namespace NHibernate.Collection
 			{
 				return false;
 			}
-			var snap = (ISet<SnapshotElement>)GetSnapshot();
+			var snap = (IESI.ISet<SnapshotElement>)GetSnapshot();
 
 			object id = GetIdentifier(i);
 			if (id == null)
@@ -289,7 +289,7 @@ namespace NHibernate.Collection
 
 		public override ICollection GetOrphans(object snapshot, string entityName)
 		{
-			var sn = (ISet<SnapshotElement>)GetSnapshot();
+			var sn = (IESI.ISet<SnapshotElement>)GetSnapshot();
 			return GetOrphans(sn.Select(x=> x.Value).ToArray(), values, entityName, Session);
 		}
 

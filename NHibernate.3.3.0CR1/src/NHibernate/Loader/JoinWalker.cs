@@ -16,7 +16,7 @@ namespace NHibernate.Loader
 	{
 		private readonly ISessionFactoryImplementor factory;
 		protected readonly IList<OuterJoinableAssociation> associations = new List<OuterJoinableAssociation>();
-		private readonly ISet<AssociationKey> visitedAssociationKeys = new IESI.HashedSet<AssociationKey>();
+		private readonly IESI.ISet<AssociationKey> visitedAssociationKeys = new IESI.HashedSet<AssociationKey>();
 		private readonly IDictionary<string, IFilter> enabledFilters;
 		private readonly IDictionary<string, IFilter> enabledFiltersForManyToOne;
 		private static readonly Regex aliasRegex = new Regex(@"([\w]+)\.", RegexOptions.IgnoreCase | RegexOptions.Compiled);
@@ -582,7 +582,7 @@ namespace NHibernate.Loader
 		/// <summary>
 		/// Should we join this association?
 		/// </summary>
-		protected bool IsJoinable(JoinType joinType, ISet<AssociationKey> visitedAssociationKeys, string lhsTable,
+		protected bool IsJoinable(JoinType joinType, IESI.ISet<AssociationKey> visitedAssociationKeys, string lhsTable,
 			string[] lhsColumnNames, IAssociationType type, int depth)
 		{
 			if (joinType < JoinType.InnerJoin) return false;

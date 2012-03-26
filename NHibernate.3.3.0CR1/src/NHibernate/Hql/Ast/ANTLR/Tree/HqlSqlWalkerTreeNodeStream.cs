@@ -3,10 +3,10 @@ using Antlr.Runtime.Tree;
 
 namespace NHibernate.Hql.Ast.ANTLR.Tree
 {
+    /*
 	[CLSCompliant(false)]
-	public class HqlSqlWalkerTreeNodeStream : CommonTreeNodeStream
+    public class HqlSqlWalkerTreeNodeStream : ITreeAdaptor
 	{
-		public HqlSqlWalkerTreeNodeStream(object tree) : base(tree) {}
 
 		/// <summary>
 		/// Insert a new node into both the Tree and the Node Array. Add DOWN and UP nodes if needed.
@@ -19,7 +19,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			{
 				throw new InvalidOperationException("Currently do not support adding nodes with children");
 			}
-
+            
 			int parentIndex = nodes.IndexOf(parent);
 			int numberOfChildNodes = NumberOfChildNodes(parentIndex);
 			int insertPoint;
@@ -84,5 +84,180 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 
 			return index - 1;
 		}
-	}
+
+        public object Create(Antlr.Runtime.IToken payload)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Create(int tokenType, Antlr.Runtime.IToken fromToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Create(int tokenType, Antlr.Runtime.IToken fromToken, string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Create(Antlr.Runtime.IToken fromToken, string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Create(int tokenType, string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object DupNode(object treeNode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object DupNode(int type, object treeNode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object DupNode(object treeNode, string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object DupNode(int type, object treeNode, string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object DupTree(object tree)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Nil()
+        {
+            throw new NotImplementedException();
+        }
+
+        public object ErrorNode(Antlr.Runtime.ITokenStream input, Antlr.Runtime.IToken start, Antlr.Runtime.IToken stop, Antlr.Runtime.RecognitionException e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsNil(object tree)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddChild(object t, object child)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object BecomeRoot(object newRoot, object oldRoot)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object RulePostProcessing(object root)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetUniqueID(object node)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object BecomeRoot(Antlr.Runtime.IToken newRoot, object oldRoot)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetType(object t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetType(object t, int type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetText(object t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetText(object t, string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Antlr.Runtime.IToken GetToken(object t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetTokenBoundaries(object t, Antlr.Runtime.IToken startToken, Antlr.Runtime.IToken stopToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetTokenStartIndex(object t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetTokenStopIndex(object t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object GetChild(object t, int i)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetChild(object t, int i, object child)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object DeleteChild(object t, int i)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetChildCount(object t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object GetParent(object t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetParent(object t, object parent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetChildIndex(object t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetChildIndex(object t, int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReplaceChildren(object parent, int startChildIndex, int stopChildIndex, object t)
+        {
+            throw new NotImplementedException();
+        }
+    }*/
 }

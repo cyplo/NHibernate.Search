@@ -7,7 +7,7 @@ namespace NHibernate.DomainModel.Northwind.Entities
 {
     public class Order
     {
-        private readonly ISet<OrderLine> _orderLines;
+        private readonly IESI.ISet<OrderLine> _orderLines;
         private Customer _customer;
         private Employee _employee;
         private decimal? _freight;
@@ -84,7 +84,7 @@ namespace NHibernate.DomainModel.Northwind.Entities
             set { _shippingAddress = value; }
         }
 
-        public virtual ISet<OrderLine> OrderLines
+        public virtual IESI.ISet<OrderLine> OrderLines
         {
             get { return _orderLines; }
         }

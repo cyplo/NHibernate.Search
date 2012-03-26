@@ -72,6 +72,6 @@ namespace NHibernate.Test.Join
 			set { _StuffName = value; }
 		}
 
-		public virtual ISet<string> OthersPhones { get; set; }
+		public virtual IESI.ISet<string> OthersPhones { get; set; }
 	}
 }

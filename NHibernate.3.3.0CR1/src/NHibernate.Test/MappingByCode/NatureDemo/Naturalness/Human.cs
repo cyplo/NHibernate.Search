@@ -25,7 +25,7 @@ namespace NHibernate.Test.MappingByCode.NatureDemo.Naturalness
 
 		public virtual float FloatValue { get; set; }
 
-		public virtual ISet<string> NickNames { get; set; }
+		public virtual IESI.ISet<string> NickNames { get; set; }
 
 		public virtual IDictionary<string, Address> Addresses { get; set; }
 	}

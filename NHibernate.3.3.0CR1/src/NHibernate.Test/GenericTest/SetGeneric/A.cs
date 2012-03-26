@@ -10,7 +10,7 @@ namespace NHibernate.Test.GenericTest.SetGeneric
 	{
 		private int? _id;
 		private string _name;
-		private ISet<B> _items;
+		private IESI.ISet<B> _items;
 
 		public A() { }
 
@@ -26,7 +26,7 @@ namespace NHibernate.Test.GenericTest.SetGeneric
 			set { _name = value; }
 		}
 
-		public ISet<B> Items
+		public IESI.ISet<B> Items
 		{
 			get { return _items; }
 			set { _items = value; }

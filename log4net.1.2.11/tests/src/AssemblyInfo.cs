@@ -18,6 +18,7 @@
 #endregion
 
 using System.Reflection;
+using System.Security;
 //
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -30,3 +31,5 @@ using System.Reflection;
 [assembly: AssemblyProduct("log4net")]
 [assembly: AssemblyDefaultAlias("log4net")]
 [assembly: AssemblyCulture("")]
+
+[assembly: SecurityRules(SecurityRuleSet.Level1, SkipVerificationInFullTrust = true)]

@@ -1,7 +1,8 @@
 using System;
-using System.Collections;
+using IESI = Iesi.Collections;
 
 using NUnit.Framework;
+using System.Collections;
 
 namespace Iesi.Collections.Test
 {
@@ -18,12 +19,12 @@ namespace Iesi.Collections.Test
 
 		protected override ISet CreateInstance(ICollection init)
 		{
-			return new SortedSet(init);
+            return new IESI.SortedSet(init);
 		}
 
 		protected override Type ExpectedType
 		{
-			get { return typeof(SortedSet); }
+            get { return typeof(IESI.SortedSet); }
 		}
 
 		[Test]

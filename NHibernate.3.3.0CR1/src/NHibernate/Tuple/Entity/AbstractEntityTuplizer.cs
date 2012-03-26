@@ -8,6 +8,8 @@ using NHibernate.Mapping;
 using NHibernate.Properties;
 using NHibernate.Proxy;
 using NHibernate.Type;
+using IESI = Iesi.Collections.Generic;
+
 
 namespace NHibernate.Tuple.Entity
 {
@@ -313,7 +315,7 @@ namespace NHibernate.Tuple.Entity
 		/// <summary> 
 		/// Retrieves the defined entity-names for any subclasses defined for this entity. 
 		/// </summary>
-		protected virtual ISet<string> SubclassEntityNames
+		protected virtual IESI.ISet<string> SubclassEntityNames
 		{
 			get { return entityMetamodel.SubclassEntityNames; }
 		}

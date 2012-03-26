@@ -42,7 +42,7 @@ namespace NHibernate.Test.CacheTest
 			var f = new FilterImpl(sessions.GetFilterDefinition(filterName));
 			f.SetParameter("pLike", "so%");
 			var fk =  new FilterKey(filterName, f.Parameters, f.FilterDefinition.ParameterTypes, EntityMode.Poco);
-			ISet<FilterKey> fks = new IESI.HashedSet<FilterKey> { fk };
+			IESI.ISet<FilterKey> fks = new IESI.HashedSet<FilterKey> { fk };
 			qk = new QueryKey(sessions, SqlAll, new QueryParameters(), (ISet)fks);
 
 			var f1 = new FilterImpl(sessions.GetFilterDefinition(filterName));
@@ -59,7 +59,7 @@ namespace NHibernate.Test.CacheTest
 			var f = new FilterImpl(sessions.GetFilterDefinition(filterName));
 			f.SetParameter("pDesc", "something").SetParameter("pValue", 10);
 			var fk = new FilterKey(filterName, f.Parameters, f.FilterDefinition.ParameterTypes, EntityMode.Poco);
-			ISet<FilterKey> fks = new IESI.HashedSet<FilterKey> { fk };
+			IESI.ISet<FilterKey> fks = new IESI.HashedSet<FilterKey> { fk };
 			qk = new QueryKey(sessions, SqlAll, new QueryParameters(), (ISet)fks);
 
 			var f1 = new FilterImpl(sessions.GetFilterDefinition(filterName));
@@ -113,7 +113,7 @@ namespace NHibernate.Test.CacheTest
 			var f = new FilterImpl(sessions.GetFilterDefinition(filterName));
 			f.SetParameter("pLike", "so%");
 			var fk = new FilterKey(filterName, f.Parameters, f.FilterDefinition.ParameterTypes, EntityMode.Poco);
-			ISet<FilterKey> fks = new IESI.HashedSet<FilterKey> { fk };
+			IESI.ISet<FilterKey> fks = new IESI.HashedSet<FilterKey> { fk };
 			var qk = new QueryKey(sessions, SqlAll, new QueryParameters(), (ISet)fks);
 			Assert.That(qk.ToString(), Is.StringContaining(string.Format("filters: ['{0}']",fk)));
 
@@ -139,7 +139,7 @@ namespace NHibernate.Test.CacheTest
 			fv.SetParameter("pDesc", "something").SetParameter("pValue", 10);
 			var fvk = new FilterKey(filterName, f.Parameters, f.FilterDefinition.ParameterTypes, EntityMode.Poco);
 
-			ISet<FilterKey> fks = new IESI.HashedSet<FilterKey> { fk, fvk };
+			IESI.ISet<FilterKey> fks = new IESI.HashedSet<FilterKey> { fk, fvk };
 			var qk = new QueryKey(sessions, SqlAll, new QueryParameters(), (ISet)fks);
 			Assert.That(qk.ToString(), Is.StringContaining(string.Format("filters: ['{0}', '{1}']", fk, fvk)));
 		}

@@ -5,8 +5,8 @@ namespace NHibernate.Test.Operations
 {
 	public class Node
 	{
-		private ISet<Node> cascadingChildren = new IESI.HashedSet<Node>();
-		private ISet<Node> children = new IESI.HashedSet<Node>();
+		private IESI.ISet<Node> cascadingChildren = new IESI.HashedSet<Node>();
+		private IESI.ISet<Node> children = new IESI.HashedSet<Node>();
 		private DateTime created = DateTime.Now;
 
 		public virtual string Name { get; set; }
@@ -21,13 +21,13 @@ namespace NHibernate.Test.Operations
 
 		public virtual Node Parent { get; set; }
 
-		public virtual ISet<Node> Children
+		public virtual IESI.ISet<Node> Children
 		{
 			get { return children; }
 			set { children = value; }
 		}
 
-		public virtual ISet<Node> CascadingChildren
+		public virtual IESI.ISet<Node> CascadingChildren
 		{
 			get { return cascadingChildren; }
 			set { cascadingChildren = value; }

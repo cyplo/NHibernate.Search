@@ -13,8 +13,8 @@ namespace NHibernate.Test.NHSpecificTest.NH2673
 		public virtual int Id { get; set; }
 		public virtual string Author { get; set; }
 		public virtual string Name { get; set; }
-		public virtual ISet<Post> Posts { get; set; }
-		public virtual ISet<Comment> Comments { get; set; }
+		public virtual IESI.ISet<Post> Posts { get; set; }
+		public virtual IESI.ISet<Comment> Comments { get; set; }
 	}
 
 	public class Post

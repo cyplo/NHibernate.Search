@@ -159,11 +159,11 @@ namespace NHibernate.Mapping
 			get { return false; }
 		}
 
-		public virtual ISet<Table> IdentityTables
+		public virtual IESI.ISet<Table> IdentityTables
 		{
 			get
 			{
-				ISet<Table> tables = new IESI.HashedSet<Table>();
+				IESI.ISet<Table> tables = new IESI.HashedSet<Table>();
 				foreach (PersistentClass clazz in SubclassClosureIterator)
 				{
 					if (!clazz.IsAbstract.GetValueOrDefault())

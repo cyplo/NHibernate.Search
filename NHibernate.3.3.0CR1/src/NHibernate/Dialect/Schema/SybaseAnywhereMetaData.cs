@@ -17,7 +17,7 @@ namespace NHibernate.Dialect.Schema
 			return new SybaseAnywhereTableMetaData(rs, this, extras);
 		}
 
-		public override ISet<string> GetReservedWords()
+        public override IESI.ISet<string> GetReservedWords()
 		{
             var result = new IESI.HashedSet<string>();
 			DataTable dtReservedWords = Connection.GetSchema(DbMetaDataCollectionNames.ReservedWords);

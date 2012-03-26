@@ -14,9 +14,9 @@ namespace NHibernate.Test.ReadOnly
 		//private Info noProxyInfo;
 		private Info proxyInfo;
 		private Info nonLazyInfo;
-		private ISet<DataPoint> lazyDataPoints = new IESI.HashedSet<DataPoint>();
-		private ISet<DataPoint> nonLazyJoinDataPoints = new IESI.HashedSet<DataPoint>();
-		private ISet<DataPoint> nonLazySelectDataPoints = new IESI.HashedSet<DataPoint>();
+		private IESI.ISet<DataPoint> lazyDataPoints = new IESI.HashedSet<DataPoint>();
+		private IESI.ISet<DataPoint> nonLazyJoinDataPoints = new IESI.HashedSet<DataPoint>();
+		private IESI.ISet<DataPoint> nonLazySelectDataPoints = new IESI.HashedSet<DataPoint>();
 
 		public virtual long Id
 		{
@@ -66,19 +66,19 @@ namespace NHibernate.Test.ReadOnly
 			set { nonLazyInfo = value; }
 		}
 		
-		public virtual ISet<DataPoint> LazyDataPoints
+		public virtual IESI.ISet<DataPoint> LazyDataPoints
 		{
 			get { return lazyDataPoints; }
 			set { this.lazyDataPoints = value; }
 		}
 
-		public virtual ISet<DataPoint> NonLazyJoinDataPoints
+		public virtual IESI.ISet<DataPoint> NonLazyJoinDataPoints
 		{
 			get { return nonLazyJoinDataPoints; }
 			set { this.nonLazyJoinDataPoints = value; }
 		}
 		
-		public virtual ISet<DataPoint> NonLazySelectDataPoints
+		public virtual IESI.ISet<DataPoint> NonLazySelectDataPoints
 		{
 			get { return nonLazySelectDataPoints; }
 			set { this.nonLazySelectDataPoints = value; }

@@ -73,7 +73,7 @@ namespace NHibernate.Cfg
 
 		private EventListeners eventListeners;
 		protected IDictionary<string, TypeDef> typeDefs;
-		protected ISet<ExtendsQueueEntry> extendsQueue;
+        protected IESI.ISet<ExtendsQueueEntry> extendsQueue;
 		protected IDictionary<string, Mappings.TableDescription> tableNameBinding;
 		protected IDictionary<Table, Mappings.ColumnNames> columnNameBindingPerTable;
 
@@ -99,7 +99,7 @@ namespace NHibernate.Cfg
 			defaultAssembly = GetSerialedObject<string>(info, "defaultAssembly");
 			defaultNamespace = GetSerialedObject<string>(info, "defaultNamespace");
 			eventListeners = GetSerialedObject<EventListeners>(info, "eventListeners");
-			//this.extendsQueue = GetSerialedObject<ISet<ExtendsQueueEntry>>(info, "extendsQueue");
+			//this.extendsQueue = GetSerialedObject<IESI.ISet<ExtendsQueueEntry>>(info, "extendsQueue");
 			FilterDefinitions = GetSerialedObject<IDictionary<string, FilterDefinition>>(info, "filterDefinitions");
 			Imports = GetSerialedObject<IDictionary<string, string>>(info, "imports");
 			interceptor = GetSerialedObject<IInterceptor>(info, "interceptor");

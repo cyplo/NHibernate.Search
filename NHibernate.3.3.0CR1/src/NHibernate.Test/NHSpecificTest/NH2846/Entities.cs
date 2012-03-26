@@ -16,7 +16,7 @@ namespace NHibernate.Test.NHSpecificTest.NH2846
 
 		public virtual Category Category { get; set; }
 
-		public virtual ISet<Comment> Comments { get; set; }
+		public virtual IESI.ISet<Comment> Comments { get; set; }
 	}
 
 	public class Category

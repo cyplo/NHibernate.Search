@@ -19,7 +19,7 @@ namespace NHibernate.Search.Tests.Embedded
         private string street;
 
         [ContainedIn] 
-        private ISet<Tower> towers = new IESI.HashedSet<Tower>();
+        private IESI.ISet<Tower> towers = new IESI.HashedSet<Tower>();
 
         public virtual long Id
         {
@@ -39,7 +39,7 @@ namespace NHibernate.Search.Tests.Embedded
             set { ownedBy = value; }
         }
 
-        public virtual ISet<Tower> Towers
+        public virtual IESI.ISet<Tower> Towers
         {
             get { return towers; }
             set { towers = value; }

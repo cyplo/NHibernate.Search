@@ -74,7 +74,7 @@ namespace NHibernate.Cfg
 		private readonly INamingStrategy namingStrategy;
 
 		protected internal IDictionary<string, TypeDef> typeDefs;
-		protected internal ISet<ExtendsQueueEntry> extendsQueue;
+        protected internal IESI.ISet<ExtendsQueueEntry> extendsQueue;
 
 		/// <summary> 
 		/// Binding table between the logical column name and the name out of the naming strategy
@@ -104,7 +104,7 @@ namespace NHibernate.Cfg
 			INamingStrategy namingStrategy,
 			IDictionary<string, TypeDef> typeDefs,
 			IDictionary<string, FilterDefinition> filterDefinitions,
-			ISet<ExtendsQueueEntry> extendsQueue,
+            IESI.ISet<ExtendsQueueEntry> extendsQueue,
 			IList<IAuxiliaryDatabaseObject> auxiliaryDatabaseObjects,
 			IDictionary<string, TableDescription> tableNameBinding,
 			IDictionary<Table, ColumnNames> columnNameBindingPerTable,

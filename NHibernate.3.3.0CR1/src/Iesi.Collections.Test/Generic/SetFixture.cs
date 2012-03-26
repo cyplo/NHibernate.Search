@@ -40,7 +40,7 @@ namespace Iesi.Collections.Test.Generic
 		[Test]
 		public void Clone()
 		{
-			ISet<string> clonedSet = (ISet<string>) _set.Clone();
+			IESI.ISet<string> clonedSet = (IESI.ISet<string>) _set.Clone();
 
 			Assert.AreEqual(ExpectedType, clonedSet.GetType(), "cloned set should be the same type");
 			Assert.AreEqual(_set.Count, clonedSet.Count, "set and cloned version should be same");
@@ -94,7 +94,7 @@ namespace Iesi.Collections.Test.Generic
 
 		#endregion
 
-		#region Iesi.Collections.ISet<string> Constructor Tests
+		#region Iesi.Collections.IESI.ISet<string> Constructor Tests
 
 		[Test]
 		public void CtorWithDefaults()
@@ -104,7 +104,7 @@ namespace Iesi.Collections.Test.Generic
 			init.Add("two");
 			init.Add("three");
 
-			ISet<string> theSet = CreateInstance(init);
+			var theSet = CreateInstance(init);
 
 			Assert.AreEqual(3, init.Count, "3 items in set");
 
@@ -118,7 +118,7 @@ namespace Iesi.Collections.Test.Generic
 
 		#endregion
 
-		#region Iesi.Collections.ISet<string> Member Tests
+		#region Iesi.Collections.IESI.ISet<string> Member Tests
 
 		[Test]
 		public void Add()
@@ -208,7 +208,7 @@ namespace Iesi.Collections.Test.Generic
 			var a = CreateInstance(_aInitValues);
             var b = CreateInstance(_bInitValues);
 
-            ISet<string> ab = IESI.Set<string>.ExclusiveOr(a, b);
+            var ab = IESI.Set<string>.ExclusiveOr(a, b);
 
 			Assert.AreEqual(3, ab.Count, "contains 3 elements - 'zero', 'one', and 'four'");
 			Assert.IsTrue(ab.Contains("zero"), "should contain 'zero'");
@@ -236,7 +236,7 @@ namespace Iesi.Collections.Test.Generic
 			var a = CreateInstance(_aInitValues);
 			var b = CreateInstance(_bInitValues);
 
-            ISet<string> ab = IESI.Set<string>.Intersect(a, b);
+            var ab = IESI.Set<string>.Intersect(a, b);
 
 			Assert.AreEqual(2, ab.Count, "contains 2 elements - 'two', and 'three'");
 			Assert.IsTrue(ab.Contains("two"), "should contain 'two'");
@@ -385,7 +385,7 @@ namespace Iesi.Collections.Test.Generic
 
 		#endregion
 
-		#region Iesi.Collection.ISet<string> Operator Tests
+		#region Iesi.Collection.IESI.ISet<string> Operator Tests
 
 		[Test]
 		public void ExclusiveOrOperator()

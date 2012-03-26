@@ -8,7 +8,7 @@ namespace NHibernate.Search.Tests.Query
     {
         private long id;
         private string title;
-        private ISet<Author> authors = new IESI.HashedSet<Author>();
+        private IESI.ISet<Author> authors = new IESI.HashedSet<Author>();
 
         [DocumentId]
         public virtual long Id
@@ -18,7 +18,7 @@ namespace NHibernate.Search.Tests.Query
         }
 
         [IndexedEmbedded(Depth=1)]
-        public virtual ISet<Author> Authors
+        public virtual IESI.ISet<Author> Authors
         {
             get { return authors; }
         }

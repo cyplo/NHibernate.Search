@@ -7,7 +7,7 @@ namespace NHibernate.Test.Criteria
 	{
 		private string courseCode;
 		private string description;
-		private ISet<CourseMeeting> courseMeetings = new IESI.HashedSet<CourseMeeting>();
+		private IESI.ISet<CourseMeeting> courseMeetings = new IESI.HashedSet<CourseMeeting>();
 		
 		public virtual string CourseCode
 		{
@@ -21,7 +21,7 @@ namespace NHibernate.Test.Criteria
 			set { description = value; }
 		}
 		
-		public virtual ISet<CourseMeeting> CourseMeetings
+		public virtual IESI.ISet<CourseMeeting> CourseMeetings
 		{
 			get { return courseMeetings; }
 			set { courseMeetings = value; }

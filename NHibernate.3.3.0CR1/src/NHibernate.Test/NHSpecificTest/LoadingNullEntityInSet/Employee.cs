@@ -9,16 +9,16 @@ namespace NHibernate.Test.NHSpecificTest.LoadingNullEntityInSet
 	public class Employee
 	{
 		private int id;
-		private ISet<PrimaryProfession> primaries = new IESI.HashedSet<PrimaryProfession>();
-		private ISet<SecondaryProfession> secondaries = new IESI.HashedSet<SecondaryProfession>();
+		private IESI.ISet<PrimaryProfession> primaries = new IESI.HashedSet<PrimaryProfession>();
+		private IESI.ISet<SecondaryProfession> secondaries = new IESI.HashedSet<SecondaryProfession>();
 
-		public ISet<PrimaryProfession> Primaries
+		public IESI.ISet<PrimaryProfession> Primaries
 		{
 			get { return primaries; }
 			set { primaries = value; }
 		}
 
-		public ISet<SecondaryProfession> Secondaries
+		public IESI.ISet<SecondaryProfession> Secondaries
 		{
 			get { return secondaries; }
 			set { secondaries = value; }

@@ -9,7 +9,7 @@ namespace NHibernate.Test.Immutable.EntityWithMutableCollection
 		private int id;
 		private Contract contract;
 		private string text;
-		private ISet<Info> infos = new IESI.HashedSet<Info>();
+		private IESI.ISet<Info> infos = new IESI.HashedSet<Info>();
 
 		public ContractVariation()
 		{
@@ -39,7 +39,7 @@ namespace NHibernate.Test.Immutable.EntityWithMutableCollection
 			set { text = value; }
 		}
 		
-		public virtual ISet<Info> Infos
+		public virtual IESI.ISet<Info> Infos
 		{
 			get { return infos; }
 			set { infos = value; }

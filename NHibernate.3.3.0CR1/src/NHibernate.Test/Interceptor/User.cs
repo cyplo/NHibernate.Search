@@ -5,7 +5,7 @@ namespace NHibernate.Test.Interceptor
 {
 	public class User
 	{
-		private ISet<string> actions = new IESI.HashedSet<string>();
+		private IESI.ISet<string> actions = new IESI.HashedSet<string>();
 		private DateTime? created;
 		private DateTime? lastUpdated;
 		private string name;
@@ -31,7 +31,7 @@ namespace NHibernate.Test.Interceptor
 			set { password = value; }
 		}
 
-		public virtual ISet<string> Actions
+		public virtual IESI.ISet<string> Actions
 		{
 			get { return actions; }
 			set { actions = value; }

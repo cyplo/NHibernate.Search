@@ -9,7 +9,7 @@ namespace NHibernate.Test.NHSpecificTest.Properties
 		public virtual Address Address { get; set; }
 		public virtual string UserId { get; set; }
 		public virtual bool Deleted { get; set; }
-		public virtual ISet<Account> Accounts { get; set; }
+		public virtual IESI.ISet<Account> Accounts { get; set; }
 
 		public Person()
 		{

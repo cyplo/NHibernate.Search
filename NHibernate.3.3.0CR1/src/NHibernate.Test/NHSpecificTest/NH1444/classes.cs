@@ -6,7 +6,7 @@ namespace NHibernate.Test.NHSpecificTest.NH1444
 	{
 		public virtual long Id { get; set; }
 		public virtual long? A { get; set; }
-		public virtual ISet<xchild> Children { get; set; }
+		public virtual IESI.ISet<xchild> Children { get; set; }
 	}
 
 	public class xchild

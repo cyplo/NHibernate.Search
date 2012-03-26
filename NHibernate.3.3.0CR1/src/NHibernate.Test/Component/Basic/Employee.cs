@@ -13,6 +13,6 @@ namespace NHibernate.Test.Component.Basic
 		
 		public virtual OptionalComponent OptionalComponent { get; set; }
 		
-		public virtual ISet<Employee> DirectReports { get; set; }
+		public virtual IESI.ISet<Employee> DirectReports { get; set; }
 	}
 }

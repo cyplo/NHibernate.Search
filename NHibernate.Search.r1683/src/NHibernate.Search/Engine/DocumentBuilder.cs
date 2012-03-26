@@ -33,7 +33,7 @@ namespace NHibernate.Search.Engine
         private readonly IIndexShardingStrategy shardingStrategy;
         private readonly ScopedAnalyzer analyzer;
         private DocumentIdMapping idMapping;
-        private ISet<Type> mappedSubclasses = new IESI.HashedSet<System.Type>();
+        private IESI.ISet<Type> mappedSubclasses = new IESI.HashedSet<System.Type>();
 
         private readonly DocumentMapping rootClassMapping;
 
@@ -83,7 +83,7 @@ namespace NHibernate.Search.Engine
             get { return idMapping.Bridge; }
         }
 
-        public ISet<System.Type> MappedSubclasses
+        public IESI.ISet<System.Type> MappedSubclasses
         {
             get { return mappedSubclasses; }
         }
@@ -243,11 +243,11 @@ namespace NHibernate.Search.Engine
             return result;
         }
 
-        public void PostInitialize(ISet<System.Type> indexedClasses)
+        public void PostInitialize(IESI.ISet<System.Type> indexedClasses)
         {
             // this method does not requires synchronization
             Type plainClass = rootClassMapping.MappedClass;
-            ISet<Type> tempMappedSubclasses = new IESI.HashedSet<System.Type>();
+            IESI.ISet<Type> tempMappedSubclasses = new IESI.HashedSet<System.Type>();
 
             // together with the caller this creates a o(2), but I think it's still faster than create the up hierarchy for each class
             foreach (Type currentClass in indexedClasses)
@@ -412,7 +412,7 @@ namespace NHibernate.Search.Engine
         }
 
         private void CollectAnalyzers(
-            DocumentMapping @class, Analyzer parentAnalyzer, bool isRoot, string prefix, ISet<System.Type> processedClasses
+            DocumentMapping @class, Analyzer parentAnalyzer, bool isRoot, string prefix, IESI.ISet<System.Type> processedClasses
         )
         {
             foreach (var bridge in @class.ClassBridges)

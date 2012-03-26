@@ -43,7 +43,7 @@ namespace Iesi.Collections.Generic
 	///		</item>
 	/// </list>
 	/// </summary>
-	public interface ISet<T> : ICollection<T>, IEnumerable<T>, IEnumerable, ICloneable, System.Collections.Generic.ISet<T>
+	public interface ISet<T> : ICollection<T>, IEnumerable<T>, IEnumerable, ICloneable
 	{
 		// Clear is declared in ICollection<T>, but not in ICollection
 		// void Clear();

@@ -42,7 +42,7 @@ namespace NHibernate.Mapping
 		private readonly List<Join> joins = new List<Join>();
 		private readonly List<Join> subclassJoins = new List<Join>();
 		private readonly IDictionary<string, string> filters = new Dictionary<string, string>();
-		private readonly ISet<string> synchronizedTables = new IESI.HashedSet<string>();
+		private readonly IESI.ISet<string> synchronizedTables = new IESI.HashedSet<string>();
 		private string loaderName;
 		private bool? isAbstract;
 		private bool hasSubselectLoadableCollections;
@@ -531,7 +531,7 @@ namespace NHibernate.Mapping
 			set { loaderName = value == null ? null : string.Intern(value); }
 		}
 
-		public virtual ISet<string> SynchronizedTables
+		public virtual IESI.ISet<string> SynchronizedTables
 		{
 			get
 			{
@@ -1068,7 +1068,7 @@ namespace NHibernate.Mapping
 			set { isAbstract = value; }
 		}
 
-		protected internal void CheckColumnDuplication(ISet<string> distinctColumns, IEnumerable<ISelectable> columns)
+		protected internal void CheckColumnDuplication(IESI.ISet<string> distinctColumns, IEnumerable<ISelectable> columns)
 		{
 			foreach (ISelectable columnOrFormula in columns)
 			{
@@ -1085,7 +1085,7 @@ namespace NHibernate.Mapping
 			}
 		}
 
-		protected internal void CheckPropertyColumnDuplication(ISet<string> distinctColumns, IEnumerable<Property> properties)
+		protected internal void CheckPropertyColumnDuplication(IESI.ISet<string> distinctColumns, IEnumerable<Property> properties)
 		{
 			foreach (Property prop in properties)
 			{

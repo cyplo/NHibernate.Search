@@ -20,7 +20,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 	{
 		private readonly IASTNode _eq;
 		private readonly ISessionFactoryImplementor _factory;
-		private readonly ISet<string> _tableNames;
+		private readonly IESI.ISet<string> _tableNames;
 		private readonly IParameterSpecification[] _hqlParameters;
 		private SqlString _sqlAssignmentString;
 
@@ -64,7 +64,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			{
 				temp.Add(persister.GetSubclassTableName(persister.GetSubclassPropertyTableNumber(propertyPath)));
 			}
-			_tableNames = new ImmutableSet<string>(temp);
+			_tableNames = new IESI.ImmutableSet<string>(temp);
 
 			if (rhs == null)
 			{
@@ -137,7 +137,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 					try
 					{
 						var gen = new SqlGenerator(_factory, new CommonTreeNodeStream(_eq));
-						gen.comparisonExpr(false); // false indicates to not generate parens around the assignment
+						gen.ComparisonExpr(false); // false indicates to not generate parens around the assignment
 						_sqlAssignmentString = gen.GetSQL();
 					}
 					catch (Exception t)

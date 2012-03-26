@@ -23,7 +23,7 @@ namespace NHibernate.Search.Attributes
     /// public class Order 
     /// {
     ///     [ContainedIn]
-    ///     ISet<OrderLine> lines;
+    ///     IESI.ISet<OrderLine> lines;
     /// }
     /// </code>
     /// </summary>

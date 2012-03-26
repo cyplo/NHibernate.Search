@@ -8,7 +8,7 @@ namespace NHibernate.Test.ReadOnly
 		private long studentNumber;
 		private string name;
 		private Course preferredCourse;
-		private ISet<Enrolment> enrolments = new IESI.HashedSet<Enrolment>();
+		private IESI.ISet<Enrolment> enrolments = new IESI.HashedSet<Enrolment>();
 		
 		public virtual long StudentNumber
 		{
@@ -28,7 +28,7 @@ namespace NHibernate.Test.ReadOnly
 			set { preferredCourse = value; }
 		}
 		
-		public virtual ISet<Enrolment> Enrolments
+		public virtual IESI.ISet<Enrolment> Enrolments
 		{
 			get { return enrolments; }
 			set { enrolments = value; }

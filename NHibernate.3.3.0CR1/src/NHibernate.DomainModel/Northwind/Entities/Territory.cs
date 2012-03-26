@@ -6,7 +6,7 @@ namespace NHibernate.DomainModel.Northwind.Entities
 {
     public class Territory : Entity<Territory>
     {
-        private readonly ISet<Employee> _employees;
+        private readonly IESI.ISet<Employee> _employees;
         private string _description;
         private Region _region;
 

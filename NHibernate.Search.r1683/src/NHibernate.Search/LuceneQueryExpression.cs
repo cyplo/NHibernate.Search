@@ -27,7 +27,7 @@ namespace NHibernate.Search
         {
             System.Type type = GetCriteriaClass(criteria);
             ISearchFactoryImplementor searchFactory = ContextHelper.GetSearchFactory(GetSession(criteria));
-            ISet<System.Type> types;
+            IESI.ISet<System.Type> types;
             IndexSearcher searcher = FullTextSearchHelper.BuildSearcher(searchFactory, out types, type);
             if (searcher == null)
                 throw new SearchException("Could not find a searcher for class: " + type.FullName);

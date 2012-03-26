@@ -8,7 +8,7 @@ namespace NHibernate.Test.NHSpecificTest.NH1810
 		private static readonly ILog Log = LogManager.GetLogger(typeof(Fixture));
 
 		int id;
-		ISet<Disease> diseases = new IESI.HashedSet<Disease>();
+		IESI.ISet<Disease> diseases = new IESI.HashedSet<Disease>();
 		string reference;
 
 		public virtual int Id
@@ -16,7 +16,7 @@ namespace NHibernate.Test.NHSpecificTest.NH1810
 			get { return id; }
 		}
 
-		public virtual ISet<Disease> Diseases
+		public virtual IESI.ISet<Disease> Diseases
 		{
 			get { return diseases; }
 		}

@@ -625,7 +625,7 @@ namespace NHibernate.Util
 			}
 		}
 
-		public static bool SetEquals<T>(ISet<T> a, ISet<T> b)
+		public static bool SetEquals<T>(IESI.ISet<T> a, IESI.ISet<T> b)
 		{
 			if (Equals(a, b))
 			{

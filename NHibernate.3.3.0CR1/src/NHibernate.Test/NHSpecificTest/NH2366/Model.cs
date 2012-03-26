@@ -7,7 +7,7 @@ namespace NHibernate.Test.NHSpecificTest.NH2366
 	{
 		private int id;
 		private string value;
-		private ISet<Two> twos = new IESI.HashedSet<Two>();
+		private IESI.ISet<Two> twos = new IESI.HashedSet<Two>();
 		
 		public virtual int Id
 		{
@@ -21,7 +21,7 @@ namespace NHibernate.Test.NHSpecificTest.NH2366
 			set { this.value = value; }
 		}
 		
-		public virtual ISet<Two> Twos
+		public virtual IESI.ISet<Two> Twos
 		{
 			get { return twos; }
 			set { twos = value; }

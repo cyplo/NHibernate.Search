@@ -14,10 +14,10 @@ namespace NHibernate.Test.Immutable.EntityWithMutableCollection
 
 		private IList<ContractVariation> variations;
 		private Contract parent;
-		private ISet<Contract> subcontracts;
-		private ISet<Plan> plans = new IESI.HashedSet<Plan>();
-		private ISet<Party> parties;
-		private ISet<Info> infos;
+		private IESI.ISet<Contract> subcontracts;
+		private IESI.ISet<Plan> plans = new IESI.HashedSet<Plan>();
+		private IESI.ISet<Party> parties;
+		private IESI.ISet<Info> infos;
 		
 		public Contract()
 		{
@@ -74,25 +74,25 @@ namespace NHibernate.Test.Immutable.EntityWithMutableCollection
 			set { parent = value; }
 		}
 		
-		public virtual ISet<Contract> Subcontracts
+		public virtual IESI.ISet<Contract> Subcontracts
 		{
 			get { return subcontracts; }
 			set { subcontracts = value; }
 		}
 		
-		public virtual ISet<Plan> Plans
+		public virtual IESI.ISet<Plan> Plans
 		{
 			get { return plans; }
 			set { plans = value; }
 		}
 		
-		public virtual ISet<Party> Parties
+		public virtual IESI.ISet<Party> Parties
 		{
 			get { return parties; }
 			set { parties = value; }
 		}
 		
-		public virtual ISet<Info> Infos
+		public virtual IESI.ISet<Info> Infos
 		{
 			get { return infos; }
 			set { infos = value; }

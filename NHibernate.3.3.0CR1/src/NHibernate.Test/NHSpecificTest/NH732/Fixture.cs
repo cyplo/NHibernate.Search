@@ -143,9 +143,9 @@ namespace NHibernate.Test.NHSpecificTest.NH732
 	{
 		string userName;
 
-		ISet<UserToRole> userToRoles;
+		IESI.ISet<UserToRole> userToRoles;
 
-		public virtual ISet<UserToRole> UserToRoles
+		public virtual IESI.ISet<UserToRole> UserToRoles
 		{
 			get { return userToRoles; }
 			set { userToRoles = value; }
@@ -196,7 +196,7 @@ namespace NHibernate.Test.NHSpecificTest.NH732
 	public class Role
 	{
 		string roleName;
-		ISet<UserToRole> roleToUsers;
+		IESI.ISet<UserToRole> roleToUsers;
 
 		public virtual string RoleName
 		{
@@ -204,7 +204,7 @@ namespace NHibernate.Test.NHSpecificTest.NH732
 			set { roleName = value; }
 		}
 
-		public virtual ISet<UserToRole> RoleToUsers
+		public virtual IESI.ISet<UserToRole> RoleToUsers
 		{
 			get { return roleToUsers; }
 			set { roleToUsers = value; }

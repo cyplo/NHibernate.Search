@@ -3,6 +3,8 @@ using System.Reflection;
 using System.Collections.Generic;
 using NHibernate.Engine;
 using NHibernate.Type;
+using IESI = Iesi.Collections.Generic;
+
 
 namespace NHibernate.Proxy.Map
 {
@@ -12,7 +14,7 @@ namespace NHibernate.Proxy.Map
 
 		#region IProxyFactory Members
 
-		public void PostInstantiate(string entityName, System.Type persistentClass, ISet<System.Type> interfaces,
+		public void PostInstantiate(string entityName, System.Type persistentClass, IESI.ISet<System.Type> interfaces,
 																MethodInfo getIdentifierMethod, MethodInfo setIdentifierMethod,
 																IAbstractComponentType componentIdType)
 		{

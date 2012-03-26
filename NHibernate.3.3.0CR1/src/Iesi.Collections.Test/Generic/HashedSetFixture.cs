@@ -38,7 +38,7 @@ namespace Iesi.Collections.Test.Generic
 			formatter.Serialize(stream, _set);
 			stream.Position = 0;
 
-			ISet<string> desSet = (ISet<string>) formatter.Deserialize(stream);
+			IESI.ISet<string> desSet = (IESI.ISet<string>) formatter.Deserialize(stream);
 			stream.Close();
 
 			Assert.AreEqual(3, desSet.Count, "should have des 3 items");

@@ -131,7 +131,7 @@ namespace Antlr.Runtime
             }
         }
 
-        public int Type
+        public virtual int Type
         {
             get
             {

@@ -11,8 +11,8 @@ namespace NHibernate.Test.VersionTest.Db
 
 		public virtual string Username { get; set; }
 
-		public virtual ISet<Group> Groups { get; set; }
+		public virtual IESI.ISet<Group> Groups { get; set; }
 
-		public virtual ISet<Permission> Permissions { get; set; }
+		public virtual IESI.ISet<Permission> Permissions { get; set; }
 	}
 }

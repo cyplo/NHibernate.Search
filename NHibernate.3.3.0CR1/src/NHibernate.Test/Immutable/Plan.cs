@@ -9,8 +9,8 @@ namespace NHibernate.Test.Immutable
 		private long id;
 		private long version;
 		private string description;
-		private ISet<Contract> contracts;
-		private ISet<Info> infos;
+		private IESI.ISet<Contract> contracts;
+		private IESI.ISet<Info> infos;
 		
 		public Plan()
 		{
@@ -41,13 +41,13 @@ namespace NHibernate.Test.Immutable
 			set { description = value; }
 		}
 		
-		public virtual ISet<Contract> Contracts
+		public virtual IESI.ISet<Contract> Contracts
 		{
 			get { return contracts; }
 			set { contracts = value; }
 		}
 		
-		public virtual ISet<Info> Infos
+		public virtual IESI.ISet<Info> Infos
 		{
 			get { return infos; }
 			set { infos = value; }

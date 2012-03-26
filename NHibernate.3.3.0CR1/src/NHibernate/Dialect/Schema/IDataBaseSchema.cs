@@ -1,5 +1,6 @@
 using System.Data;
 using System.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Dialect.Schema
 {
@@ -121,6 +122,6 @@ namespace NHibernate.Dialect.Schema
 		/// Get all reserved words
 		/// </summary>
 		/// <returns>A set of reserved words</returns>
-		ISet<string> GetReservedWords();
+        IESI.ISet<string> GetReservedWords();
 	}
 }

@@ -16,9 +16,9 @@ namespace NHibernate.Search.Tests.Embedded.DoubleInsert
         private DateTime createdOn;
         private DateTime lastUpdatedOn;
         [ContainedIn]
-        private ISet<Address> addresses;
+        private IESI.ISet<Address> addresses;
         [ContainedIn]
-        private ISet<Phone> phoneNumbers;
+        private IESI.ISet<Phone> phoneNumbers;
         [Field(Index = Index.Tokenized, Store = Store.Yes)]
         private string notes;
 
@@ -64,12 +64,12 @@ namespace NHibernate.Search.Tests.Embedded.DoubleInsert
             set { notes = value; }
         }
 
-        public ISet<Address> Addresses
+        public IESI.ISet<Address> Addresses
         {
             get { return addresses; }
         }
 
-        public ISet<Phone> PhoneNumbers
+        public IESI.ISet<Phone> PhoneNumbers
         {
             get { return phoneNumbers; }
         }

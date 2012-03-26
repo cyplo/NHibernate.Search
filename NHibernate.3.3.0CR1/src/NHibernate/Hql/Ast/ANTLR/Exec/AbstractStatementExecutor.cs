@@ -89,7 +89,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Exec
 				{
 					var nodes = new CommonTreeNodeStream(whereClause);
 					var gen = new SqlGenerator(Factory, nodes);
-					gen.whereClause();
+					gen.WhereClause();
 					userWhereClause = gen.GetSQL().Substring(7);
 				}
 				catch (RecognitionException e)

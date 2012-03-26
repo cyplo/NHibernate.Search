@@ -18,7 +18,7 @@ namespace NHibernate.Test.NHSpecificTest.NH1857
 
 		public string Name { get; set; }
 
-		private ISet<Employee> _employees = new IESI.HashedSet<Employee>();
+		private IESI.ISet<Employee> _employees = new IESI.HashedSet<Employee>();
 
 		public ReadOnlyCollection<Employee> Employees
 		{

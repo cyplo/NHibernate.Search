@@ -8,7 +8,7 @@ namespace NHibernate.Test.Cascade.Circle
 		private long tourId;
 		private long version;
 		private string name;
-		private ISet<Node> nodes = new IESI.HashedSet<Node>();
+		private IESI.ISet<Node> nodes = new IESI.HashedSet<Node>();
 		
 		public virtual long TourId
 		{
@@ -28,7 +28,7 @@ namespace NHibernate.Test.Cascade.Circle
 			set { name = value; }
 		}
 		
-		public virtual ISet<Node> Nodes
+		public virtual IESI.ISet<Node> Nodes
 		{
 			get { return nodes; }
 			set { nodes = value; }

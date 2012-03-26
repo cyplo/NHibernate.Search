@@ -84,7 +84,7 @@ namespace NHibernate.Cache
 			return true;
 		}
 
-		public IList Get(QueryKey key, ICacheAssembler[] returnTypes, bool isNaturalKeyLookup, ISet<string> spaces, ISessionImplementor session)
+        public IList Get(QueryKey key, ICacheAssembler[] returnTypes, bool isNaturalKeyLookup, IESI.ISet<string> spaces, ISessionImplementor session)
 		{
 			if (Log.IsDebugEnabled)
 				Log.DebugFormat("checking cached query results in region: '{0}'; {1}", _regionName, key);
@@ -167,7 +167,7 @@ namespace NHibernate.Cache
 
 		#endregion
 
-		protected virtual bool IsUpToDate(ISet<string> spaces, long timestamp)
+        protected virtual bool IsUpToDate(IESI.ISet<string> spaces, long timestamp)
 		{
 			return _updateTimestampsCache.IsUpToDate(spaces, timestamp);
 		}

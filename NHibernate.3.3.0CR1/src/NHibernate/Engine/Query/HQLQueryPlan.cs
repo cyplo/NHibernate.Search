@@ -13,7 +13,7 @@ namespace NHibernate.Engine.Query
     public interface IQueryPlan
     {
         ParameterMetadata ParameterMetadata { get; }
-        ISet<string> QuerySpaces { get; }
+        IESI.ISet<string> QuerySpaces { get; }
         IQueryTranslator[] Translators { get; }
         ReturnMetadata ReturnMetadata { get; }
         void PerformList(QueryParameters queryParameters, ISessionImplementor statelessSessionImpl, IList results);
@@ -43,7 +43,7 @@ namespace NHibernate.Engine.Query
             FinaliseQueryPlan();
         }
 
-	    public ISet<string> QuerySpaces
+	    public IESI.ISet<string> QuerySpaces
 		{
 		    get;
 		    private set;

@@ -8,7 +8,7 @@ namespace NHibernate.Test.MappingByCode.NatureDemo.Naturalness
 
 		public virtual float BodyWeight { get; set; }
 
-		public virtual ISet<Animal> Offspring { get; set; }
+		public virtual IESI.ISet<Animal> Offspring { get; set; }
 
 		public virtual Animal Mother { get; set; }
 

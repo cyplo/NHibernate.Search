@@ -13,9 +13,9 @@ namespace NHibernate.Intercept
 
 		[NonSerialized]
 		private ISessionImplementor session;
-		private ISet<string> uninitializedFields;
-		private readonly ISet<string> unwrapProxyFieldNames;
-		private readonly ISet<string> loadedUnwrapProxyFieldNames = new IESI.HashedSet<string>();
+		private IESI.ISet<string> uninitializedFields;
+		private readonly IESI.ISet<string> unwrapProxyFieldNames;
+		private readonly IESI.ISet<string> loadedUnwrapProxyFieldNames = new IESI.HashedSet<string>();
 		private readonly string entityName;
 		private readonly System.Type mappedClass;
 
@@ -23,7 +23,7 @@ namespace NHibernate.Intercept
 		private bool initializing;
 		private bool isDirty;
 
-		protected internal AbstractFieldInterceptor(ISessionImplementor session, ISet<string> uninitializedFields, ISet<string> unwrapProxyFieldNames, string entityName, System.Type mappedClass)
+		protected internal AbstractFieldInterceptor(ISessionImplementor session, IESI.ISet<string> uninitializedFields, IESI.ISet<string> unwrapProxyFieldNames, string entityName, System.Type mappedClass)
 		{
 			this.session = session;
 			this.uninitializedFields = uninitializedFields;
@@ -77,7 +77,7 @@ namespace NHibernate.Intercept
 
 		#endregion
 
-		public ISet<string> UninitializedFields
+		public IESI.ISet<string> UninitializedFields
 		{
 			get { return uninitializedFields; }
 		}

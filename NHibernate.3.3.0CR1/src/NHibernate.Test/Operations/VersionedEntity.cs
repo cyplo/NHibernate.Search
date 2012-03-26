@@ -13,6 +13,6 @@ namespace NHibernate.Test.Operations
 		public virtual string Name { get; set; }
 		public virtual long Version { get; set; }
 		public virtual VersionedEntity Parent { get; set; }
-		public virtual ISet<VersionedEntity> Children { get; set; }
+		public virtual IESI.ISet<VersionedEntity> Children { get; set; }
 	}
 }

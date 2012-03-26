@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using NHibernate.Cache;
 using NHibernate.Engine;
 using NHibernate.Type;
+using IESI = Iesi.Collections.Generic;
+
 
 namespace NHibernate.Impl
 {
@@ -72,7 +74,7 @@ namespace NHibernate.Impl
 		#endregion
 
 		public IList GetResultFromQueryCache(ISessionImplementor session, QueryParameters queryParameters,
-		                                     ISet<string> querySpaces, IQueryCache queryCache, QueryKey key)
+		                                     IESI.ISet<string> querySpaces, IQueryCache queryCache, QueryKey key)
 		{
 			if (!queryParameters.ForceCacheRefresh)
 			{

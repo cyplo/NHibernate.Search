@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using NHibernate.Engine;
+using IESI = Iesi.Collections.Generic;
+
 
 namespace NHibernate.Intercept
 {
@@ -34,8 +36,8 @@ namespace NHibernate.Intercept
 
 		public static IFieldInterceptor InjectFieldInterceptor(object entity, string entityName, 
 			System.Type mappedClass,
-			ISet<string> uninitializedFieldNames, 
-			ISet<string> unwrapProxyFieldNames,
+			IESI.ISet<string> uninitializedFieldNames, 
+			IESI.ISet<string> unwrapProxyFieldNames,
 			ISessionImplementor session)
 		{
 			var fieldInterceptorAccessor = entity as IFieldInterceptorAccessor;

@@ -9,7 +9,7 @@ namespace NHibernate.Test.ReadOnly
 		private string name;
 		private long version;
 		private VersionedNode parent;
-		private ISet<VersionedNode> children = new IESI.HashedSet<VersionedNode>();
+		private IESI.ISet<VersionedNode> children = new IESI.HashedSet<VersionedNode>();
 
 		public VersionedNode()
 		{
@@ -45,7 +45,7 @@ namespace NHibernate.Test.ReadOnly
 			set { parent = value; }
 		}
 
-		public virtual ISet<VersionedNode> Children
+		public virtual IESI.ISet<VersionedNode> Children
 		{
 			get { return children; }
 			set { children = value; }

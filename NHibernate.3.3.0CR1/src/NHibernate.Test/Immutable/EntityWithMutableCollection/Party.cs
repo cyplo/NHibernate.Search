@@ -10,7 +10,7 @@ namespace NHibernate.Test.Immutable.EntityWithMutableCollection
 		private long version;
 		private Contract contract;
 		private string name;
-		private ISet<Info> infos = new IESI.HashedSet<Info>();
+		private IESI.ISet<Info> infos = new IESI.HashedSet<Info>();
 			
 		public Party()
 		{
@@ -45,7 +45,7 @@ namespace NHibernate.Test.Immutable.EntityWithMutableCollection
 			set { name = value; }
 		}
 		
-		public virtual ISet<Info> Infos
+		public virtual IESI.ISet<Info> Infos
 		{
 			get { return infos; }
 			set { infos = value; }

@@ -21,7 +21,7 @@ namespace Iesi.Collections.Generic
 	/// you will need to override <c>Clone()</c> as well.</p>
 	///
 	/// <p>It is also standard practice that at least one of your constructors takes an <c>ICollection</c> or 
-	/// an <c>ISet</c> as an argument.</p>
+	/// an <c>IESI.ISet</c> as an argument.</p>
 	/// </summary>
 	[Serializable]
 	public abstract class DictionarySet<T> : Set<T>

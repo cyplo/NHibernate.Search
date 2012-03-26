@@ -200,7 +200,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 			return _sqlAst.Walker.SelectClause.ColumnNames;
 		}
 
-		public ISet<string> QuerySpaces
+        public IESI.ISet<string> QuerySpaces
 		{
 			get { return _sqlAst.Walker.QuerySpaces; }
 		}
@@ -467,7 +467,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 
 			try
 			{
-				var ast = (IASTNode) parser.statement().Tree;
+				var ast = (IASTNode) parser.Statement().Tree;
 
 				var walker = new NodeTraverser(new ConstantConverter(_sfi));
 				walker.TraverseDepthFirst(ast);
@@ -555,7 +555,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 		{
 			if (_resultAst == null)
 			{
-				var nodes = new HqlSqlWalkerTreeNodeStream(_inputAst);
+				var nodes = new BufferedTreeNodeStream(_inputAst);
 
 				var hqlSqlWalker = new HqlSqlWalker(_qti, _sfi, nodes, _tokenReplacements, _collectionRole);
 				hqlSqlWalker.TreeAdaptor = new HqlSqlWalkerTreeAdaptor(hqlSqlWalker);
@@ -563,7 +563,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 				try
 				{
 					// Transform the tree.
-					_resultAst = (IStatement) hqlSqlWalker.statement().Tree;
+					_resultAst = (IStatement) hqlSqlWalker.Statement().Tree;
 				}
 				finally
 				{
@@ -608,7 +608,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 
 				try
 				{
-					gen.statement();
+					gen.Statement();
 
 					_sql = gen.GetSQL();
 

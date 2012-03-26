@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
+
 
 namespace NHibernate.Event
 {
@@ -7,16 +9,16 @@ namespace NHibernate.Event
 	[Serializable]
 	public class AutoFlushEvent : FlushEvent
 	{
-		private ISet<string> querySpaces;
+		private IESI.ISet<string> querySpaces;
 		private bool flushRequired;
 
-		public AutoFlushEvent(ISet<string> querySpaces, IEventSource source)
+		public AutoFlushEvent(IESI.ISet<string> querySpaces, IEventSource source)
 			: base(source)
 		{
 			this.querySpaces = querySpaces;
 		}
 
-		public ISet<string> QuerySpaces
+		public IESI.ISet<string> QuerySpaces
 		{
 			get { return querySpaces; }
 			set { querySpaces = value; }

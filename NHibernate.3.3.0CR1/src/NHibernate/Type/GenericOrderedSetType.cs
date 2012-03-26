@@ -4,7 +4,6 @@ using IESI = Iesi.Collections.Generic;
 namespace NHibernate.Type
 {
 	/// <summary>
-	/// An <see cref="IType"/> that maps a sorted <see cref="ISet{T}"/> collection
 	/// to the database.
 	/// </summary>
 	[Serializable]
@@ -25,7 +24,7 @@ namespace NHibernate.Type
 
 		public override object Instantiate(int anticipatedSize)
 		{
-			return new OrderedSet<T>();
+			return new IESI.OrderedSet<T>();
 		}
 	}
 }

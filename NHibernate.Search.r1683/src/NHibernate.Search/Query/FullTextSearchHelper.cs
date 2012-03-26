@@ -10,7 +10,7 @@ namespace NHibernate.Search.Query
 {
     public class FullTextSearchHelper
     {
-        public static Lucene.Net.Search.Query FilterQueryByClasses(ISet<System.Type> classesAndSubclasses, Lucene.Net.Search.Query luceneQuery)
+        public static Lucene.Net.Search.Query FilterQueryByClasses(IESI.ISet<System.Type> classesAndSubclasses, Lucene.Net.Search.Query luceneQuery)
         {
             // A query filter is more practical than a manual class filtering post query (esp on scrollable resultsets)
             // it also probably minimise the memory footprint
@@ -37,11 +37,11 @@ namespace NHibernate.Search.Query
         }
 
         public static IndexSearcher BuildSearcher(ISearchFactoryImplementor searchFactory,
-                                             out ISet<System.Type> classesAndSubclasses,
+                                             out IESI.ISet<System.Type> classesAndSubclasses,
                                              params System.Type[] classes)
         {
             IDictionary<System.Type, DocumentBuilder> builders = searchFactory.DocumentBuilders;
-            ISet<IDirectoryProvider> directories = new IESI.HashedSet<IDirectoryProvider>();
+            IESI.ISet<IDirectoryProvider> directories = new IESI.HashedSet<IDirectoryProvider>();
             if (classes == null || classes.Length == 0)
             {
                 // no class means all classes

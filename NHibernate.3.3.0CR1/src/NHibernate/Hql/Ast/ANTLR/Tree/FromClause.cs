@@ -45,7 +45,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 		/// <summary>
 		/// Collection of FROM clauses of which this is the parent.
 		/// </summary>
-		private ISet<FromClause> _childFromClauses;
+		private IESI.ISet<FromClause> _childFromClauses;
 
 		public FromClause(IToken token) : base(token)
 		{

@@ -7,7 +7,7 @@ namespace NHibernate.Test.Cascade
 	{
 		private long id;
 		private DateTime batchDate;
-		private ISet<Job> jobs = new IESI.HashedSet<Job>();
+		private IESI.ISet<Job> jobs = new IESI.HashedSet<Job>();
 		public JobBatch() {}
 		public JobBatch(DateTime batchDate)
 		{
@@ -26,7 +26,7 @@ namespace NHibernate.Test.Cascade
 			set { batchDate = value; }
 		}
 
-		public virtual ISet<Job> Jobs
+		public virtual IESI.ISet<Job> Jobs
 		{
 			get { return jobs; }
 			set { jobs = value; }

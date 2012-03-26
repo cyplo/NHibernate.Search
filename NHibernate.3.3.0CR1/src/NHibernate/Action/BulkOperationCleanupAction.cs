@@ -28,7 +28,7 @@ namespace NHibernate.Action
 				{
 					affectedEntityNames.Add(affectedQueryables[i].EntityName);
 				}
-				ISet<string> roles = session.Factory.GetCollectionRolesByEntityParticipant(affectedQueryables[i].EntityName);
+				IESI.ISet<string> roles = session.Factory.GetCollectionRolesByEntityParticipant(affectedQueryables[i].EntityName);
 				if (roles != null)
 				{
 					affectedCollectionRoles.AddAll(roles);
@@ -44,12 +44,12 @@ namespace NHibernate.Action
 		/// <summary>
 		/// Create an action that will evict collection and entity regions based on queryspaces (table names).  
 		/// </summary>
-		public BulkOperationCleanupAction(ISessionImplementor session, ISet<string> querySpaces)
+		public BulkOperationCleanupAction(ISessionImplementor session, IESI.ISet<string> querySpaces)
 		{
 			//from H3.2 TODO: cache the autodetected information and pass it in instead.
 			this.session = session;
 
-			ISet<string> tmpSpaces = new IESI.HashedSet<string>(querySpaces);
+			IESI.ISet<string> tmpSpaces = new IESI.HashedSet<string>(querySpaces);
 			ISessionFactoryImplementor factory = session.Factory;
 			IDictionary<string, IClassMetadata> acmd = factory.GetAllClassMetadata();
 			foreach (KeyValuePair<string, IClassMetadata> entry in acmd)
@@ -64,7 +64,7 @@ namespace NHibernate.Action
 					{
 						affectedEntityNames.Add(persister.EntityName);
 					}
-					ISet<string> roles = session.Factory.GetCollectionRolesByEntityParticipant(persister.EntityName);
+					IESI.ISet<string> roles = session.Factory.GetCollectionRolesByEntityParticipant(persister.EntityName);
 					if (roles != null)
 					{
 						affectedCollectionRoles.AddAll(roles);
@@ -78,7 +78,7 @@ namespace NHibernate.Action
 			spaces = new List<string>(tmpSpaces);
 		}
 
-		private bool AffectedEntity(ISet<string> querySpaces, string[] entitySpaces)
+		private bool AffectedEntity(IESI.ISet<string> querySpaces, string[] entitySpaces)
 		{
 			if (querySpaces == null || (querySpaces.Count == 0))
 			{

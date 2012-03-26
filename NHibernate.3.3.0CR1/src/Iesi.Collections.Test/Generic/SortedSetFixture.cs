@@ -24,7 +24,7 @@ namespace Iesi.Collections.Test.Generic
 
 		protected override Type ExpectedType
 		{
-			get { return typeof(SortedSet<string>); }
+            get { return typeof(IESI.SortedSet<string>); }
 		}
 
 		[Test]

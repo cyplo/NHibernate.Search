@@ -6,8 +6,8 @@ namespace NHibernate.Test.NHSpecificTest.NH1027
 	{
 		private int id;
 		private string name;
-		private ISet<Container> containers = new IESI.HashedSet<Container>();
-		private ISet<Ship> ships = new IESI.HashedSet<Ship>();
+		private IESI.ISet<Container> containers = new IESI.HashedSet<Container>();
+		private IESI.ISet<Ship> ships = new IESI.HashedSet<Ship>();
 
 		public virtual int Id
 		{
@@ -64,13 +64,13 @@ namespace NHibernate.Test.NHSpecificTest.NH1027
 		}
 
 
-		public virtual ISet<Container> Containers
+		public virtual IESI.ISet<Container> Containers
 		{
 			get { return containers; }
 			set { containers = value; }
 		}
 
-		public virtual ISet<Ship> Ships
+		public virtual IESI.ISet<Ship> Ships
 		{
 			get { return ships; }
 			set { ships = value; }
