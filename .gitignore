@@ -1,3 +1,5 @@
 *.suo
 *.ncrunchsolution.user
 *.crunchsolution.cache
+obj/
+bin/
