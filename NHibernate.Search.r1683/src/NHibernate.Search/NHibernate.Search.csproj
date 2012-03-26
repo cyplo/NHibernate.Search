@@ -79,6 +79,7 @@
     <Compile Include="Attributes\Resolution.cs" />
     <Compile Include="Attributes\Store.cs" />
     <Compile Include="Backend\ParameterSet.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\TypeDictionary.cs" />
     <Compile Include="Mapping\AttributeBased\AttributeSearchMappingBuilder.cs" />
     <Compile Include="Mapping\ClassBridgeMapping.cs" />
@@ -209,9 +210,7 @@
       <DependentUpon>nhs-configuration.xsd</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>

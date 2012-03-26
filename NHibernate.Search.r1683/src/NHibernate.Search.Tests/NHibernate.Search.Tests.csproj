@@ -135,6 +135,7 @@
     <Compile Include="Optimizer\OptimizerTestCase.cs" />
     <Compile Include="Optimizer\Worker.cs" />
     <Compile Include="PhysicalTestCase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurgeTest.cs" />
     <Compile Include="Query\AlternateBook.cs" />
     <Compile Include="Query\Author.cs" />
@@ -323,7 +324,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="NHSpecificTest\" />
-    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
