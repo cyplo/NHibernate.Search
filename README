@@ -2,7 +2,8 @@ This is NHibernate.Search: Compile it yourself for .Net4
 
 I've gathered sources of most of the NHibernate.Search's dependencies and provided a common VS2010 solution to compile them all.
 
-WARNING: Sources contain my patches to make them work together and compile on .Net4.
+WARNING: 
+Sources contain my patches to make them work together and compile on .Net4.
 I'm working on getting these patches into main dev branches of the respective projects.
 
 Sources fetched from:
