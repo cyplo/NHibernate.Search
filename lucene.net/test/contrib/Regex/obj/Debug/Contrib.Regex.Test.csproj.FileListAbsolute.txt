@@ -1,0 +1,1 @@
+C:\Users\cyryl\dev\lucene.net\test\contrib\Regex\obj\Debug\ResolveAssemblyReference.cache

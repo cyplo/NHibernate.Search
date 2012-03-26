@@ -1,0 +1,5 @@
+C:\Users\cyryl\dev\lucene.net\build\bin\demo\Demo.Common\Debug\Lucene.Net.Demo.Common.dll
+C:\Users\cyryl\dev\lucene.net\build\bin\demo\Demo.Common\Debug\Lucene.Net.Demo.Common.pdb
+C:\Users\cyryl\dev\lucene.net\src\demo\Demo.Common\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\cyryl\dev\lucene.net\src\demo\Demo.Common\obj\Debug\Lucene.Net.Demo.Common.dll
+C:\Users\cyryl\dev\lucene.net\src\demo\Demo.Common\obj\Debug\Lucene.Net.Demo.Common.pdb

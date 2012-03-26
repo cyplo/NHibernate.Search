@@ -1,0 +1,42 @@
+* Generics (not completed yet)
+	java's collections return null when an item does not exist in the collection whereas .NET throws exception.
+		-->SupportClass.Dictionary
+	java's Set can be accessed with indexer( myset[0] )
+		-->SupportClass.Set
+
+* IEquatable<T> (not completed yet)
+
+* "foreach" instead of "GetEnumerator/MoveNext" (not completed yet)
+
+* LUCENENET-172 (fix for unexceptional exceptions ecountered in FastCharStream)
+
+* LUCENENET-266 Refactoring SupportClass
+
+* Obsolete Similarity.Net removed (Query.Net replaces it)
+
+*   
+   - SegmentInfos.FindSegmentsFile.DoBody 
+   - CachingWrapperFilter.FilterCache.MergeDeletes
+   - FilteredDocIdSet.Match
+   - FilteredDocIdSetIterator.Match 
+  changed from abstract method to Func<..>  to be able to remove weird AnonymousClassXXXX's
+  
+* Filter.Bits(Obsolete) removed.
+
+* LUCENENET-438 JavaDoc are turned into XML Doc Comments
+* LUCENENET-439 fix exception re-throws
+* LUCENENET-435 fix up the test-suite for Lucene.Net Core lib. 
+* LUCENENET-436 fix up deprecated code. 
+* LUCENENET-431 Spatial.Net Cartesian won't find docs in radius in certain cases
+* LUCENENET-427 Provide limit on phrase analysis in FastVectorHighlighter (LUCENE-3234)
+
+* Contrib
+ - ChainedFilter.cs
+ 
+  
+-------------------------------------------------------------------------------
+
+A few API changes like:
+* StopAnalyzer(List<string> stopWords)
+* Query.ExtractTerms(ICollection<string>)
+* TopDocs.TotalHits, TopDocs.ScoreDocs

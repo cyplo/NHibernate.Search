@@ -1,0 +1,5 @@
+C:\Users\cyryl\dev\lucene.net\build\bin\contrib\SpellChecker\Debug\Lucene.Net.SpellChecker.Test.dll
+C:\Users\cyryl\dev\lucene.net\build\bin\contrib\SpellChecker\Debug\Lucene.Net.SpellChecker.Test.pdb
+C:\Users\cyryl\dev\lucene.net\test\contrib\SpellChecker\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\cyryl\dev\lucene.net\test\contrib\SpellChecker\obj\Debug\Lucene.Net.SpellChecker.Test.dll
+C:\Users\cyryl\dev\lucene.net\test\contrib\SpellChecker\obj\Debug\Lucene.Net.SpellChecker.Test.pdb
