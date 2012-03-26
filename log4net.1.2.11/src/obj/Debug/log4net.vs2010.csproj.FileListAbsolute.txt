@@ -1,6 +1,0 @@
-C:\Users\cyryl\dev\github\NHibernate.Search\log4net.1.2.11\build\bin\net\2.0\debug\log4net.dll
-C:\Users\cyryl\dev\github\NHibernate.Search\log4net.1.2.11\build\bin\net\2.0\debug\log4net.pdb
-C:\Users\cyryl\dev\github\NHibernate.Search\log4net.1.2.11\build\bin\net\2.0\debug\log4net.xml
-C:\Users\cyryl\dev\github\NHibernate.Search\log4net.1.2.11\src\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\cyryl\dev\github\NHibernate.Search\log4net.1.2.11\src\obj\Debug\log4net.dll
-C:\Users\cyryl\dev\github\NHibernate.Search\log4net.1.2.11\src\obj\Debug\log4net.pdb

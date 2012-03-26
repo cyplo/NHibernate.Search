@@ -1,5 +1,0 @@
-C:\Users\cyryl\dev\github\NHibernate.Search\log4net.1.2.11\tests\bin\Debug\log4net.Tests.dll
-C:\Users\cyryl\dev\github\NHibernate.Search\log4net.1.2.11\tests\bin\Debug\log4net.Tests.pdb
-C:\Users\cyryl\dev\github\NHibernate.Search\log4net.1.2.11\tests\src\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\cyryl\dev\github\NHibernate.Search\log4net.1.2.11\tests\src\obj\Debug\log4net.Tests.dll
-C:\Users\cyryl\dev\github\NHibernate.Search\log4net.1.2.11\tests\src\obj\Debug\log4net.Tests.pdb
