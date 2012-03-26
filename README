@@ -1,6 +1,12 @@
-This is NHibernate.Search: Compile it yourself
+This is NHibernate.Search: Compile it yourself for .Net4
 
 I've gathered sources of most of the NHibernate.Search's dependencies and provided a common VS2010 solution to compile them all.
 
+WARNING: Sources contain my patches to make them work together and compile on .Net4.
+I'm working on getting these patches into main dev branches of the respective projects.
+
 Sources fetched from:
-Lucene: https://www.apache.org/dist/incubator/lucene.net/source/2.9.4g-incubating/
+log4net:			https://www.apache.org/dyn/closer.cgi/logging/log4net/source/log4net-1.2.11-src.zip
+Lucene:				https://www.apache.org/dist/incubator/lucene.net/source/2.9.4g-incubating/
+NHibernate:			http://sourceforge.net/projects/nhibernate/files/NHibernate/3.3.0CR1/
+NHibernate.Search:	http://nhcontrib.svn.sourceforge.net/viewvc/nhcontrib/trunk/src/NHibernate.Search/ @ r1683 
