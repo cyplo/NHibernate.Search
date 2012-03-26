@@ -44,11 +44,11 @@ namespace Lucene.Net.Search
 		/// </returns>
 		/// <deprecated> Use {@link #GetDocIdSet(IndexReader)} instead.
 		/// </deprecated>
-        //[Obsolete("Use GetDocIdSet(IndexReader) instead.")]
-        //public virtual System.Collections.BitArray Bits(IndexReader reader)
-        //{
-        //    throw new System.NotSupportedException();
-        //}
+        [Obsolete("Use GetDocIdSet(IndexReader) instead.")]
+        public virtual System.Collections.BitArray Bits(IndexReader reader)
+        {
+            throw new System.NotSupportedException();
+        }
 		
         ///<summary>
         ///  Creates a {@link DocIdSet} enumerating the documents that should be

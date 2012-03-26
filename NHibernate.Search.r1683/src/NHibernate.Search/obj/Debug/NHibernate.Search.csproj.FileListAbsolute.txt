@@ -1,0 +1,16 @@
+C:\Users\cyryl\dev\NHibernate.Search\src\NHibernate.Search\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\cyryl\dev\github\NHibernate.Search\NHibernate.Search\src\NHibernate.Search\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\cyryl\dev\github\NHibernate.Search\NHibernate.Search\src\NHibernate.Search\bin\Debug-2.0\NHibernate.Search.dll
+C:\Users\cyryl\dev\github\NHibernate.Search\NHibernate.Search\src\NHibernate.Search\bin\Debug-2.0\NHibernate.Search.pdb
+C:\Users\cyryl\dev\github\NHibernate.Search\NHibernate.Search\src\NHibernate.Search\bin\Debug-2.0\Iesi.Collections.dll
+C:\Users\cyryl\dev\github\NHibernate.Search\NHibernate.Search\src\NHibernate.Search\bin\Debug-2.0\Lucene.Net.dll
+C:\Users\cyryl\dev\github\NHibernate.Search\NHibernate.Search\src\NHibernate.Search\bin\Debug-2.0\NHibernate.dll
+C:\Users\cyryl\dev\github\NHibernate.Search\NHibernate.Search\src\NHibernate.Search\bin\Debug-2.0\Antlr3.Runtime.dll
+C:\Users\cyryl\dev\github\NHibernate.Search\NHibernate.Search\src\NHibernate.Search\bin\Debug-2.0\Remotion.Linq.dll
+C:\Users\cyryl\dev\github\NHibernate.Search\NHibernate.Search\src\NHibernate.Search\bin\Debug-2.0\Iesi.Collections.pdb
+C:\Users\cyryl\dev\github\NHibernate.Search\NHibernate.Search\src\NHibernate.Search\bin\Debug-2.0\Lucene.Net.pdb
+C:\Users\cyryl\dev\github\NHibernate.Search\NHibernate.Search\src\NHibernate.Search\bin\Debug-2.0\NHibernate.pdb
+C:\Users\cyryl\dev\github\NHibernate.Search\NHibernate.Search\src\NHibernate.Search\bin\Debug-2.0\NHibernate.xml
+C:\Users\cyryl\dev\github\NHibernate.Search\NHibernate.Search\src\NHibernate.Search\bin\Debug-2.0\Remotion.Linq.pdb
+C:\Users\cyryl\dev\github\NHibernate.Search\NHibernate.Search\src\NHibernate.Search\obj\Debug\NHibernate.Search.dll
+C:\Users\cyryl\dev\github\NHibernate.Search\NHibernate.Search\src\NHibernate.Search\obj\Debug\NHibernate.Search.pdb
