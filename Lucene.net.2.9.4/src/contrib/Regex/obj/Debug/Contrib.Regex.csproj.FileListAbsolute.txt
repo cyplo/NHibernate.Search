@@ -3,3 +3,8 @@ C:\Users\cyryl\dev\lucene.net\build\bin\contrib\Regex\Debug\Lucene.Net.Search.Re
 C:\Users\cyryl\dev\lucene.net\src\contrib\Regex\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\cyryl\dev\lucene.net\src\contrib\Regex\obj\Debug\Lucene.Net.Search.Regex.dll
 C:\Users\cyryl\dev\lucene.net\src\contrib\Regex\obj\Debug\Lucene.Net.Search.Regex.pdb
+C:\Users\cyryl\dev\github\NHibernate.Search\Lucene.net.2.9.4\build\bin\contrib\Regex\Debug\Lucene.Net.Search.Regex.dll
+C:\Users\cyryl\dev\github\NHibernate.Search\Lucene.net.2.9.4\build\bin\contrib\Regex\Debug\Lucene.Net.Search.Regex.pdb
+C:\Users\cyryl\dev\github\NHibernate.Search\Lucene.net.2.9.4\src\contrib\Regex\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\cyryl\dev\github\NHibernate.Search\Lucene.net.2.9.4\src\contrib\Regex\obj\Debug\Lucene.Net.Search.Regex.dll
+C:\Users\cyryl\dev\github\NHibernate.Search\Lucene.net.2.9.4\src\contrib\Regex\obj\Debug\Lucene.Net.Search.Regex.pdb

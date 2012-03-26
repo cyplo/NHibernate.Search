@@ -1,0 +1,6 @@
+This is NHibernate.Search: Compile it yourself
+
+I've gathered sources of most of the NHibernate.Search's dependencies and provided a common VS2010 solution to compile them all.
+
+Sources fetched from:
+Lucene: https://www.apache.org/dist/incubator/lucene.net/source/2.9.4g-incubating/

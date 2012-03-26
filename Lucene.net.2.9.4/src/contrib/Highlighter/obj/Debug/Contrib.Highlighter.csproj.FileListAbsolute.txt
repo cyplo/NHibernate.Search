@@ -3,3 +3,8 @@ C:\Users\cyryl\dev\lucene.net\build\bin\contrib\Highlighter\Debug\Lucene.Net.Hig
 C:\Users\cyryl\dev\lucene.net\src\contrib\Highlighter\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\cyryl\dev\lucene.net\src\contrib\Highlighter\obj\Debug\Lucene.Net.Highlighter.dll
 C:\Users\cyryl\dev\lucene.net\src\contrib\Highlighter\obj\Debug\Lucene.Net.Highlighter.pdb
+C:\Users\cyryl\dev\github\NHibernate.Search\Lucene.net.2.9.4\build\bin\contrib\Highlighter\Debug\Lucene.Net.Highlighter.dll
+C:\Users\cyryl\dev\github\NHibernate.Search\Lucene.net.2.9.4\build\bin\contrib\Highlighter\Debug\Lucene.Net.Highlighter.pdb
+C:\Users\cyryl\dev\github\NHibernate.Search\Lucene.net.2.9.4\src\contrib\Highlighter\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\cyryl\dev\github\NHibernate.Search\Lucene.net.2.9.4\src\contrib\Highlighter\obj\Debug\Lucene.Net.Highlighter.dll
+C:\Users\cyryl\dev\github\NHibernate.Search\Lucene.net.2.9.4\src\contrib\Highlighter\obj\Debug\Lucene.Net.Highlighter.pdb
