@@ -50,7 +50,7 @@ namespace NHibernate.Search.Engine
 
             rootClassMapping = classMapping;
 
-            Set<System.Type> processedClasses = new IESI.HashedSet<System.Type>();
+            IESI.Set<System.Type> processedClasses = new IESI.HashedSet<System.Type>();
             processedClasses.Add(classMapping.MappedClass);
             CollectAnalyzers(rootClassMapping, defaultAnalyzer, true, string.Empty, processedClasses);
             //processedClasses.remove( clazz ); for the sake of completness
