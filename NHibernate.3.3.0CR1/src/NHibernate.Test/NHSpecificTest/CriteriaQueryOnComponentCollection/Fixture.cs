@@ -1,5 +1,5 @@
 using System.Collections;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Cfg;
 using NHibernate.Criterion;
 using NHibernate.Transform;
@@ -27,12 +27,12 @@ namespace NHibernate.Test.NHSpecificTest.CriteriaQueryOnComponentCollection
 				var emp = new Employee
 				{
 					Id = 1,
-					Amounts = new HashedSet<Money>
+					Amounts = new IESI.HashedSet<Money>
 					{
 						new Money {Amount = 9, Currency = "USD"},
 						new Money {Amount = 3, Currency = "EUR"},
 					},
-                    ManagedEmployees = new HashedSet<ManagedEmployee>
+                    ManagedEmployees = new IESI.HashedSet<ManagedEmployee>
                     {
 						new ManagedEmployee
 						{

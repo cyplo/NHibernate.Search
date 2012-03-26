@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>wxegen</name>
+    </assembly>
+    <members>
+        <member name="M:Remotion.Web.ExecutionEngine.CodeGenerator.TemplateControlFunctionGeneratorBase.GenerateWxeTemplateControlClassDecalation(System.String,System.CodeDom.CodeNamespace)">
+            <summary>
+            generate a partial class for the page that allows access to parameters and local variables from page code
+            </summary>
+        </member>
+        <member name="M:Remotion.Web.ExecutionEngine.CodeGenerator.TemplateControlFunctionGeneratorBase.GenerateWxeTemplateControlReturnMethod(System.CodeDom.CodeTypeDeclaration)">
+            <summary>
+            add Return() method as alias for ExecuteNextStep()
+            </summary>
+        </member>
+        <member name="M:Remotion.Web.ExecutionEngine.CodeGenerator.TemplateControlFunctionGeneratorBase.GenerateWxePageReturnMethodWithOutParameters">
+            <summary>
+            add Return (outPar1, outPar2, ...) method 
+            </summary>
+        </member>
+        <member name="M:Remotion.Web.ExecutionEngine.CodeGenerator.TemplateControlFunctionGeneratorBase.GenerateWxeTemplateControlCallMethod(Remotion.Web.ExecutionEngine.CodeGenerator.Schema.FunctionDeclaration,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeTypeDeclaration)">
+            <summary>
+            &lt;returnType&gt; Call (IWxePage page, IWxeCallArguments arguments, &lt;type&gt; [ref|out] param1, &lt;type&gt; [ref|out] param2, ...)
+            </summary>
+        </member>
+        <member name="M:Remotion.Web.ExecutionEngine.CodeGenerator.TemplateControlFunctionGeneratorBase.GenerateWxeTemplateControlCallMethodOverloadWithoutCallArguments(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod)">
+            <summary>
+            &lt;returnType&gt; Call (IWxePage page, &lt;type&gt; [ref|out] param1, &lt;type&gt; [ref|out] param2, ...)
+            </summary>
+        </member>
+        <member name="M:Remotion.Web.ExecutionEngine.CodeGenerator.TemplateControlFunctionGeneratorBase.GenerateWxeFunctionAndWxeTemplateControlPropertyAccessors(Remotion.Web.ExecutionEngine.CodeGenerator.Schema.VariableDeclaration,System.CodeDom.CodeStatement@,System.CodeDom.CodeStatement@)">
+            <summary>
+            &lt;variable&gt; := Variables["&lt;parameterName&gt;"]
+            </summary>
+        </member>
+        <member name="M:Remotion.Web.ExecutionEngine.CodeGenerator.TemplateControlFunctionGeneratorBase.GenerateWxeFunctionDecoratePropertyWithWxeParameterAttribute(Remotion.Web.ExecutionEngine.CodeGenerator.Schema.ParameterDeclaration,System.CodeDom.CodeMemberProperty,System.Int32)">
+            <summary>
+            add attribute [WxeParameter (parameterIndex, [Required,] Direction)
+            </summary>
+        </member>
+        <member name="M:Remotion.Web.ExecutionEngine.CodeGenerator.TemplateControlFunctionGeneratorBase.GenerateWxeFunctionDefaultConstructor(System.CodeDom.CodeTypeDeclaration)">
+            <summary>
+            ctor () : base (new object[]{}) {}
+            <para>- or -</para>
+            ctor () : base (new NoneTransactionMode(), new object[]{}) {}
+            </summary>
+        </member>
+        <member name="M:Remotion.Web.ExecutionEngine.CodeGenerator.TemplateControlFunctionGeneratorBase.GenerateWxeFunctionConstructorWithParamsArray">
+            <summary>
+            ctor (params object[] args): base (args) {}
+            </summary>
+        </member>
+        <member name="M:Remotion.Web.ExecutionEngine.CodeGenerator.TemplateControlFunctionGeneratorBase.GenerateWxeFunctionContructorWithTypesParameters(System.CodeDom.CodeTypeDeclaration)">
+            <summary>
+            ctor (&lt;type1&gt; inarg1, &lt;type2&gt; inarg2, ...): base (new object[] {inarg1, inarg2, ...}) {}
+            <para>- or -</para>
+            ctor (&lt;type1&gt; inarg1, &lt;type2&gt; inarg2, ...): base (new NoneTransactionMode(), new object[] {inarg1, inarg2, ...}) {}
+            </summary>
+        </member>
+        <member name="M:Remotion.Web.ExecutionEngine.CodeGenerator.UserControlFunctionGenerator.GenerateWxeTemplateControlCallMethod(Remotion.Web.ExecutionEngine.CodeGenerator.Schema.FunctionDeclaration,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeTypeDeclaration)">
+            <summary>
+            &lt;returnType&gt; Call (IWxePage page, WxeUserControl userControl, Control sender, &lt;type&gt; [ref|out] param1, &lt;type&gt; [ref|out] param2, ...)
+            </summary>
+        </member>
+        <member name="P:Remotion.Web.ExecutionEngine.CodeGenerator.Schema.ParameterDeclaration.xml_isRequired">
+            <summary> Used internally. </summary>
+        </member>
+        <member name="M:Remotion.Web.ExecutionEngine.CodeGenerator.PageFunctionGenerator.GenerateWxeTemplateControlCallMethod(Remotion.Web.ExecutionEngine.CodeGenerator.Schema.FunctionDeclaration,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeTypeDeclaration)">
+            <summary>
+            &lt;returnType&gt; Call (IWxePage page, IWxeCallArguments arguments, &lt;type&gt; [ref|out] param1, &lt;type&gt; [ref|out] param2, ...)
+            </summary>
+        </member>
+        <member name="M:Remotion.Web.ExecutionEngine.CodeGenerator.PageFunctionGenerator.GenerateWxeTemplateControlCallMethodOverloadWithoutCallArguments(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod)">
+            <summary>
+            &lt;returnType&gt; Call (IWxePage page, &lt;type&gt; [ref|out] param1, &lt;type&gt; [ref|out] param2, ...)
+            </summary>
+        </member>
+        <member name="F:Remotion.Web.ExecutionEngine.CodeGenerator.Schema.FunctionDeclaration.SchemaUri">
+            <summary> The namespace of the function declaration schema. </summary>
+            <remarks> <c>http://www.re-motion.org/web/wxefunctiongenerator</c> </remarks>
+        </member>
+        <member name="F:Remotion.Web.ExecutionEngine.CodeGenerator.XmlFragmentContext.FirstLineNumber">
+            <summary> line number of the first XML segment line </summary>
+        </member>
+        <member name="F:Remotion.Web.ExecutionEngine.CodeGenerator.XmlFragmentContext.Indents">
+            <summary>  beginning line position for each line </summary>
+        </member>
+    </members>
+</doc>

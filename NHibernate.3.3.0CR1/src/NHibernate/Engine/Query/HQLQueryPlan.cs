@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 using NHibernate.Event;
 using NHibernate.Hql;
@@ -246,7 +246,7 @@ namespace NHibernate.Engine.Query
 
 	    void BuildSqlStringsAndQuerySpaces()
         {
-            var combinedQuerySpaces = new HashedSet<string>();
+            var combinedQuerySpaces = new IESI.HashedSet<string>();
             var sqlStringList = new List<string>();
 
             foreach (var translator in Translators)

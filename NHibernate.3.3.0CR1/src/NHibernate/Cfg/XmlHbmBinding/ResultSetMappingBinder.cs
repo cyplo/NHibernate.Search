@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Cfg.MappingSchema;
 using NHibernate.Engine;
 using NHibernate.Engine.Query.Sql;
@@ -244,7 +244,7 @@ namespace NHibernate.Cfg.XmlHbmBinding
 				}
 			}
 
-			ISet<string> uniqueReturnProperty = new HashedSet<string>();
+			ISet<string> uniqueReturnProperty = new IESI.HashedSet<string>();
 			foreach (HbmReturnProperty returnPropertySchema in properties)
 			{
 				string name = returnPropertySchema.name;

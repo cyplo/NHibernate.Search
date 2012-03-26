@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.DomainModel.Northwind.Entities
 {
@@ -21,7 +21,7 @@ namespace NHibernate.DomainModel.Northwind.Entities
 
         public Order()         
         {
-            _orderLines = new HashedSet<OrderLine>();
+            _orderLines = new IESI.HashedSet<OrderLine>();
         }
 
         public virtual int OrderId

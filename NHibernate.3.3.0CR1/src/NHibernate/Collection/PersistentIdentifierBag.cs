@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.DebugHelpers;
 using NHibernate.Engine;
 using NHibernate.Id;
@@ -275,7 +275,7 @@ namespace NHibernate.Collection
 		{
 			EntityMode entityMode = Session.EntityMode;
 
-			var map = new HashedSet<SnapshotElement>();
+			var map = new IESI.HashedSet<SnapshotElement>();
 			int i = 0;
 			foreach (object value in values)
 			{

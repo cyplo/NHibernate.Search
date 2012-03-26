@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Test.NHSpecificTest.NH2828
 {
@@ -24,8 +24,8 @@ namespace NHibernate.Test.NHSpecificTest.NH2828
 		public virtual string Name { get; set; }
 
 		public Company(){
-			this.addresses = new HashedSet<Address>();
-			this.bankAccounts = new HashedSet<BankAccount>();
+			this.addresses = new IESI.HashedSet<Address>();
+			this.bankAccounts = new IESI.HashedSet<BankAccount>();
 		}
 
 		/// <summary>

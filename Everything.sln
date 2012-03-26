@@ -59,37 +59,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{28
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NAnt Build", "NAnt Build", "{4CE16C2F-EFF6-48A4-99BC-8984DCC143FA}"
-	ProjectSection(SolutionItems) = preProject
-		NHibernate.3.3.0CR1\build-common\common-project.xml = NHibernate.3.3.0CR1\build-common\common-project.xml
-		NHibernate.3.3.0CR1\build-common\common.xml = NHibernate.3.3.0CR1\build-common\common.xml
-		NHibernate.3.3.0CR1\default.build = NHibernate.3.3.0CR1\default.build
-	EndProjectSection
 	ProjectSection(FolderStartupServices) = postProject
 		{B4F97281-0DBD-4835-9ED8-7DFB966E87FF} = {B4F97281-0DBD-4835-9ED8-7DFB966E87FF}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Information", "Information", "{1631B0BA-59AC-4F0D-B300-3F64CC7579C9}"
-	ProjectSection(SolutionItems) = preProject
-		NHibernate.3.3.0CR1\gfdl.txt = NHibernate.3.3.0CR1\gfdl.txt
-		NHibernate.3.3.0CR1\lgpl.txt = NHibernate.3.3.0CR1\lgpl.txt
-		NHibernate.3.3.0CR1\readme.html = NHibernate.3.3.0CR1\readme.html
-		NHibernate.3.3.0CR1\releasenotes.txt = NHibernate.3.3.0CR1\releasenotes.txt
-		NHibernate.3.3.0CR1\sample build commands.txt = NHibernate.3.3.0CR1\sample build commands.txt
-		NHibernate.3.3.0CR1\ShowBuildMenu.bat = NHibernate.3.3.0CR1\ShowBuildMenu.bat
-	EndProjectSection
 	ProjectSection(FolderStartupServices) = postProject
 		{B4F97281-0DBD-4835-9ED8-7DFB966E87FF} = {B4F97281-0DBD-4835-9ED8-7DFB966E87FF}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration Templates", "Configuration Templates", "{936E50BD-4027-4864-ADE9-423C3FBF7FFB}"
-	ProjectSection(SolutionItems) = preProject
-		NHibernate.3.3.0CR1\src\NHibernate.Config.Templates\FireBird.cfg.xml = NHibernate.3.3.0CR1\src\NHibernate.Config.Templates\FireBird.cfg.xml
-		NHibernate.3.3.0CR1\src\NHibernate.Config.Templates\MSSQL.cfg.xml = NHibernate.3.3.0CR1\src\NHibernate.Config.Templates\MSSQL.cfg.xml
-		NHibernate.3.3.0CR1\src\NHibernate.Config.Templates\MySql.cfg.xml = NHibernate.3.3.0CR1\src\NHibernate.Config.Templates\MySql.cfg.xml
-		NHibernate.3.3.0CR1\src\NHibernate.Config.Templates\Oracle.cfg.xml = NHibernate.3.3.0CR1\src\NHibernate.Config.Templates\Oracle.cfg.xml
-		NHibernate.3.3.0CR1\src\NHibernate.Config.Templates\PostgreSQL.cfg.xml = NHibernate.3.3.0CR1\src\NHibernate.Config.Templates\PostgreSQL.cfg.xml
-		NHibernate.3.3.0CR1\src\NHibernate.Config.Templates\SQLite.cfg.xml = NHibernate.3.3.0CR1\src\NHibernate.Config.Templates\SQLite.cfg.xml
-	EndProjectSection
 	ProjectSection(FolderStartupServices) = postProject
 		{B4F97281-0DBD-4835-9ED8-7DFB966E87FF} = {B4F97281-0DBD-4835-9ED8-7DFB966E87FF}
 	EndProjectSection
@@ -116,10 +95,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.Search", "NHiber
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.Search.Tests", "NHibernate.Search.r1683\src\NHibernate.Search.Tests\NHibernate.Search.Tests.csproj", "{71560152-A693-4F66-99CF-570685A33169}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EF74CDB0-3031-4560-A74A-66CBE2F94828}"
-	ProjectSection(SolutionItems) = preProject
-		NHibernate.Search.r1683\default.build = NHibernate.Search.r1683\default.build
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C0B451C4-EAFC-4942-B18E-49EC73DABABD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "antlr", "antlr", "{A970A8E2-6F3C-406C-8433-EBE30415B104}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Antlr3.Runtime", "Antlr3\CSharp3\Sources\Antlr3.Runtime\Antlr3.Runtime.csproj", "{8FDC0A87-9005-4D5A-AB75-E55CEB575559}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Antlr3.Runtime.Debug", "Antlr3\CSharp3\Sources\Antlr3.Runtime.Debug\Antlr3.Runtime.Debug.csproj", "{5EE27A90-B023-42C9-AAF1-52B0424C5D0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -361,6 +343,26 @@ Global
 		{71560152-A693-4F66-99CF-570685A33169}.Release|Any CPU.Build.0 = Release|Any CPU
 		{71560152-A693-4F66-99CF-570685A33169}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{71560152-A693-4F66-99CF-570685A33169}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8FDC0A87-9005-4D5A-AB75-E55CEB575559}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{8FDC0A87-9005-4D5A-AB75-E55CEB575559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FDC0A87-9005-4D5A-AB75-E55CEB575559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FDC0A87-9005-4D5A-AB75-E55CEB575559}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8FDC0A87-9005-4D5A-AB75-E55CEB575559}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8FDC0A87-9005-4D5A-AB75-E55CEB575559}.Release|.NET.ActiveCfg = Release|Any CPU
+		{8FDC0A87-9005-4D5A-AB75-E55CEB575559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FDC0A87-9005-4D5A-AB75-E55CEB575559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FDC0A87-9005-4D5A-AB75-E55CEB575559}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8FDC0A87-9005-4D5A-AB75-E55CEB575559}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5EE27A90-B023-42C9-AAF1-52B0424C5D0B}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{5EE27A90-B023-42C9-AAF1-52B0424C5D0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EE27A90-B023-42C9-AAF1-52B0424C5D0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EE27A90-B023-42C9-AAF1-52B0424C5D0B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5EE27A90-B023-42C9-AAF1-52B0424C5D0B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5EE27A90-B023-42C9-AAF1-52B0424C5D0B}.Release|.NET.ActiveCfg = Release|Any CPU
+		{5EE27A90-B023-42C9-AAF1-52B0424C5D0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EE27A90-B023-42C9-AAF1-52B0424C5D0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EE27A90-B023-42C9-AAF1-52B0424C5D0B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5EE27A90-B023-42C9-AAF1-52B0424C5D0B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -398,6 +400,8 @@ Global
 		{58CE4584-31B9-4E74-A7FB-5D40BFAD0876} = {C91E7018-3C67-4830-963A-C388C75E1BD5}
 		{181FE707-E161-4722-9F38-6AAAB6FAA106} = {5C9A523C-22C1-49E5-BB62-10F67F3DCB2A}
 		{B0530F10-0238-49A9-93B0-8EF412E90BCF} = {5C9A523C-22C1-49E5-BB62-10F67F3DCB2A}
+		{8FDC0A87-9005-4D5A-AB75-E55CEB575559} = {A970A8E2-6F3C-406C-8433-EBE30415B104}
+		{5EE27A90-B023-42C9-AAF1-52B0424C5D0B} = {A970A8E2-6F3C-406C-8433-EBE30415B104}
 	EndGlobalSection
 	GlobalSection(TextTemplating) = postSolution
 		TextTemplating = 1

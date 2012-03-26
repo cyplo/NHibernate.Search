@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Remotion.Data.DomainObjects.UberProfIntegration</name>
+    </assembly>
+    <members>
+        <member name="T:Remotion.Data.DomainObjects.UberProfIntegration.LinqToSqlAppenderProxy">
+            <summary>
+            Implements a strong-typed wrapper for <b><a href="http://l2sprof.com/">Linq to Sql Profiler</a></b>. (Tested for build 661)
+            </summary>
+            <remarks>
+            The wrapper uses runtime-binding to redirect the calls to Linq to Sql Profiler's API. This removes the static dependcy on Linq to Sql Profiler.
+            </remarks>
+            <threadsafety static="true" instance="true" />
+        </member>
+        <member name="T:Remotion.Data.DomainObjects.UberProfIntegration.LateBoundDelegateFactory">
+            <summary>
+            Creates delegates for methods discovered at runtime.
+            </summary>
+        </member>
+        <member name="T:Remotion.Data.DomainObjects.UberProfIntegration.LinqToSqlExtensionFactory">
+            <summary>
+            Implements <see cref="T:Remotion.Data.DomainObjects.Tracing.IPersistenceExtensionFactory"/> for <b><a href="http://l2sprof.com/">Linq to Sql Profiler</a></b>. (Tested for build 661)
+            <seealso cref="T:Remotion.Data.DomainObjects.UberProfIntegration.LinqToSqlAppenderProxy"/>
+            </summary>
+        </member>
+        <member name="T:Remotion.Data.DomainObjects.UberProfIntegration.LinqToSqlExtension">
+            <summary>
+            Implements <see cref="T:Remotion.Data.DomainObjects.Tracing.IPersistenceExtension"/> for <b><a href="http://l2sprof.com/">Linq to Sql Profiler</a></b>. (Tested for build 661)
+            <seealso cref="T:Remotion.Data.DomainObjects.UberProfIntegration.LinqToSqlAppenderProxy"/>
+            </summary>
+            <threadsafety static="true" instance="true"/>
+        </member>
+    </members>
+</doc>

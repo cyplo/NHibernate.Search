@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Antlr.Runtime;
 using Antlr.Runtime.Tree;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 using NHibernate.Engine;
 using NHibernate.Hql.Ast.ANTLR.Tree;
@@ -45,7 +45,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 		private readonly AliasGenerator _aliasGenerator = new AliasGenerator();
 		private readonly ASTPrinter _printer = new ASTPrinter();
 
-		private readonly Set<string> _querySpaces = new HashedSet<string>();
+		private readonly ISet<string> _querySpaces = new IESI.HashedSet<string>();
 
 		private readonly LiteralProcessor _literalProcessor;
 
@@ -110,7 +110,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 			get { return _aliasGenerator; }
 		}
 
-		public Set<string> QuerySpaces
+		public ISet<string> QuerySpaces
 		{
 			get { return _querySpaces; }
 		}

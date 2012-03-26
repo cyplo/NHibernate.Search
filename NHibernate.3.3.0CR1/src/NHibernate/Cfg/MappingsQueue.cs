@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Cfg
 {
@@ -12,7 +12,7 @@ namespace NHibernate.Cfg
 	public class MappingsQueue
 	{
 		private readonly Queue availableEntries = new Queue();
-		private readonly ISet<string> processedClassNames = new HashedSet<string>();
+		private readonly ISet<string> processedClassNames = new IESI.HashedSet<string>();
 
 		private readonly List<MappingsQueueEntry> unavailableEntries = new List<MappingsQueueEntry>();
 

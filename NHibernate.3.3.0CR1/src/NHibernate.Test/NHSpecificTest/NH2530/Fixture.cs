@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Text;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Dialect;
 using NHibernate.Mapping;
 using NUnit.Framework;
@@ -26,7 +26,7 @@ namespace NHibernate.Test.NHSpecificTest.NH2530
 			{
 				script.AppendLine(string.Format("INSERT INTO [NextHighVaues] (Entity, NextHigh) VALUES ('{0}',1);", entity.Name));
 			}
-			return new SimpleAuxiliaryDatabaseObject(script.ToString(), null, new HashedSet<string> { typeof(MsSql2000Dialect).FullName, typeof(MsSql2005Dialect).FullName, typeof(MsSql2008Dialect).FullName });
+			return new SimpleAuxiliaryDatabaseObject(script.ToString(), null, new IESI.HashedSet<string> { typeof(MsSql2000Dialect).FullName, typeof(MsSql2005Dialect).FullName, typeof(MsSql2008Dialect).FullName });
 		}
 
 		protected override bool AppliesTo(Dialect.Dialect dialect)

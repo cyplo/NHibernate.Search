@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Transform
 {
@@ -41,7 +41,7 @@ namespace NHibernate.Transform
 		public IList TransformList(IList list)
 		{
 			IList result = (IList)Activator.CreateInstance(list.GetType());
-			ISet<Identity> distinct = new HashedSet<Identity>();
+			ISet<Identity> distinct = new IESI.HashedSet<Identity>();
 
 			for (int i = 0; i < list.Count; i++)
 			{

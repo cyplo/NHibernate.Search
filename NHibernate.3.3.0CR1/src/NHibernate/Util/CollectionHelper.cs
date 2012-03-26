@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using Iesi.Collections;
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Util
 {

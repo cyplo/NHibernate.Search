@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.DomainModel.Northwind.Entities
 {
@@ -18,7 +18,7 @@ namespace NHibernate.DomainModel.Northwind.Entities
         {
             _description = description;
 
-            _employees = new HashedSet<Employee>();
+            _employees = new IESI.HashedSet<Employee>();
         }
 
         public virtual string Description

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Reflection;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Mapping.ByCode;
 using NUnit.Framework;
 using SharpTestsEx;

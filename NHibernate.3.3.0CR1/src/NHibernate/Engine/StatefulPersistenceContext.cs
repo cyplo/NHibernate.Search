@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Security.Permissions;
 using System.Text;
 using Iesi.Collections;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 using NHibernate.Collection;
 using NHibernate.Engine.Loading;
@@ -66,7 +66,7 @@ namespace NHibernate.Engine
 		private readonly Dictionary<CollectionKey, IPersistentCollection> collectionsByKey;
 
 		// Set of EntityKeys of deleted objects
-		private readonly HashedSet<EntityKey> nullifiableEntityKeys;
+		private readonly IESI.HashedSet<EntityKey> nullifiableEntityKeys;
 
 		// properties that we have tried to load, and not found in the database
 		private ISet<AssociationKey> nullAssociations;
@@ -122,14 +122,14 @@ namespace NHibernate.Engine
 			collectionsByKey = new Dictionary<CollectionKey, IPersistentCollection>(InitCollectionSize);
 			arrayHolders = IdentityMap.Instantiate(InitCollectionSize);
 			parentsByChild = IdentityMap.Instantiate(InitCollectionSize);
-			nullifiableEntityKeys = new HashedSet<EntityKey>();
+			nullifiableEntityKeys = new IESI.HashedSet<EntityKey>();
 			InitTransientState();
 		}
 
 		private void InitTransientState()
 		{
 			loadContexts = null;
-			nullAssociations = new HashedSet<AssociationKey>();
+			nullAssociations = new IESI.HashedSet<AssociationKey>();
 			nonlazyCollections = new List<IPersistentCollection>(InitCollectionSize);
 		}
 
@@ -1491,7 +1491,7 @@ namespace NHibernate.Engine
 			arrayHolders = (IdentityMap)info.GetValue("context.arrayHolders", typeof(IdentityMap));
 			collectionEntries = (IdentityMap)info.GetValue("context.collectionEntries", typeof(IdentityMap));
 			collectionsByKey = (Dictionary<CollectionKey, IPersistentCollection>)info.GetValue("context.collectionsByKey", typeof(Dictionary<CollectionKey, IPersistentCollection>));
-			nullifiableEntityKeys = (HashedSet<EntityKey>)info.GetValue("context.nullifiableEntityKeys", typeof(HashedSet<EntityKey>));
+			nullifiableEntityKeys = (IESI.HashedSet<EntityKey>)info.GetValue("context.nullifiableEntityKeys", typeof(IESI.HashedSet<EntityKey>));
 			unownedCollections = (Dictionary<CollectionKey, IPersistentCollection>)info.GetValue("context.unownedCollections", typeof(Dictionary<CollectionKey, IPersistentCollection>));
 			hasNonReadOnlyEntities = info.GetBoolean("context.hasNonReadOnlyEntities");
 			defaultReadOnly = info.GetBoolean("context.defaultReadOnly");
@@ -1511,7 +1511,7 @@ namespace NHibernate.Engine
 			info.AddValue("context.arrayHolders", arrayHolders, typeof(IdentityMap));
 			info.AddValue("context.collectionEntries", collectionEntries, typeof(IdentityMap));
 			info.AddValue("context.collectionsByKey", collectionsByKey, typeof(Dictionary<CollectionKey, IPersistentCollection>));
-			info.AddValue("context.nullifiableEntityKeys", nullifiableEntityKeys, typeof(HashedSet<EntityKey>));
+			info.AddValue("context.nullifiableEntityKeys", nullifiableEntityKeys, typeof(IESI.HashedSet<EntityKey>));
 			info.AddValue("context.unownedCollections", unownedCollections, typeof(Dictionary<CollectionKey, IPersistentCollection>));
 			info.AddValue("context.hasNonReadOnlyEntities", hasNonReadOnlyEntities);
 			info.AddValue("context.defaultReadOnly", defaultReadOnly);

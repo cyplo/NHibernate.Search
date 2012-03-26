@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 using NHibernate.Action;
 using NHibernate.Cache;
@@ -506,7 +506,7 @@ loopInsertion: ;
 		private class AfterTransactionCompletionProcessQueue 
 		{
 			private ISessionImplementor session;
-			private ISet<string> querySpacesToInvalidate = new HashedSet<string>();
+			private ISet<string> querySpacesToInvalidate = new IESI.HashedSet<string>();
 			private IList<AfterTransactionCompletionProcessDelegate> processes = new List<AfterTransactionCompletionProcessDelegate>(InitQueueListSize * 3);
 
 			public bool HasActions

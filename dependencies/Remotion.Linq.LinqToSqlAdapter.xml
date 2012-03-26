@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Remotion.Linq.LinqToSqlAdapter</name>
+    </assembly>
+    <members>
+        <member name="T:Remotion.Linq.LinqToSqlAdapter.IConnectionManager">
+            <summary>
+            Provides an interface for classes encapsulating ADO.NET connection handling. Used by <see cref="T:Remotion.Linq.LinqToSqlAdapter.QueryResultRetriever"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.LinqToSqlAdapter.IQueryResultRetriever">
+            <summary>
+            Provides functionality to get results from a database with a given command
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.LinqToSqlAdapter.IReverseMappingResolver">
+            <summary>
+            provides functionality to get all MetaDataMembers of a certain type
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.LinqToSqlAdapter.MappingResolver">
+            <summary>
+            Implements <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.IMappingResolver"/> to resolve expressions from linq2sql to relinq
+            Implements <see cref="T:Remotion.Linq.LinqToSqlAdapter.IReverseMappingResolver"/> to get all metaDataMembers of a type mapped by linq2sql
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.LinqToSqlAdapter.MetaDataMemberComparer">
+            <summary>
+            Compares <see cref="T:System.Data.Linq.Mapping.MetaDataMember"/> instances based on their <see cref="P:System.Data.Linq.Mapping.MetaDataMember.MappedName"/> properties.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.LinqToSqlAdapter.RelinqQueryable`1">
+            <summary>
+            Default implementation of <see cref="T:Remotion.Linq.QueryableBase`1"/> 
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.LinqToSqlAdapter.QueryExecutor">
+            <summary>
+            Constitutes the bridge between re-linq and a Linq2Sql.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.LinqToSqlAdapter.QueryResultRetriever">
+            <summary>
+            Implements IQueryResultRetriever for a certain DBConnection defined by the ConnectionManager
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.LinqToSqlAdapter.RowWrapper">
+            <summary>
+            Represents a row in the database result for an executed SQL command.
+            Reads values and entities from a row.
+            Implementation for Linq2Sql 
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.LinqToSqlAdapter.ScalarRowWrapper">
+            <summary>
+            Represents a scalar row in the database result for an executed SQL command.
+            Reads the value from a row.
+            Implementation for Linq2Sql 
+            </summary>
+        </member>
+    </members>
+</doc>

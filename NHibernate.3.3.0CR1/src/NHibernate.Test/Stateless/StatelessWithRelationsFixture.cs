@@ -1,5 +1,5 @@
 using System.Collections;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NUnit.Framework;
 using System.Collections.Generic;
 using SharpTestsEx;
@@ -36,7 +36,7 @@ namespace NHibernate.Test.Stateless
 				{
 					Father = rf,
 					Mother = rm,
-					Childs = new HashedSet<Reptile> { rc1, rc2 }
+					Childs = new IESI.HashedSet<Reptile> { rc1, rc2 }
 				};
 				s.Save("ReptilesFamily", rfamily);
 				tx.Commit();
@@ -54,7 +54,7 @@ namespace NHibernate.Test.Stateless
 				{
 					Father = hf,
 					Mother = hm,
-					Childs = new HashedSet<Human> { hc1 }
+					Childs = new IESI.HashedSet<Human> { hc1 }
 				};
 				s.Save("HumanFamily", hfamily);
 				tx.Commit();

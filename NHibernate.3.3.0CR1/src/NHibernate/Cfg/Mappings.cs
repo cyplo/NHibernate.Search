@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 using NHibernate.Engine;
 using NHibernate.Mapping;

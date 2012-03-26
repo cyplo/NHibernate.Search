@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Data;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Cache;
 using NHibernate.Cfg;
 using NHibernate.Connection;

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Engine;
 
 namespace NHibernate.Mapping
@@ -16,15 +16,15 @@ namespace NHibernate.Mapping
 	[Serializable]
 	public abstract class AbstractAuxiliaryDatabaseObject : IAuxiliaryDatabaseObject
 	{
-		private readonly HashedSet<string> dialectScopes;
+        private readonly IESI.HashedSet<string> dialectScopes;
 		private IDictionary<string, string> parameters = new Dictionary<string, string>();
 
 		protected AbstractAuxiliaryDatabaseObject()
 		{
-			dialectScopes = new HashedSet<string>();
+            dialectScopes = new IESI.HashedSet<string>();
 		}
 
-		protected AbstractAuxiliaryDatabaseObject(HashedSet<string> dialectScopes)
+		protected AbstractAuxiliaryDatabaseObject(IESI.HashedSet<string> dialectScopes)
 		{
 			this.dialectScopes = dialectScopes;
 		}
@@ -34,7 +34,7 @@ namespace NHibernate.Mapping
 			dialectScopes.Add(dialectName);
 		}
 
-		public HashedSet<string> DialectScopes
+		public IESI.HashedSet<string> DialectScopes
 		{
 			get { return dialectScopes; }
 		}

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Cfg;
 using NHibernate.Engine;
 using NHibernate.Mapping;
@@ -35,7 +35,7 @@ namespace NHibernate.Test.Tools.hbm2ddl.SchemaMetadataUpdaterTest
 		[Test]
 		public void UpdateReservedWordsInDialect()
 		{
-			var reservedDb = new HashedSet<string>();
+			var reservedDb = new IESI.HashedSet<string>();
 			var configuration = TestConfigurationHelper.GetDefaultConfiguration();
 			var dialect = Dialect.Dialect.GetDialect(configuration.Properties);
 			var connectionHelper = new ManagedProviderConnectionHelper(configuration.Properties);
@@ -97,7 +97,7 @@ namespace NHibernate.Test.Tools.hbm2ddl.SchemaMetadataUpdaterTest
 		[Test]
 		public void AutoQuoteTableAndColumnsAtStratupIncludeKeyWordsImport()
 		{
-			var reservedDb = new HashedSet<string>();
+			var reservedDb = new IESI.HashedSet<string>();
 			var configuration = TestConfigurationHelper.GetDefaultConfiguration();
 			var dialect = Dialect.Dialect.GetDialect(configuration.Properties);
 			var connectionHelper = new ManagedProviderConnectionHelper(configuration.Properties);

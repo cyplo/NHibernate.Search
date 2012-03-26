@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Test.Immutable.EntityWithMutableCollection
 {
@@ -15,7 +15,7 @@ namespace NHibernate.Test.Immutable.EntityWithMutableCollection
 		private IList<ContractVariation> variations;
 		private Contract parent;
 		private ISet<Contract> subcontracts;
-		private ISet<Plan> plans = new HashedSet<Plan>();
+		private ISet<Plan> plans = new IESI.HashedSet<Plan>();
 		private ISet<Party> parties;
 		private ISet<Info> infos;
 		
@@ -33,9 +33,9 @@ namespace NHibernate.Test.Immutable.EntityWithMutableCollection
 			this.customerName = customerName;
 			this.type = type;
 			variations = new List<ContractVariation>();
-			subcontracts = new HashedSet<Contract>();
-			parties = new HashedSet<Party>();
-			infos = new HashedSet<Info>();
+			subcontracts = new IESI.HashedSet<Contract>();
+			parties = new IESI.HashedSet<Party>();
+			infos = new IESI.HashedSet<Info>();
 		}
 		
 		public virtual long Id

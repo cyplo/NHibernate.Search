@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.Common;
 using System.Globalization;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Dialect.Schema
 {

@@ -1,0 +1,318 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Remotion.Web.Legacy</name>
+    </assembly>
+    <members>
+        <member name="T:Remotion.Web.Legacy.Factories.QuirksModeResourceUrlFactory">
+            <summary>
+            Responsible for creating objects that implement <see cref="T:Remotion.Web.IResourceUrl"/> in quirks mode rendering.
+            Uses a <see cref="T:Remotion.Web.ResourceTheme"/> with the theme-name <c>Legacy</c> for <see cref="T:Remotion.Web.ThemedResourceUrl"/>.
+            <seealso cref="T:Remotion.Web.ResourceUrl"/>
+            <seealso cref="T:Remotion.Web.ThemedResourceUrl"/>
+            </summary>
+        </member>
+        <member name="T:Remotion.Web.Legacy.Infrastructure.Factories.QuirksModeResourceUrlResolverFactory">
+            <summary>
+            Responsible for creating a <see cref="T:Remotion.Web.Legacy.Infrastructure.QuirksModeResourceUrlResolver"/> used for resolving the themed resources provided by the <b>Remotion.Web.Legacy</b> assembly.
+            </summary>
+        </member>
+        <member name="T:Remotion.Web.Legacy.Infrastructure.QuirksModeResourceUrlResolver">
+            <summary>
+            Responsible for resolving resource urls for the current <see cref="T:Remotion.Web.ResourceTheme"/>.
+            The <see cref="T:Remotion.Web.Legacy.Infrastructure.QuirksModeResourceUrlResolver"/> is only intended for use with controls located <b>Remotion.Web</b> that do not have their own renderers.
+            </summary>
+        </member>
+        <member name="T:Remotion.Web.Legacy.LegacyServiceConfigurationService">
+            <summary>
+            Provides the service configuration for the legacy rendering support of <b>Remotion.Web</b>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Web.Legacy.UI.Controls.Rendering.DatePickerButtonQuirksModeRenderer">
+            <summary>
+            Responsible for rendering a <see cref="T:Remotion.Web.UI.Controls.DatePickerButton"/> control in quirks mode.
+            <seealso cref="T:Remotion.Web.UI.Controls.DatePickerButtonImplementation.IDatePickerButton"/>
+            </summary>
+        </member>
+        <member name="T:Remotion.Web.Legacy.UI.Controls.Rendering.QuirksModeRendererBase`1">
+            <summary>
+            Base class for all renderers. Contains the essential properties used in rendering.
+            </summary>
+            <typeparam name="TControl">The type of control that can be rendered.</typeparam>
+        </member>
+        <member name="M:Remotion.Web.Legacy.UI.Controls.Rendering.QuirksModeRendererBase`1.#ctor(Remotion.Web.IResourceUrlFactory)">
+            <summary>
+            Initializes the <see cref="N:Remotion.Web.Context"/> and the <see cref="T:System.Web.UI.Control"/> properties from the arguments.
+            </summary>
+        </member>
+        <member name="M:Remotion.Web.Legacy.UI.Controls.Rendering.DatePickerButtonQuirksModeRenderer.Render(Remotion.Web.UI.Controls.DatePickerButtonImplementation.Rendering.DatePickerButtonRenderingContext)">
+            <summary>
+            Renders a click-enabled image that shows a <see cref="T:Remotion.Web.UI.Controls.DatePickerPage"/> on click, which puts the selected value
+            into the control specified by <see cref="P:Control.TargetControlID"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Web.Legacy.UI.Controls.Rendering.DropDownMenuQuirksModeRenderer">
+            <summary>
+            Responsible for rendering a <see cref="T:Remotion.Web.UI.Controls.DropDownMenu"/> control in quirks mode.
+            <seealso cref="T:Remotion.Web.UI.Controls.DropDownMenuImplementation.IDropDownMenu"/>
+            </summary>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.DropDownMenuQuirksModeRenderer.CssClassHeadTitle">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.Web.UI.Controls.DropDownMenu"/>'s title. </summary>
+            <remarks> Class: <c></c> </remarks>
+        </member>
+        <member name="T:Remotion.Web.Legacy.UI.Controls.Rendering.ListMenuQuirksModeRenderer">
+            <summary>
+            Responsible for registering scripts and the style sheet for <see cref="T:Remotion.Web.UI.Controls.ListMenu"/> controls in quirks mode.
+            <seealso cref="T:Remotion.Web.UI.Controls.ListMenuImplementation.IListMenu"/>
+            </summary>
+        </member>
+        <member name="T:Remotion.Web.Legacy.UI.Controls.Rendering.QuirksModeClientScriptBehavior">
+            <summary>
+            Implements <see cref="T:Remotion.Web.UI.Controls.IClientScriptBehavior"/> to determine if the browser supports advanced client scripting in quirks mode.
+            </summary>
+        </member>
+        <member name="T:Remotion.Web.Legacy.UI.Controls.Rendering.SingleViewQuirksModeRenderer">
+            <summary>
+            Implements <see cref="T:Remotion.Web.UI.Controls.SingleViewImplementation.Rendering.ISingleViewRenderer"/> for quirks mode rendering of <see cref="T:Remotion.Web.UI.Controls.SingleView"/> controls.
+            <seealso cref="T:Remotion.Web.UI.Controls.SingleViewImplementation.ISingleView"/>
+            </summary>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.SingleViewQuirksModeRenderer.CssClassBase">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.Web.UI.Controls.SingleView"/>. </summary>
+            <remarks> 
+              <para> Class: <c>singleView</c>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.SingleViewQuirksModeRenderer.CssClassView">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.Web.UI.Controls.SingleView"/>'s active view. </summary>
+            <remarks> 
+              <para> Class: <c>singleViewActiveView</c>. </para>
+              <para> Applied only if the <see cref="P:System.Web.UI.WebControls.Style.CssClass"/> of the <see cref="P:Control.ViewStyle"/> is not set. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.SingleViewQuirksModeRenderer.CssClassTopControls">
+            <summary> Gets the CSS-Class applied to the top section. </summary>
+            <remarks> 
+              <para> Class: <c>singleViewTopControls</c>. </para>
+              <para> Applied only if the <see cref="P:System.Web.UI.WebControls.Style.CssClass"/> of the <see cref="P:Control.TopControlsStyle"/> is not set. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.SingleViewQuirksModeRenderer.CssClassBottomControls">
+            <summary> Gets the CSS-Class applied to the bottom section. </summary>
+            <remarks> 
+              <para> Class: <c>singleViewBottomControls</c>. </para>
+              <para> Applied only if the <see cref="P:System.Web.UI.WebControls.Style.CssClass"/> of the <see cref="P:Control.BottomControlsStyle"/> is not set. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.SingleViewQuirksModeRenderer.CssClassViewBody">
+            <summary> Gets the CSS-Class applied to a <c>div</c> wrapping the content and the border elements. </summary>
+            <remarks> 
+              <para> Class: <c>body</c>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.SingleViewQuirksModeRenderer.CssClassContent">
+            <summary> Gets the CSS-Class applied to a <c>div</c> intended for formatting the content. </summary>
+            <remarks> 
+              <para> Class: <c>content</c>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.SingleViewQuirksModeRenderer.CssClassEmpty">
+            <summary> Gets the CSS-Class applied when the section is empty. </summary>
+            <remarks> 
+              <para> Class: <c>empty</c>. </para>
+              <para> 
+                Applied in addition to the regular CSS-Class. Use <c>td.singleViewTopControls.emtpy</c> or 
+                <c>td.singleViewBottomControls.emtpy</c>as a selector.
+              </para>
+            </remarks>
+        </member>
+        <member name="T:Remotion.Web.Legacy.UI.Controls.Rendering.TabbedMenuQuirksModeRenderer">
+            <summary>
+            Implements <see cref="T:Remotion.Web.UI.Controls.TabbedMenuImplementation.Rendering.ITabbedMenuRenderer"/> for quirks mode rendering of <see cref="T:Remotion.Web.UI.Controls.TabbedMenu"/> controls.
+            <seealso cref="T:Remotion.Web.UI.Controls.TabbedMenuImplementation.ITabbedMenu"/>
+            </summary>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.TabbedMenuQuirksModeRenderer.CssClassBase">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.Web.UI.Controls.WebTabStrip"/> itself. </summary>
+            <remarks> 
+              <para> Class: <c>tabStrip</c>. </para>
+              <para> Applied only if the <see cref="P:System.Web.UI.WebControls.WebControl.CssClass"/> is not set. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.TabbedMenuQuirksModeRenderer.CssClassMainMenu">
+            <summary> Gets the CSS-Class applied to the main menu's tab strip. </summary>
+            <remarks> 
+              <para> Class: <c>tabbedMainMenu</c>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.TabbedMenuQuirksModeRenderer.CssClassSubMenu">
+            <summary> Gets the CSS-Class applied to the sub menu's tab strip. </summary>
+            <remarks> 
+              <para> Class: <c>tabbedSubMenu</c>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.TabbedMenuQuirksModeRenderer.CssClassMainMenuCell">
+            <summary> Gets the CSS-Class applied to the main menu cell. </summary>
+            <remarks> 
+              <para> Class: <c>tabbedMainMenuCell</c>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.TabbedMenuQuirksModeRenderer.CssClassSubMenuCell">
+            <summary> Gets the CSS-Class applied to the sub menu cell. </summary>
+            <remarks> 
+              <para> Class: <c>tabbedSubMenuCell</c>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.TabbedMenuQuirksModeRenderer.CssClassStatusCell">
+            <summary> Gets the CSS-Class applied to the status cell. </summary>
+            <remarks> 
+              <para> Class: <c>tabbedMenuStatusCell</c>. </para>
+            </remarks>
+        </member>
+        <member name="T:Remotion.Web.Legacy.UI.Controls.Rendering.TabbedMultiViewQuirksModeRenderer">
+            <summary>
+            Implements <see cref="T:Remotion.Web.UI.Controls.TabbedMultiViewImplementation.Rendering.ITabbedMultiViewRenderer"/> for quirks mode rendering of <see cref="T:Remotion.Web.UI.Controls.TabbedMultiView"/> controls.
+            <seealso cref="T:Remotion.Web.UI.Controls.TabbedMultiViewImplementation.ITabbedMultiView"/>
+            </summary>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.TabbedMultiViewQuirksModeRenderer.CssClassBase">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.Web.UI.Controls.TabbedMultiView"/>. </summary>
+            <remarks> 
+              <para> Class: <c>tabbedMultiView</c>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.TabbedMultiViewQuirksModeRenderer.CssClassTabStrip">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.Web.UI.Controls.TabbedMultiView"/>'s tab strip. </summary>
+            <remarks> 
+              <para> Class: <c>tabbedMultiViewTabStrip</c>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.TabbedMultiViewQuirksModeRenderer.CssClassActiveView">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.Web.UI.Controls.TabbedMultiView"/>'s active view. </summary>
+            <remarks> 
+              <para> Class: <c>tabbedMultiViewActiveView</c>. </para>
+              <para> Applied only if the <see cref="P:System.Web.UI.WebControls.Style.CssClass"/> of the <see cref="P:Remotion.Web.UI.Controls.TabbedMultiViewImplementation.ITabbedMultiView.ActiveViewStyle"/> is not set. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.TabbedMultiViewQuirksModeRenderer.CssClassTopControls">
+            <summary> Gets the CSS-Class applied to the top section. </summary>
+            <remarks> 
+              <para> Class: <c>tabbedMultiViewTopControls</c>. </para>
+              <para> Applied only if the <see cref="P:System.Web.UI.WebControls.Style.CssClass"/> of the <see cref="P:Remotion.Web.UI.Controls.TabbedMultiViewImplementation.ITabbedMultiView.TopControlsStyle"/> is not set. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.TabbedMultiViewQuirksModeRenderer.CssClassBottomControls">
+            <summary> Gets the CSS-Class applied to the bottom section. </summary>
+            <remarks> 
+              <para> Class: <c>tabbedMultiViewBottomControls</c>. </para>
+              <para> Applied only if the <see cref="P:System.Web.UI.WebControls.Style.CssClass"/> of the <see cref="P:Remotion.Web.UI.Controls.TabbedMultiViewImplementation.ITabbedMultiView.BottomControlsStyle"/> is not set. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.TabbedMultiViewQuirksModeRenderer.CssClassViewBody">
+            <summary> Gets the CSS-Class applied to a <c>div</c> wrapping the content and the border elements. </summary>
+            <remarks> 
+              <para> Class: <c>body</c>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.TabbedMultiViewQuirksModeRenderer.CssClassContent">
+            <summary> Gets the CSS-Class applied to a <c>div</c> intended for formatting the content. </summary>
+            <remarks> 
+              <para> Class: <c>content</c>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.TabbedMultiViewQuirksModeRenderer.CssClassEmpty">
+            <summary> Gets the CSS-Class applied when the section is empty. </summary>
+            <remarks> 
+              <para> Class: <c>empty</c>. </para>
+              <para> 
+                Applied in addition to the regular CSS-Class. Use <c>td.tabbedMultiViewTopControls.emtpy</c> or 
+                <c>td.tabbedMultiViewBottomControls.emtpy</c>as a selector.
+              </para>
+            </remarks>
+        </member>
+        <member name="T:Remotion.Web.Legacy.UI.Controls.Rendering.WebButtonQuirksModeRenderer">
+            <summary>
+            Implements <see cref="T:Remotion.Web.UI.Controls.WebButtonImplementation.Rendering.IWebButtonRenderer"/> for quirks mode rendering of <see cref="T:Remotion.Web.UI.Controls.WebButton"/> controls.
+            <seealso cref="T:Remotion.Web.UI.Controls.WebButtonImplementation.IWebButton"/>
+            </summary>
+        </member>
+        <member name="T:Remotion.Web.Legacy.UI.Controls.Rendering.WebTabStripQuirksModeRenderer">
+            <summary>
+            Implements <see cref="T:Remotion.Web.UI.Controls.WebTabStripImplementation.Rendering.IWebTabStripRenderer"/> for quirks mode rendering of <see cref="T:Remotion.Web.UI.Controls.WebTabStrip"/> controls.
+            <seealso cref="T:Remotion.Web.UI.Controls.WebTabStripImplementation.IWebTabStrip"/>
+            </summary>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.WebTabStripQuirksModeRenderer.CssClassBase">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.Web.UI.Controls.WebTabStrip"/> itself. </summary>
+            <remarks> 
+              <para> Class: <c>tabStrip</c>. </para>
+              <para> Applied only if the <see cref="P:System.Web.UI.WebControls.WebControl.CssClass"/> is not set. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.WebTabStripQuirksModeRenderer.CssClassTabsPane">
+            <summary> Gets the CSS-Class applied to the pane of <see cref="T:Remotion.Web.UI.Controls.WebTab"/> items. </summary>
+            <remarks> 
+              <para> Class: <c>tabStripTabsPane</c>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.WebTabStripQuirksModeRenderer.CssClassTabWrapper">
+            <summary> Gets the CSS-Class applied to the wrapper around each <see cref="T:Remotion.Web.UI.Controls.WebTab"/> item. </summary>
+            <remarks> 
+              <para> Class: <c>tabStripTabWrapper</c>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.WebTabStripQuirksModeRenderer.CssClassTabsPaneEmpty">
+            <summary> Gets the CSS-Class applied to a pane of <see cref="T:Remotion.Web.UI.Controls.WebTab"/> items if no items are present. </summary>
+            <remarks> 
+              <para> Class: <c>tabStripTabsPane</c>. </para>
+              <para> Applied in addition to the regular CSS-Class. Use <c>div.tabStripTabsPane.readOnly</c> as a selector. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.WebTabStripQuirksModeRenderer.CssClassTab">
+            <summary> Gets the CSS-Class applied to a <see cref="T:Remotion.Web.UI.Controls.WebTab"/>. </summary>
+            <remarks> 
+              <para> Class: <c>tabStripTab</c>. </para>
+              <para> Applied only if the <see cref="P:System.Web.UI.WebControls.Style.CssClass"/> is not set for the <see cref="P:Control.TabStyle"/>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.WebTabStripQuirksModeRenderer.CssClassTabSelected">
+            <summary> Gets the CSS-Class applied to a <see cref="T:Remotion.Web.UI.Controls.WebTab"/> if it is selected. </summary>
+            <remarks> 
+              <para> Class: <c>tabStripTabSelected</c>. </para>
+              <para> Applied only if the <see cref="P:System.Web.UI.WebControls.Style.CssClass"/> is not set for the <see cref="P:Control.SelectedTabStyle"/>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.WebTabStripQuirksModeRenderer.CssClassTabAnchorBody">
+            <summary> Gets the CSS-Class applied to a <c>span</c> intended for formatting the inside of the anchor element. </summary>
+            <remarks> 
+              <para> Class: <c>anchorBody</c>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.WebTabStripQuirksModeRenderer.CssClassTabLast">
+            <summary> Gets the CSS-Class applied to a <c>span</c> intended for clearing the space after the last tab. </summary>
+            <remarks> 
+              <para> Class: <c>last</c>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.WebTabStripQuirksModeRenderer.CssClassSeparator">
+            <summary> Gets the CSS-Class applied to a separator. </summary>
+            <remarks> 
+              <para> Class: <c>tabStripTabSeparator</c>. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.Web.Legacy.UI.Controls.Rendering.WebTabStripQuirksModeRenderer.CssClassDisabled">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.Web.UI.Controls.WebTab"/> when it is displayed disabled. </summary>
+            <remarks> 
+              <para> Class: <c>disabled</c>. </para>
+              <para> Applied in addition to the regular CSS-Class. Use <c>.tabStripTab.disabled</c> as a selector.</para>
+            </remarks>
+        </member>
+        <member name="T:Remotion.Web.Legacy.UI.Controls.Rendering.WebTreeViewQuirksModeRenderer">
+            <summary>
+            Implements <see cref="T:Remotion.Web.UI.Controls.WebTreeViewImplementation.Rendering.IWebTreeViewRenderer"/> for quirks mode rendering of <see cref="T:Remotion.Web.UI.Controls.WebTreeView"/> controls.
+            <seealso cref="T:Remotion.Web.UI.Controls.WebTreeViewImplementation.IWebTreeView"/>
+            </summary>
+        </member>
+    </members>
+</doc>

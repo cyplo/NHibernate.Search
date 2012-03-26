@@ -4,7 +4,7 @@ namespace NHibernate.Search.Tests.Embedded.DoubleInsert
 {
     using Attributes;
 
-    using Iesi.Collections.Generic;
+    using IESI = Iesi.Collections.Generic;
 
     [Indexed]
     public class Contact
@@ -26,8 +26,8 @@ namespace NHibernate.Search.Tests.Embedded.DoubleInsert
 
         public Contact()
         {
-            addresses = new HashedSet<Address>();
-            phoneNumbers = new HashedSet<Phone>();
+            addresses = new IESI.HashedSet<Address>();
+            phoneNumbers = new IESI.HashedSet<Phone>();
         }
 
         #endregion

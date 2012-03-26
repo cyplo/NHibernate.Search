@@ -1,4 +1,4 @@
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Test.NHSpecificTest.NH1905
 {

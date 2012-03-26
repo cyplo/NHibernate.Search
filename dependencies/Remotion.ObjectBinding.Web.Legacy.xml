@@ -1,0 +1,1007 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Remotion.ObjectBinding.Web.Legacy</name>
+    </assembly>
+    <members>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.BocLegacyServiceConfigurationService">
+            <summary>
+            Provides the service configuration for the legacy rendering support of <b>Remotion.ObjectBinding.Web</b>.
+            </summary>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocBooleanValueImplementation.Rendering.BocBooleanValueQuirksModeRendererBase`1">
+            <summary>
+            Base class for the renderers in the same namespace. Contains common constants and methods.
+            <seealso cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocBooleanValueImplementation.Rendering.BocBooleanValueRenderer"/>
+            <seealso cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocBooleanValueImplementation.Rendering.BocCheckBoxRenderer"/>
+            </summary>
+            <typeparam name="T">The concrete control or corresponding interface that will be rendered.</typeparam>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocQuirksModeRendererBase`1">
+            <summary>
+            Base class for renderers of <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.IBocRenderableControl"/> objects.
+            </summary>
+            <typeparam name="TControl">The type of control that can be rendered.</typeparam>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocQuirksModeRendererBase`1.AddAttributesToRender(Remotion.Web.UI.Controls.RenderingContext{`0},System.Boolean)">
+            <summary>
+            Adds class and style attributes found in the <see cref="P:Remotion.Web.UI.Controls.RenderingContext`1.Control"/> 
+            to the <paramref name="renderingContext"/> so that they are rendered in the next begin tag.
+            </summary>
+            <param name="renderingContext">The <see cref="T:Remotion.Web.UI.Controls.RenderingContext`1"/>.</param>
+            <param name="overrideWidth">When <see langword="true"/>, the 'width' style attribute is rendered with a value of 'auto'
+            without changing the contents of the actual style.</param>
+            <remarks>This automatically adds the CSS classes found in <see cref="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocQuirksModeRendererBase`1.CssClassReadOnly"/>
+            and <see cref="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocQuirksModeRendererBase`1.CssClassDisabled"/> if appropriate.</remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocQuirksModeRendererBase`1.AddAdditionalAttributes(Remotion.Web.UI.Controls.RenderingContext{`0})">
+            <summary>
+            Called after all attributes have been added by <see cref="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocQuirksModeRendererBase`1.AddAttributesToRender(Remotion.Web.UI.Controls.RenderingContext{`0},System.Boolean)"/>.
+            Use this to render style attributes without putting them into the control's <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.IBocRenderableControl.Style"/> property.
+            </summary>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocQuirksModeRendererBase`1.CssClassReadOnly">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.IBocRenderableControl"/> when it is displayed in read-only mode. </summary>
+            <remarks> 
+              <para> Class: <c>readOnly</c>. </para>
+              <para> Applied in addition to the regular CSS-Class. Use <c>.bocTextValue.readOnly</c> as a selector. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocQuirksModeRendererBase`1.CssClassBase">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.IBocRenderableControl"/> itself. </summary>
+            <remarks> 
+              <para> Class: <c>bocTextValue</c>. </para>
+              <para> Applied only if the <see cref="P:System.Web.UI.WebControls.WebControl.CssClass"/> is not set. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocQuirksModeRendererBase`1.CssClassDisabled">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.IBocRenderableControl"/> when it is displayed disabled. </summary>
+            <remarks> 
+              <para> Class: <c>disabled</c>. </para>
+              <para> Applied in addition to the regular CSS-Class. Use <c>.bocTextValue.disabled</c> as a selector.</para>
+            </remarks>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition">
+            <summary>
+            Contains all the CSS class definitions needed throughout <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/> rendering.
+            </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.GetDataCell(System.Boolean)">
+            <summary> Gets the CSS-Class applied to the cells in the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>'s data rows. </summary>
+            <param name="isOddRow"><see langword="true"/> for rows with an odd row-index, otherwise <see langword="false"/>.</param>
+            <returns><see cref="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.DataCellOdd"/> if <paramref name="isOddRow"/> is <see langword="true"/>, otherwise <see cref="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.DataCellEven"/>.</returns>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.GetTableBlock(System.Boolean,System.Boolean)">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>'s table block. </summary>
+            <param name="hasMenuBlock"><see langword="true"/> if the list has a menu block, otherwise <see langword="false"/>.</param>
+            <param name="hasNavigator"><see langword="true"/> if the list has a navigation block, otherwise <see langword="false"/>.</param>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.Base">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.IBocRenderableControl"/> itself. </summary>
+            <remarks> 
+              <para> Class: <c>bocTextValue</c>. </para>
+              <para> Applied only if the <see cref="P:System.Web.UI.WebControls.WebControl.CssClass"/> is not set. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.ReadOnly">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.IBocRenderableControl"/> when it is displayed in read-only mode. </summary>
+            <remarks> 
+              <para> Class: <c>readOnly</c>. </para>
+              <para> Applied in addition to the regular CSS-Class. Use <c>.bocTextValue.readOnly</c> as a selector. </para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.Disabled">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.IBocRenderableControl"/> when it is displayed disabled. </summary>
+            <remarks> 
+              <para> Class: <c>disabled</c>. </para>
+              <para> Applied in addition to the regular CSS-Class. Use <c>.bocTextValue.disabled</c> as a selector.</para>
+            </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.Table">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>'s <c>table</c> tag. </summary>
+            <remarks> Class: <c>bocListTable</c> </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.TableHead">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>'s <c>thead</c> tag. </summary>
+            <remarks> Class: <c>bocListTableHead</c> </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.TableBody">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>'s <c>tbody</c> tag. </summary>
+            <remarks> Class: <c>bocListTableBody</c> </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.TitleCell">
+            <summary> CSS-Class applied to the cells in the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>'s title row. </summary>
+            <remarks> Class: <c>bocListTitleCell</c> </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.DataRow">
+            <summary> Gets the CSS-Class applied to the cells in the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>'s selected data. </summary>
+            <remarks> Class: <c>bocListDataRow</c> </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.DataRowSelected">
+            <summary> Gets the CSS-Class applied to the cells in the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>'s selected data rows. </summary>
+            <remarks> Class: <c>bocListDataRowSelected</c> </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.DataCellOdd">
+            <summary> Gets the CSS-Class applied to the cells in the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>'s odd data rows. </summary>
+            <remarks> Class: <c>bocListDataCellOdd</c> </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.DataCellEven">
+            <summary> Gets the CSS-Class applied to the cells in the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>'s even data rows. </summary>
+            <remarks> Class: <c>bocListDataCellEven</c> </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.TitleCellIndex">
+            <summary> Gets the CSS-Class applied to the cell in the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>'s title row that contains the row index header. </summary>
+            <remarks> Class: <c>bocListTitleCellIndex</c> </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.DataCellIndex">
+            <summary> Gets the CSS-Class applied to the cell in the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>'s data rows that contains the row index. </summary>
+            <remarks> Class: <c>bocListDataCellIndex</c> </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.Content">
+            <summary> Gets the CSS-Class applied to the content if there is no anchor element. </summary>
+            <remarks> Class: <c>bocListDataCellContent</c> </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.SortingOrder">
+            <summary> Gets the CSS-Class applied to the text providing the sorting order's index. </summary>
+            <remarks> Class: <c>bocListSortingOrder</c> </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.Navigator">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>'s navigator. </summary>
+            <remarks> Class: <c>bocListNavigator</c> </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.AvailableViewsListDropDownList">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>'s list of additional columns. </summary>
+            <remarks> Class: <c>bocListAvailableViewsListDropDownList</c> </remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition.AvailableViewsListLabel">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>'s label for the list of additional columns. </summary>
+            <remarks> Class: <c>bocListAvailableViewsListLabel</c> </remarks>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocReferenceValueImplementation.Rendering.BocReferenceValueQuirksModeRendererBase`2">
+            <summary>
+            Provides a common base class for Quirks Mode renderers or <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocReferenceValue"/> and <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocAutoCompleteReferenceValue"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocTextValueImplementation.Rendering.BocTextValueQuirksModeRendererBase`1">
+            <summary>
+            Responsible for rendering <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocTextValue"/> and <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocMultilineTextValue"/> controls, which is done
+            by a template method for which deriving classes have to supply the <see cref="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocTextValueImplementation.Rendering.BocTextValueQuirksModeRendererBase`1.GetLabel(Remotion.ObjectBinding.Web.UI.Controls.BocRenderingContext{`0})"/> method.
+            <seealso cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocTextValueImplementation.Rendering.BocTextValueRenderer"/>
+            <seealso cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocTextValueImplementation.Rendering.BocMultilineTextValueRenderer"/>
+            </summary>
+            <typeparam name="T">The concrete control or corresponding interface that will be rendered.</typeparam>
+        </member>
+        <member name="F:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocTextValueImplementation.Rendering.BocTextValueQuirksModeRendererBase`1.c_designModeEmptyLabelContents">
+            <summary> Text displayed when control is displayed in desinger, is read-only, and has no contents. </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocTextValueImplementation.Rendering.BocTextValueQuirksModeRendererBase`1.Render(Remotion.ObjectBinding.Web.UI.Controls.BocRenderingContext{`0})">
+            <summary>
+            Renders a label when <see cref="P:Remotion.ObjectBinding.IBusinessObjectBoundEditableControl.IsReadOnly"/> is <see langword="true"/>,
+            a textbox in edit mode.
+            </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocTextValueImplementation.Rendering.BocTextValueQuirksModeRendererBase`1.GetTextBox(Remotion.ObjectBinding.Web.UI.Controls.BocRenderingContext{`0})">
+            <summary>
+            Creates a <see cref="T:System.Web.UI.WebControls.TextBox"/> control to use for rendering the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocTextValueImplementation.BocTextValueBase"/> control in edit mode.
+            </summary>
+            <returns>A <see cref="T:System.Web.UI.WebControls.TextBox"/> control with the all relevant properties set and all appropriate styles applied to it.</returns>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocTextValueImplementation.Rendering.BocTextValueQuirksModeRendererBase`1.GetLabel(Remotion.ObjectBinding.Web.UI.Controls.BocRenderingContext{`0})">
+            <summary>
+            Creates a <see cref="T:System.Web.UI.WebControls.Label"/> control to use for rendering the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocTextValueImplementation.BocTextValueBase"/> control in read-only mode.
+            </summary>
+            <returns>A <see cref="T:System.Web.UI.WebControls.Label"/> control with all relevant properties set and all appropriate styles applied to it.</returns>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.Factories.BocBooleanValueQuirksModeResourceSetFactory">
+            <summary>
+            Responsible for creating the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocBooleanValue"/> <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocBooleanValueImplementation.BocBooleanValueResourceSet"/> for quirks mode rendering.
+            </summary>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocReferenceValueImplementation.Rendering.BocAutoCompleteReferenceValueQuirksModeRenderer">
+            <summary>
+            Responsible for rendering <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocReferenceValue"/> controls in Quirks Mode.
+            </summary>
+            <remarks>
+            <para>During edit mode, the control is displayed using a <see cref="T:System.Web.UI.WebControls.DropDownList"/>.</para>
+            <para>During read-only mode, the control's value is displayed using a <see cref="T:System.Web.UI.WebControls.Label"/>.</para>
+            </remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocReferenceValueImplementation.Rendering.BocAutoCompleteReferenceValueQuirksModeRenderer.RenderEditModeValueExtension(Remotion.ObjectBinding.Web.UI.Controls.BocReferenceValueImplementation.Rendering.BocAutoCompleteReferenceValueRenderingContext)">
+            <summary> Called after the edit mode value's cell is rendered. </summary>
+            <remarks> Render a table cell: &lt;td style="width:0%"&gt;Your contents goes here&lt;/td&gt;</remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocReferenceValueImplementation.Rendering.BocAutoCompleteReferenceValueQuirksModeRenderer.CssClassContent">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocReferenceValue"/>'s value. </summary>
+            <remarks> Class: <c>bocReferenceValueContent</c> </remarks>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocBooleanValueImplementation.Rendering.BocBooleanValueQuirksModeRenderer">
+            <summary>
+            Responsible for rendering <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocBooleanValue"/> controls.
+            <seealso cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocBooleanValueImplementation.IBocBooleanValue"/>
+            </summary>
+            <remarks>
+      <h4 class="dtH4">Standards Conformance</h4>
+      <list type="table">
+        <listheader>
+          <term>Standard</term>
+          <description>Conformance Information</description>
+        </listheader>
+        <item>
+          <term>HTML 4.01</term>
+          <description>valid</description>
+        </item>
+        <item>
+          <term>XHTML 1.0</term>
+          <description>valid</description>
+        </item>
+        <item>
+          <term>WAI WCAG 1.0</term>
+          <description>not conform</description>
+        </item>
+      </list>
+
+      <h4 class="dtH4">Inner Workings</h4>
+      <para>
+        The control is displayed using a <see cref="T:System.Web.UI.WebControls.HyperLink"/> encapsulating an
+        <see cref="T:System.Web.UI.WebControls.Image"/> to simulate a check box. In read-only mode the <b>Href</b>
+        property is set to emtpy, disabling the hyperlink. It also offers a
+        <see cref="T:System.Web.UI.WebControls.Label"/> containing the string representation of the current value,
+        rendered next to the image. A <see cref="T:HiddenField"/> control is used for
+        posting the value back to the server.
+      </para>
+      <para>
+        These controls cannot be accessed directly, but the appropriate styles are applied.
+      </para>
+    </remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocBooleanValueImplementation.Rendering.BocBooleanValueQuirksModeRenderer.Render(Remotion.ObjectBinding.Web.UI.Controls.BocBooleanValueImplementation.Rendering.BocBooleanValueRenderingContext)">
+            <summary>
+            Renders an image and a label. In edit mode, the image is wrapped in a hyperlink that is
+            scripted to respond to clicks and change the "checkbox" state accordingly; 
+            in addition, the state is put into an additional hidden field.
+            </summary>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocBooleanValueImplementation.Rendering.BocCheckBoxQuirksModeRenderer">
+            <summary>
+            Responsible for rendering <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocCheckBox"/> controls.
+            <seealso cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocBooleanValueImplementation.IBocCheckBox"/>
+            </summary>
+            <remarks>
+      <h4 class="dtH4">Standards Conformance</h4>
+      <list type="table">
+        <listheader>
+          <term>Standard</term>
+          <description>Conformance Information</description>
+        </listheader>
+        <item>
+          <term>HTML 4.01</term>
+          <description>valid</description>
+        </item>
+        <item>
+          <term>XHTML 1.0</term>
+          <description>valid</description>
+        </item>
+        <item>
+          <term>WAI WCAG 1.0</term>
+          <description>
+            <para>
+              Priority 1 checkpoint 6.3 is not met if the label provding a textual representation of the value
+              is also rendered. This can be enforced by the
+              <see cref="P:Remotion.Web.Configuration.WebConfiguration.Wcag"/> configuration entry.
+            </para>
+            <para>
+              Enabling auto post back can break compliance with priority 1 checkpoint 6.3 if the post back is
+              required for using the page.
+            </para>
+          </description>
+        </item>
+      </list>
+
+      <h4 class="dtH4">Inner Workings</h4>
+      <para>
+        The control is displayed using a <see cref="T:System.Web.UI.WebControls.CheckBox"/> in edit mode and an
+        <see cref="T:System.Web.UI.WebControls.Image"/> in read-only mode. It also offers a
+        <see cref="T:System.Web.UI.WebControls.Label"/> containing the string representation of the current value,
+        rendered next to the checkbox or image.
+      </para>
+      <para>
+        These controls cannot be accessed directly, but the appropriate styles are applied.
+      </para>
+    </remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocBooleanValueImplementation.Rendering.BocCheckBoxQuirksModeRenderer.Render(Remotion.ObjectBinding.Web.UI.Controls.BocBooleanValueImplementation.Rendering.BocCheckBoxRenderingContext)">
+            <summary>
+            Renders an image and label in readonly mode, a checkbox and label in edit mode.
+            </summary>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocDateTimeValueImplementation.Rendering.BocDateTimeValueQuirksModeRenderer">
+            <summary>
+            Responsible for rendering <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocDateTimeValue"/> controls, but not for the included <see cref="T:Remotion.Web.UI.Controls.DatePickerButtonImplementation.IDatePickerButton"/>.
+            For that, see <see cref="T:Remotion.Web.UI.Controls.DatePickerButtonImplementation.Rendering.DatePickerButtonRenderer"/>.
+            <seealso cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocDateTimeValueImplementation.IBocDateTimeValue"/>
+            </summary>
+            <remarks>
+      <h4 class="dtH4">Standards Conformance</h4>
+      <list type="table">
+        <listheader>
+          <term>Standard</term>
+          <description>Conformance Information</description>
+        </listheader>
+        <item>
+          <term>HTML 4.01</term>
+          <description>valid</description>
+        </item>
+        <item>
+          <term>XHTML 1.0</term>
+          <description>valid</description>
+        </item>
+        <item>
+          <term>WAI WCAG 1.0</term>
+          <description>
+            <para>level A conform</para>
+            <para>
+              Priority 2 checkpoint 12.4 is not met if the <see cref="T:System.ValueType"/> is set to
+              <see cref="F:Remotion.ObjectBinding.Web.UI.Controls.BocDateTimeValueType.DateTime"/> since no label can be provided for the time text box.
+            </para>
+            <para>
+              Enabling auto post back can break compliance with priority 1 checkpoint 6.3 if the post back is
+              required for using the page.
+            </para>
+            <para>
+              Priority 2 checkpoints 6.4, 8.1, 9.2, and 9.3 are not met by the pop-up date picker.
+              Since this feature is not required to fill out the date, it does not have to conform to WAI guide lines.
+            </para>
+            <para>
+              Priority 3 checkpoint 10.4 is not met. The control does not provide place-holder text for the
+              date and time value text boxes.
+            </para>
+          </description>
+        </item>
+      </list>
+
+      <h4 class="dtH4">Inner Workings</h4>
+      <para>
+        During edit mode, the control is displayed using two <see cref="T:System.Web.UI.WebControls.TextBox"/> controls,
+        one for the date and the other for the time component. It also displays a pop-up date picker, toggled by an
+        image with a scripted click event. The control uses a table for formatting.
+      </para>
+      <para>
+        During read-only mode, the control's value is displayed using a single <see cref="T:System.Web.UI.WebControls.Label"/>.
+      </para>
+      <para>
+        These controls cannot be accessed directly, but the appropriate styles are applied.
+      </para>
+    </remarks>
+        </member>
+        <member name="F:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocDateTimeValueImplementation.Rendering.BocDateTimeValueQuirksModeRenderer.c_designModeEmptyLabelContents">
+            <summary> Text displayed when control is displayed in desinger and is read-only has no contents. </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocDateTimeValueImplementation.Rendering.BocDateTimeValueQuirksModeRenderer.Render(Remotion.ObjectBinding.Web.UI.Controls.BocDateTimeValueImplementation.Rendering.BocDateTimeValueRenderingContext)">
+            <summary>
+            Renders an inline table consisting of one row with up to three cells, depending on <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocDateTimeValueImplementation.IBocDateTimeValue.ActualValueType"/>.
+            The first one for the date textbox, second for the <see cref="T:Remotion.Web.UI.Controls.DatePickerButton"/> and third for the time textbox.
+            The text boxes are rendered directly, the date picker is responsible for rendering itself.
+            </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocDateTimeValueImplementation.Rendering.BocDateTimeValueQuirksModeRenderer.GetDateMaxLength">
+            <summary> Calculates the maximum length for required for entering the date component. </summary>
+            <returns> The length. </returns>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocDateTimeValueImplementation.Rendering.BocDateTimeValueQuirksModeRenderer.GetTimeMaxLength(Remotion.ObjectBinding.Web.UI.Controls.BocDateTimeValueImplementation.Rendering.BocDateTimeValueRenderingContext)">
+            <summary> Calculates the maximum length for required for entering the time component. </summary>
+            <returns> The length. </returns>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocEnumValueImplementation.Rendering.BocEnumValueQuirksModeRenderer">
+            <summary>
+            Responsible for rendering <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocEnumValue"/> controls.
+            <seealso cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocEnumValueImplementation.IBocEnumValue"/>
+            </summary>
+            <remarks>
+      <h4 class="dtH4">Standards Conformance</h4>
+      <list type="table">
+        <listheader>
+          <term>Standard</term>
+          <description>Conformance Information</description>
+        </listheader>
+        <item>
+          <term>HTML 4.01</term>
+          <description>
+            valid, unless <see cref="P:System.Web.UI.WebControls.WebControl.Enabled"/> is set to <see langword="false"/>.
+          </description>
+        </item>
+        <item>
+          <term>XHTML 1.0</term>
+          <description>not valid</description>
+        </item>
+        <item>
+          <term>WAI WCAG 1.0</term>
+          <description>
+            <para>level A conform</para>
+            <para>
+              Enabling auto post back can break compliance with priority 1 checkpoint 6.3 if the post back is
+              required for using the page.
+            </para>
+            <para>
+              Priority 2 checkpoint 12.4 is not met if the control is displayed as a drop down box.
+              Internet Explorer resets the selection when the user clicks the label for this control. The label is
+              therefor not associated with the control.
+            </para>
+          </description>
+        </item>
+      </list>
+
+      <h4 class="dtH4">Inner Workings</h4>
+      <para>
+        During edit mode, the control is displayed using a <see cref="T:System.Web.UI.WebControls.ListControl"/>. The concrete implementation is determined by
+        <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocEnumValueImplementation.IBocEnumValue.ListControlStyle"/>'s <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.ListControlStyle.ControlType"/> property.
+      </para>
+      <para>
+        During read-only mode, the control's value is displayed using a <see cref="T:System.Web.UI.WebControls.Label"/>.
+      </para>
+      <para>
+        These controls cannot be accessed directly, but the appropriate styles are applied.
+      </para>
+    </remarks>
+        </member>
+        <member name="F:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocEnumValueImplementation.Rendering.BocEnumValueQuirksModeRenderer.c_designModeEmptyLabelContents">
+            <summary> The text displayed when control is displayed in desinger, is read-only, and has no contents. </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocEnumValueImplementation.Rendering.BocEnumValueQuirksModeRenderer.Render(Remotion.ObjectBinding.Web.UI.Controls.BocEnumValueImplementation.Rendering.BocEnumValueRenderingContext)">
+            <summary>
+            Renders the concrete <see cref="T:System.Web.UI.WebControls.ListControl"/> control as obtained from <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocEnumValueImplementation.IBocEnumValue.ListControlStyle"/>,
+            wrapped in a &lt;div&gt;
+            <seealso cref="T:Remotion.ObjectBinding.Web.UI.Controls.ListControlType"/>
+            </summary>
+            <remarks>The <see cref="P:Remotion.Web.UI.Controls.ISmartControl.IsRequired"/> attribute determines if a "null item" is inserted. In addition,
+            as long as no value has been selected, <see cref="T:System.Web.UI.WebControls.DropDownList"/> and <see cref="T:System.Web.UI.WebControls.ListBox"/> have a "null item" inserted
+            even when <see cref="P:Remotion.Web.UI.Controls.ISmartControl.IsRequired"/> is <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocEnumValueImplementation.Rendering.BocEnumValueQuirksModeRenderer.CreateNullItem(Remotion.ObjectBinding.Web.UI.Controls.BocEnumValueImplementation.Rendering.BocEnumValueRenderingContext)">
+            <summary> Creates the <see cref="T:System.Web.UI.WebControls.ListItem"/> symbolizing the undefined selection. </summary>
+            <returns> A <see cref="T:System.Web.UI.WebControls.ListItem"/>. </returns>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocColumnQuirksModeRendererBase`1">
+            <summary>
+            Abstract base class for all column renderers. Provides a template for rendering a table cell from an <see cref="T:Remotion.ObjectBinding.IBusinessObject"/>
+            and a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocColumnDefinition"/>. 
+            </summary>
+            <typeparam name="TBocColumnDefinition">The column definition class which the deriving class can handle.</typeparam>
+        </member>
+        <member name="F:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocColumnQuirksModeRendererBase`1.c_sortAscendingIcon">
+            <summary>Filename of the image used to indicate an ascending sort order of the column in its title cell.</summary>
+        </member>
+        <member name="F:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocColumnQuirksModeRendererBase`1.c_sortDescendingIcon">
+            <summary>Filename of the image used to indicate an descending sort order of the column in its title cell.</summary>
+        </member>
+        <member name="F:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocColumnQuirksModeRendererBase`1.c_whiteSpace">
+            <summary>Entity definition for whitespace separating controls, e.g. icons from following text</summary>
+        </member>
+        <member name="F:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocColumnQuirksModeRendererBase`1.c_onCommandClickScript">
+            <summary>Name of the JavaScript function to call when a command control has been clicked.</summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocColumnQuirksModeRendererBase`1.#ctor(Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition)">
+            <summary>
+            Constructs the renderer.
+            </summary>
+            <param name="cssClasses">The <see cref="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition"/> containing the CSS classes to apply to the rendered elements.</param>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocColumnQuirksModeRendererBase`1.RenderDataCell(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{`0},System.Int32,System.Boolean,Remotion.ObjectBinding.Web.UI.Controls.BocListDataRowRenderEventArgs)">
+            <summary>
+            Renders a table cell for <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext.ColumnDefinition"/> containing the appropriate data from the 
+            <see cref="T:Remotion.ObjectBinding.IBusinessObject"/> contained in <paramref name="dataRowRenderEventArgs"/>
+            </summary>
+            <param name="renderingContext">The <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext`1"/>.</param>
+            <param name="rowIndex">The zero-based index of the row on the page to be displayed.</param>
+            <param name="showIcon">Specifies if an object-specific icon will be rendered in the table cell.</param>
+            <param name="dataRowRenderEventArgs">Specifies row-specific arguments used in rendering the table cell.</param>
+            <remarks>
+            This is a template method. Deriving classes must implement <see cref="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocColumnQuirksModeRendererBase`1.RenderCellContents(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{`0},Remotion.ObjectBinding.Web.UI.Controls.BocListDataRowRenderEventArgs,System.Int32,System.Boolean)"/> to provide the contents of
+            the table cell (&lt;td&gt;) element.
+            </remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocColumnQuirksModeRendererBase`1.RenderCellContents(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{`0},Remotion.ObjectBinding.Web.UI.Controls.BocListDataRowRenderEventArgs,System.Int32,System.Boolean)">
+            <summary>
+            Renders the contents of the table cell. It is called by <see cref="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocColumnQuirksModeRendererBase`1.RenderDataCell(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{`0},System.Int32,System.Boolean,Remotion.ObjectBinding.Web.UI.Controls.BocListDataRowRenderEventArgs)"/> and should not be called by other clients.
+            </summary>
+            <param name="renderingContext">The <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext`1"/>.</param>
+            <param name="dataRowRenderEventArgs">The row-specific rendering arguments.</param>
+            <param name="rowIndex">The zero-based index of the row to render in <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.IBocList"/>.</param>
+            <param name="showIcon">Specifies if the cell should contain an icon of the current <see cref="T:Remotion.ObjectBinding.IBusinessObject"/>.</param>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocCommandColumnQuirksModeRenderer">
+            <summary>
+            Responsible for rendering cells of <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocCommandColumnDefinition"/> columns.
+            </summary>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocCommandEnabledColumnQuirksModeRendererBase`1">
+            <summary>
+            Abstract base class for column renderers that can handle derived classes of <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocCommandEnabledColumnDefinition"/>.
+            Defines common utility methods.
+            </summary>
+            <typeparam name="TBocColumnDefinition">The column definition class which the deriving class can handle.</typeparam>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocCommandColumnQuirksModeRenderer.#ctor(Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition)">
+            <summary>
+            Contructs a renderer bound to a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/> to render, an <see cref="T:System.Web.UI.HtmlTextWriter"/> to render to, and a
+            <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocCommandColumnDefinition"/> column for which to render cells.
+            </summary>
+            <remarks>
+            This class should not be instantiated directly by clients. Instead, a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocRowRenderer"/> should use a
+            factory to obtain instances of this class.
+            </remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocCommandColumnQuirksModeRenderer.RenderCellContents(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{Remotion.ObjectBinding.Web.UI.Controls.BocCommandColumnDefinition},Remotion.ObjectBinding.Web.UI.Controls.BocListDataRowRenderEventArgs,System.Int32,System.Boolean)">
+            <summary>
+            Renders a command control with an icon, text, or both.
+            </summary>
+            <remarks>
+            A <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocCommandColumnDefinition"/> can contain both an object icon and a command icon. The former is rendered according to
+            <paramref name="showIcon"/>, the latter if the column defintion's <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocCommandColumnDefinition.Icon"/> property contains
+            an URL. Furthermore, the command text in <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocCommandColumnDefinition.Text"/> is rendered after any icons.
+            </remarks>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocCompoundColumnQuirksModeRenderer">
+            <summary>
+            Responsible for rendering table cells of <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocCompoundColumnDefinition"/> columns.
+            </summary>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocValueColumnQuirksModeRendererBase`1">
+            <summary>
+            Abstract base class for column renderers that handle classes derived from <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocValueColumnDefinition"/>.
+            Defines <see cref="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocValueColumnQuirksModeRendererBase`1.RenderCellContents(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{`0},Remotion.ObjectBinding.Web.UI.Controls.BocListDataRowRenderEventArgs,System.Int32,System.Boolean)"/> as template method and common utility methods.
+            </summary>
+            <typeparam name="TBocColumnDefinition">The column definition class that the derived class can handle.</typeparam>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocValueColumnQuirksModeRendererBase`1.RenderCellContents(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{`0},Remotion.ObjectBinding.Web.UI.Controls.BocListDataRowRenderEventArgs,System.Int32,System.Boolean)">
+            <summary>
+            Renders a table cell for a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocValueColumnDefinition"/>. This is a template method using 
+            <see cref="M:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocCommandEnabledColumnRendererBase`1.RenderCellIcon(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{`0},Remotion.ObjectBinding.IBusinessObject)"/>
+            and <see cref="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocValueColumnQuirksModeRendererBase`1.RenderCellText(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{`0},Remotion.ObjectBinding.IBusinessObject,System.Boolean,Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.EditableRowSupport.IEditableRow)"/>, which have to be defined in deriving classes.
+            </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocValueColumnQuirksModeRendererBase`1.RenderOtherIcons(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{`0},Remotion.ObjectBinding.IBusinessObject)">
+            <summary>
+            Used by <see cref="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocValueColumnQuirksModeRendererBase`1.RenderCellContents(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{`0},Remotion.ObjectBinding.Web.UI.Controls.BocListDataRowRenderEventArgs,System.Int32,System.Boolean)"/> to render icons in addition to the <paramref name="businessObject"/>'s icon.
+            Deriving classes should override this empty implementation if they wish to add other icons.
+            Should not be used by other clients.
+            </summary>
+            <param name="renderingContext">The <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext`1"/>.</param>
+            <param name="businessObject">Can be used to derive the icon to render.</param>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocValueColumnQuirksModeRendererBase`1.RenderCropSpanBeginTag(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{`0},System.Boolean,System.String)">
+            <summary>
+            If the column width must be enforced, this method renders a &lt;span&gt; block container that crops any overflowing content.
+            </summary>
+            <param name="renderingContext">The <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext`1"/>.</param>
+            <param name="showEditModeControl">Specifies if the cell contains edit mode controls.</param>
+            <param name="spanTitle">Specifies the text to be written to the 'title' attribute.</param>
+            <returns><see langword="true"/> if the crop span begin tag has been rendered, <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocValueColumnQuirksModeRendererBase`1.RenderCropSpanEndTag(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{`0},System.Boolean)">
+            <summary>
+            Renders the end tag to the crop span element if a begin tag has been rendered.
+            </summary>
+            <param name="renderingContext">The <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext`1"/>.</param>
+            <param name="enforceWidth">Specifies if a corresponding begin tag has been rendered.</param>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocCompoundColumnQuirksModeRenderer.#ctor(Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition)">
+            <summary>
+            Contructs a renderer bound to a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/> to render, an <see cref="T:System.Web.UI.HtmlTextWriter"/> to render to, and a
+            <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocCompoundColumnDefinition"/> column for which to render cells.
+            </summary>
+            <remarks>
+            This class should not be instantiated directly by clients. Instead, a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocRowRenderer"/> should use a
+            factory to obtain instances of this class.
+            </remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocCompoundColumnQuirksModeRenderer.RenderCellText(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{Remotion.ObjectBinding.Web.UI.Controls.BocCompoundColumnDefinition},Remotion.ObjectBinding.IBusinessObject,System.Boolean,Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.EditableRowSupport.IEditableRow)">
+            <summary>
+            Renders a string representation of the property of <paramref name="businessObject"/> that is shown in the column.
+            </summary>
+            <param name="renderingContext">The <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext`1"/>.</param>
+            <param name="businessObject">The <see cref="T:Remotion.ObjectBinding.IBusinessObject"/> whose property will be rendered.</param>
+            <param name="showEditModeControl">Prevents rendering if <see langword="true"/>.</param>
+            <param name="editableRow">Ignored.</param>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocCustomColumnQuirksModeRenderer">
+            <summary>
+            Responsible for rendering table cells of <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocCustomColumnDefinition"/> columns.
+            </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocCustomColumnQuirksModeRenderer.#ctor(Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition)">
+            <summary>
+            Contructs a renderer bound to a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/> to render, 
+            an <see cref="T:System.Web.UI.HtmlTextWriter"/> to render to, and a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocCustomColumnDefinition"/> column for which to render cells.
+            </summary>
+            <remarks>
+            This class should not be instantiated directly by clients.
+            </remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocCustomColumnQuirksModeRenderer.RenderCellContents(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{Remotion.ObjectBinding.Web.UI.Controls.BocCustomColumnDefinition},Remotion.ObjectBinding.Web.UI.Controls.BocListDataRowRenderEventArgs,System.Int32,System.Boolean)">
+            <summary>
+            Renders a custom column cell either directly or by wrapping the contained controls, depending on <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocCustomColumnDefinition.Mode"/>
+            and the current row state.
+            </summary>
+            <remarks>
+            If the <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocCustomColumnDefinition.Mode"/> property of <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext.ColumnDefinition"/> indicates that
+            the custom cell does not contain any controls (<see cref="F:Remotion.ObjectBinding.Web.UI.Controls.BocCustomColumnDefinitionMode.NoControls"/> or 
+            <see cref="F:Remotion.ObjectBinding.Web.UI.Controls.BocCustomColumnDefinitionMode.ControlInEditedRow"/> when the current row is not being edited),
+            a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocCustomCellRenderArguments"/> object is created and passed to the custom cell's 
+            <see cref="M:Remotion.ObjectBinding.Web.UI.Controls.BocCustomColumnDefinitionCell.RenderInternal(System.Web.UI.HtmlTextWriter,Remotion.ObjectBinding.Web.UI.Controls.BocCustomCellRenderArguments)"/> method.
+            Otherwise, a click wrapper is rendered around the child control obtained from  <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.IBocList"/>'s <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.IBocList.CustomColumns"/> 
+            property.
+            </remarks>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocDropDownMenuColumnQuirksModeRenderer">
+            <summary>
+            Responsible for rendering cells of <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocDropDownMenuColumnDefinition"/> columns.
+            </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocDropDownMenuColumnQuirksModeRenderer.#ctor(Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition)">
+            <summary>
+            Contructs a renderer bound to a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/> to render, an <see cref="T:System.Web.UI.HtmlTextWriter"/> to render to, and a
+            <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocDropDownMenuColumnDefinition"/> column for which to render cells.
+            </summary>
+            <remarks>
+            This class should not be instantiated directly by clients. Instead, a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocRowRenderer"/> should use a
+            factory to obtain instances of this class.
+            </remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocDropDownMenuColumnQuirksModeRenderer.RenderCellContents(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{Remotion.ObjectBinding.Web.UI.Controls.BocDropDownMenuColumnDefinition},Remotion.ObjectBinding.Web.UI.Controls.BocListDataRowRenderEventArgs,System.Int32,System.Boolean)">
+            <summary>
+            Renders a <see cref="T:Remotion.Web.UI.Controls.DropDownMenu"/> with the options for the current row.
+            <seealso cref="M:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRendererBase`1.RenderCellContents(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{`0},Remotion.ObjectBinding.Web.UI.Controls.BocListDataRowRenderEventArgs,System.Int32,System.Boolean)"/>
+            </summary>
+            <remarks>
+            The menu title is generated from the <see cref="P:Remotion.Web.UI.Controls.DropDownMenu.TitleText"/> and <see cref="P:Remotion.Web.UI.Controls.DropDownMenu.TitleText"/> properties of
+            the column definition in <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext.ColumnDefinition"/>, and populated with the menu items in
+            the <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.IBocList.RowMenus"/> property of <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.IBocList"/>.
+            </remarks>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocIndexColumnQuirksModeRenderer">
+            <summary>
+            Responsible for rendering the index column of a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.IBocList"/>.
+            </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocIndexColumnQuirksModeRenderer.RenderRowIndex(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext,System.Int32,System.String)">
+            <summary> Renders the zero-based row index normalized to a one-based format
+            (Optionally as a label for the selector control). </summary>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListMenuBlockQuirksModeRenderer">
+            <summary>
+            Responsible for rendering the menu block of a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>.
+            </summary>
+            <remarks>This class should not be instantiated directly. It is meant to be used by a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderer"/>.</remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListMenuBlockQuirksModeRenderer.#ctor(Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition)">
+            <summary>
+            Contructs a renderer bound to a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/> to render and an <see cref="T:System.Web.UI.HtmlTextWriter"/> to render to.
+            </summary>
+            <remarks>
+            This class should not be instantiated directly by clients. Instead, a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderer"/> should use a
+            factory to obtain an instance of this class.
+            </remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListMenuBlockQuirksModeRenderer.Render(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext)">
+            <summary> Renders the menu block of the control. </summary>
+            <remarks> Contains the drop down list for selcting a column configuration and the options menu.  </remarks> 
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListNavigationBlockQuirksModeRenderer">
+            <summary>
+            Responsible for rendering the navigation block of a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>.
+            </summary>
+            <remarks>This class should not be instantiated directly. It is meant to be used by a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderer"/>.</remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListNavigationBlockQuirksModeRenderer.#ctor(Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition)">
+            <summary>
+            Contructs a renderer bound to a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/> to render and an <see cref="T:System.Web.UI.HtmlTextWriter"/> to render to.
+            </summary>
+            <remarks>
+            This class should not be instantiated directly by clients. Instead, a <see cref="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeRenderer"/> should use a
+            factory to obtain an instance of this class.
+            </remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListNavigationBlockQuirksModeRenderer.Render(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext)">
+            <summary> 
+            Renders the navigation bar consisting of the move buttons and the <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocList.PageInfo"/>. 
+            </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListNavigationBlockQuirksModeRenderer.RenderNavigationIcon(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext,System.Boolean,Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListNavigationBlockQuirksModeRenderer.GoToOption)">
+            <summary>Renders the appropriate icon for the given <paramref name="command"/>, depending on <paramref name="isInactive"/>.</summary>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListNavigationBlockQuirksModeRenderer.GoToOption">
+            <summary> The possible directions for paging through the List. </summary>
+        </member>
+        <member name="F:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListNavigationBlockQuirksModeRenderer.GoToOption.Undefined">
+            <summary> Don't page. </summary>
+        </member>
+        <member name="F:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListNavigationBlockQuirksModeRenderer.GoToOption.First">
+            <summary> Move to first page. </summary>
+        </member>
+        <member name="F:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListNavigationBlockQuirksModeRenderer.GoToOption.Last">
+            <summary> Move to last page. </summary>
+        </member>
+        <member name="F:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListNavigationBlockQuirksModeRenderer.GoToOption.Previous">
+            <summary> Move to previous page. </summary>
+        </member>
+        <member name="F:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListNavigationBlockQuirksModeRenderer.GoToOption.Next">
+            <summary> Move to next page. </summary>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeRenderer">
+            <summary>
+            Responsible for rendering a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/> object.
+            </summary>
+            <remarks>
+      <h4 class="dtH4">Standards Conformance</h4>
+      <list type="table">
+        <listheader>
+          <term>Standard</term>
+          <description>Conformance Information</description>
+        </listheader>
+        <item>
+          <term>HTML 4.01</term>
+          <description>
+            Not valid if the views drop down box is enabled. ASP.NET 1.1 renders an invalid attribute.
+          </description>
+        </item>
+        <item>
+          <term>XHTML 1.0</term>
+          <description>Not valid</description>
+        </item>
+        <item>
+          <term>WAI WCAG 1.0</term>
+          <description>
+            <para>
+              Level A conform if advanced features are turned off. This can be enforced by the
+              <see cref="P:Remotion.Web.Configuration.WebConfiguration.Wcag"/> configuration entry.
+            </para>
+            <para> Priority 1 checkpoint 6.3 is not met by the following advacned features:</para>
+            <list type="bullet">
+              <item> An event or a WXE command defined for a column. </item>
+              <item> Paging. </item>
+              <item> Views. </item>
+              <item> The edit details column. </item>
+              <item> The drop down menu and the list menu. </item>
+              <item> The drop down menu column. </item>
+            </list>
+            <para> Priority 2 checkpoints 6.5 and 10.1 are not met if the advanced features are enabled. </para>
+            <para>
+              Priority 2 checkpoint 12.4 is not met if <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.IBocList.Selection"/> is enabled but <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.IBocList.Index"/>
+              is not.
+            </para>
+            <para>
+              Priority 2 checkpoint 13.1 is not met for links placed into value columns. The column's value is used
+              to identify the link's target.
+            </para>
+            <para>
+              Interactive sorting requires java-script but is not considered to be required for a usable page.
+            </para>
+          </description>
+        </item>
+      </list>
+    </remarks>
+            <seealso cref="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListNavigationBlockQuirksModeRenderer"/>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeRenderer.#ctor(Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition,Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.IBocListTableBlockRenderer,Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.IBocListNavigationBlockRenderer,Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.IBocListMenuBlockRenderer,Remotion.Web.IResourceUrlFactory)">
+            <summary>
+            Initializes the renderer with the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/> to render and the <see cref="T:System.Web.UI.HtmlTextWriter"/> to render it to.
+            </summary>
+            <param name="cssClasses">The <see cref="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition"/> containing the CSS classes to apply to the rendered elements.</param>
+            <param name="tableBlockRenderer">The <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.IBocListTableBlockRenderer"/> responsible for rendering the table-part of the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>.</param>
+            <param name="navigationBlockRenderer">The <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.IBocListNavigationBlockRenderer"/> responsible for rendering the navigation-part of the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>.</param>
+            <param name="menuBlockRenderer">The <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.IBocListMenuBlockRenderer"/> responsible for rendering the menu-part of the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>.</param>
+            <param name="resourceUrlFactory">The <see cref="T:Remotion.Web.IResourceUrlFactory"/> responsible for creating URLs for resources.</param>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeRenderer.Render(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext)">
+            <summary>
+            Renders the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/> to the <see cref="T:System.Web.UI.HtmlTextWriter"/> in the Writer property.
+            </summary>
+            <remarks>
+            This method provides the outline table of the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>, creating three areas:
+            <list type="bullet">
+            <item><description>A table block displaying the title and data rows. See <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.IBocListTableBlockRenderer"/>.</description></item>
+            <item><description>A menu block containing the available commands. See <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.IBocListMenuBlockRenderer"/></description></item>
+            <item><description>A navigation block to browse through pages of data rows. See <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.IBocListNavigationBlockRenderer"/>.</description></item>
+            </list>
+            </remarks>
+            <seealso cref="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListMenuBlockQuirksModeRenderer"/>
+            <seealso cref="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListNavigationBlockQuirksModeRenderer"/>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListTableBlockQuirksModeRenderer">
+            <summary>
+            Responsible for rendering the table (consisting of title and data rows) that shows the items contained in the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.IBocList"/>.
+            </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListTableBlockQuirksModeRenderer.Render(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext)">
+            <summary>
+            Renders the data contained in <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.IBocList"/> as a table.
+            </summary>
+            <remarks>
+            The table consists of a title row showing the column titles, and a data row for each <see cref="T:Remotion.ObjectBinding.IBusinessObject"/>
+            in <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.IBocList"/>. If there is no data, the table will be completely hidden (only one cell containing only whitespace)
+            if <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocList.ShowEmptyListEditMode"/> is <see langword="false"/> and 
+            <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.IBocList"/> is editable
+            or if <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocList.ShowEmptyListReadOnlyMode"/> is <see langword="false"/> and 
+            <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.IBocList"/> is read-only.
+            Exception: at design time, the title row will always be visible.
+            </remarks>
+            <seealso cref="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListTableBlockQuirksModeRenderer.RenderTableBlockColumnGroup(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext)"/>
+            <seealso cref="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListTableBlockQuirksModeRenderer.RenderTableBody(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext)"/>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListTableBlockQuirksModeRenderer.RenderTableHead(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext)">
+            <summary>
+            Renders the data row of the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>.
+            </summary>
+            <remarks>
+            This method provides the outline of the table head, actual rendering of each row is delegated to
+            <see cref="M:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocRowRenderer.RenderTitlesRow(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext)"/>.
+            The rows are nested within a &lt;thead&gt; element.
+            </remarks>
+            <seealso cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocRowRenderer"/>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListTableBlockQuirksModeRenderer.RenderTableBody(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext)">
+            <summary>
+            Renders the data rows of the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>.
+            </summary>
+            <remarks>
+            This method provides the outline of the table body, actual rendering of each row is delegated to
+            <see cref="M:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocRowRenderer.RenderDataRow(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext,Remotion.ObjectBinding.IBusinessObject,System.Int32,System.Int32,System.Int32)"/>.
+            The rows are nested within a &lt;tbody&gt; element.
+            </remarks>
+            <seealso cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocRowRenderer"/>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListTableBlockQuirksModeRenderer.RenderTableOpeningTag(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext)">
+            <summary> Renderes the opening tag of the table. </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListTableBlockQuirksModeRenderer.RenderTableClosingTag(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext)">
+            <summary> Renderes the closing tag of the table. </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListTableBlockQuirksModeRenderer.RenderTableBlockColumnGroup(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext)">
+            <summary> Renders the column group, which provides the table's column layout. </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListTableBlockQuirksModeRenderer.RenderSelectorColumnDeclaration(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext,System.Boolean)">
+            <summary>Renders the col element for the selector column</summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListTableBlockQuirksModeRenderer.RenderIndexColumnDeclaration(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext,System.Boolean)">
+            <summary>Renders the col element for the index column</summary>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocRowEditModeColumnQuirksModeRenderer">
+            <summary>
+            Responsible for rendering cells of <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocRowEditModeColumnDefinition"/> columns.
+            </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocRowEditModeColumnQuirksModeRenderer.#ctor(Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition)">
+            <summary>
+            Contructs a renderer bound to a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/> to render, an <see cref="T:System.Web.UI.HtmlTextWriter"/> to render to, and a
+            <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocRowEditModeColumnDefinition"/> column for which to render cells.
+            </summary>
+            <remarks>
+            This class should not be instantiated directly by clients. Instead, a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocRowRenderer"/> should use a
+            factory to obtain instances of this class.
+            </remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocRowEditModeColumnQuirksModeRenderer.RenderCellContents(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{Remotion.ObjectBinding.Web.UI.Controls.BocRowEditModeColumnDefinition},Remotion.ObjectBinding.Web.UI.Controls.BocListDataRowRenderEventArgs,System.Int32,System.Boolean)">
+            <summary>
+            Renders the cell contents depending on the <paramref name="dataRowRenderEventArgs"/>'s
+            <see cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocListDataRowRenderEventArgs.IsEditableRow"/> property.
+            <seealso cref="M:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRendererBase`1.RenderCellContents(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{`0},Remotion.ObjectBinding.Web.UI.Controls.BocListDataRowRenderEventArgs,System.Int32,System.Boolean)"/>
+            </summary>
+            <remarks>
+            If the current row is being edited, "Save" and "Cancel" controls are rendered; if the row can be edited, an "Edit" control is rendered;
+            if the row cannot be edited, an empty cell is rendered.
+            Since the "Save", "Cancel" and "Edit" controls are structurally identical, their actual rendering is done by <see cref="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocRowEditModeColumnQuirksModeRenderer.RenderCommandControl(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{Remotion.ObjectBinding.Web.UI.Controls.BocRowEditModeColumnDefinition},System.Int32,Remotion.ObjectBinding.Web.UI.Controls.BocList.RowEditModeCommand,Remotion.ObjectBinding.Web.UI.Controls.BocList.ResourceIdentifier,Remotion.Web.UI.Controls.IconInfo,System.String)"/>
+            </remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocRowEditModeColumnQuirksModeRenderer.RenderCommandControl(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{Remotion.ObjectBinding.Web.UI.Controls.BocRowEditModeColumnDefinition},System.Int32,Remotion.ObjectBinding.Web.UI.Controls.BocList.RowEditModeCommand,Remotion.ObjectBinding.Web.UI.Controls.BocList.ResourceIdentifier,Remotion.Web.UI.Controls.IconInfo,System.String)">
+            <summary>
+            Renders a command control as link with an icon, a text or both.
+            </summary>
+            <param name="renderingContext">The <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext`1"/>.</param>
+            <param name="originalRowIndex">The zero-based index of the current row in <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.IBocList"/></param>
+            <param name="command">The <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList.RowEditModeCommand"/> that is issued 
+            when the control is clicked. Must not be <see langword="null"/>.</param>
+            <param name="alternateText">The <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList.ResourceIdentifier"/> 
+            specifying which resource to load as alternate text to the icon.</param>
+            <param name="icon">The icon to render; must not be <see langword="null"/>. 
+            To skip the icon, set <see cref="P:Remotion.Web.UI.Controls.IconInfo.Url"/> to <see langword="null"/>.</param>
+            <param name="text">The text to render after the icon. May be <see langword="null"/>, in which case no text is rendered.</param>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocRowQuirksModeRenderer">
+            <summary>
+            Responsible for rendering single data rows or the title row of a specific <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/>.
+            </summary>
+            <remarks>This class should not be instantiated directly. It is meant to be used by a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderer"/>.</remarks>
+        </member>
+        <member name="F:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocRowQuirksModeRenderer.DesignModeDummyColumnTitle">
+            <summary>Text displayed when control is displayed in desinger and is read-only has no contents.</summary>
+        </member>
+        <member name="F:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocRowQuirksModeRenderer.DesignModeDummyColumnCount">
+            <summary>Number of columns to show in design mode before actual columns have been defined.</summary>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocSelectorColumnQuirksModeRenderer">
+            <summary>
+            Responsible for rendering the cells containing the row selector controls.
+            </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocSelectorColumnQuirksModeRenderer.RenderSelectorControl(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary> Renders a check-box or a radio-button used for row selection. </summary>
+            <param name="renderingContext">The <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocListRenderingContext"/>.</param>
+            <param name="id"> The <see cref="T:System.String"/> rendered into the <c>id</c> and <c>name</c> attributes. </param>
+            <param name="value"> The value of the check-box or radio-button. </param>
+            <param name="isChecked"> 
+              <see langword="true"/> if the check-box or radio-button is checked. 
+            </param>
+            <param name="isSelectAllSelectorControl"> 
+              <see langword="true"/> if the rendered check-box or radio-button is in the title row.
+            </param>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocSimpleColumnQuirksModeRenderer">
+            <summary>
+            Responsible for rendering table cells of <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocSimpleColumnDefinition"/> columns.
+            </summary>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocSimpleColumnQuirksModeRenderer.#ctor(Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocListQuirksModeCssClassDefinition)">
+            <summary>
+            Contructs a renderer bound to a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocList"/> to render, an <see cref="T:System.Web.UI.HtmlTextWriter"/> to render to, and a
+            <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocSimpleColumnDefinition"/> column for which to render cells.
+            </summary>
+            <remarks>
+            This class should not be instantiated directly by clients.
+            </remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocSimpleColumnQuirksModeRenderer.RenderCellText(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{Remotion.ObjectBinding.Web.UI.Controls.BocSimpleColumnDefinition},Remotion.ObjectBinding.IBusinessObject,System.Boolean,Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.EditableRowSupport.IEditableRow)">
+            <summary>
+            Renders either the string value of the <paramref name="businessObject"/> or the edit mode controls, 
+            depending on <paramref name="showEditModeControl"/>
+            </summary>
+            <param name="renderingContext">The <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext`1"/>. </param>
+            <param name="businessObject">The <see cref="T:Remotion.ObjectBinding.IBusinessObject"/> for the current row.</param>
+            <param name="showEditModeControl">Specifies if the edit controls will be rendered (<see langword="true"/>) or
+            a string representation of <paramref name="businessObject"/> will be displayed (<see langword="false"/>).</param>
+            <param name="editableRow">The <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.EditableRowSupport.EditableRow"/> object used to actually render the edit row controls.
+            May be <see langword="null"/> if <paramref name="showEditModeControl"/> is <see langword="false"/>.</param>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocListImplementation.Rendering.BocSimpleColumnQuirksModeRenderer.RenderOtherIcons(Remotion.ObjectBinding.Web.UI.Controls.BocListImplementation.Rendering.BocColumnRenderingContext{Remotion.ObjectBinding.Web.UI.Controls.BocSimpleColumnDefinition},Remotion.ObjectBinding.IBusinessObject)">
+            <summary>
+            Renders the icon of the <see cref="T:Remotion.ObjectBinding.IBusinessObject"/> determined by the column's property path.
+            <seealso cref="M:Remotion.ObjectBinding.Web.UI.Controls.BocSimpleColumnDefinition.GetPropertyPath"/>
+            <seealso cref="M:Remotion.ObjectBinding.Web.UI.Controls.BocSimpleColumnDefinition.GetDynamicPropertyPath(Remotion.ObjectBinding.IBusinessObjectClass)"/>
+            <seealso cref="P:Remotion.ObjectBinding.Web.UI.Controls.BocSimpleColumnDefinition.IsDynamic"/>
+            </summary>
+            <param name="renderingContext">The <see cref="T:System.Web.UI.HtmlTextWriter"/>.</param>
+            <param name="businessObject">The <see cref="T:Remotion.ObjectBinding.IBusinessObject"/> that acts as a starting point for the property path.</param>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocTextValueImplementation.Rendering.BocMultilineTextValueQuirksModeRenderer">
+            <summary>
+            Provides a label for rendering a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocMultilineTextValue"/> control in read-only mode. 
+            Rendering is done by the parent class.
+            </summary>
+            <!-- No matching elements were found for the following include tag --><include file="doc\include\UI\Controls\BocMultilineTextValueRenderer.xml" path="BocMultilineTextValueQuirksModeRenderer/Class/*"/>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocReferenceValueImplementation.Rendering.BocReferenceValueQuirksModeRenderer">
+            <summary>
+            Responsible for rendering <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocReferenceValue"/> controls in Quirks Mode.
+            </summary>
+            <remarks>
+            <para>During edit mode, the control is displayed using a <see cref="T:System.Web.UI.WebControls.DropDownList"/>.</para>
+            <para>During read-only mode, the control's value is displayed using a <see cref="T:System.Web.UI.WebControls.Label"/>.</para>
+            </remarks>
+        </member>
+        <member name="M:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocReferenceValueImplementation.Rendering.BocReferenceValueQuirksModeRenderer.RenderEditModeValueExtension(Remotion.ObjectBinding.Web.UI.Controls.BocReferenceValueImplementation.Rendering.BocReferenceValueRenderingContext)">
+            <summary> Called after the edit mode value's cell is rendered. </summary>
+            <remarks> Render a table cell: &lt;td style="width:0%"&gt;Your contents goes here&lt;/td&gt;</remarks>
+        </member>
+        <member name="P:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocReferenceValueImplementation.Rendering.BocReferenceValueQuirksModeRenderer.CssClassContent">
+            <summary> Gets the CSS-Class applied to the <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocReferenceValue"/>'s value. </summary>
+            <remarks> Class: <c>bocReferenceValueContent</c> </remarks>
+        </member>
+        <member name="T:Remotion.ObjectBinding.Web.Legacy.UI.Controls.BocTextValueImplementation.Rendering.BocTextValueQuirksModeRenderer">
+            <summary>
+            Provides a label for rendering a <see cref="T:Remotion.ObjectBinding.Web.UI.Controls.BocTextValue"/> control in read-only mode. 
+            Rendering is done by the parent class.
+            </summary>
+            <!-- No matching elements were found for the following include tag --><include file="doc\include\UI\Controls\BocTextValueRenderer.xml" path="BocTextValueQuirksModeRenderer/Class/*"/>
+        </member>
+    </members>
+</doc>

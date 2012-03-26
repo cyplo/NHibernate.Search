@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 using NHibernate.Engine;
 using NHibernate.Util;
@@ -163,7 +163,7 @@ namespace NHibernate.Mapping
 		{
 			get
 			{
-				ISet<Table> tables = new HashedSet<Table>();
+				ISet<Table> tables = new IESI.HashedSet<Table>();
 				foreach (PersistentClass clazz in SubclassClosureIterator)
 				{
 					if (!clazz.IsAbstract.GetValueOrDefault())

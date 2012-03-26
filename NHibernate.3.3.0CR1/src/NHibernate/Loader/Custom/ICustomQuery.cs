@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Param;
 using NHibernate.SqlCommand;
 

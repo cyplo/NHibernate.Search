@@ -1,4 +1,4 @@
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Test.ProjectionFixtures;
 
 namespace NHibernate.Test.ProjectionFixtures
@@ -13,7 +13,7 @@ namespace NHibernate.Test.ProjectionFixtures
 
         public TreeNode()
         {
-            DirectChildren = new HashedSet<TreeNode>();
+            DirectChildren = new IESI.HashedSet<TreeNode>();
         }
     }
 }

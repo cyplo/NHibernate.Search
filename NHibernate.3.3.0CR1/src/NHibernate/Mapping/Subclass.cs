@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Engine;
 using NHibernate.Util;
 
@@ -149,7 +149,7 @@ namespace NHibernate.Mapping
 		{
 			get
 			{
-				HashedSet<string> result = new HashedSet<string>();
+				IESI.HashedSet<string> result = new IESI.HashedSet<string>();
 				result.AddAll(base.SynchronizedTables);
 				result.AddAll(Superclass.SynchronizedTables);
 				return result;

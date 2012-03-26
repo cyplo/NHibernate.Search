@@ -1,10 +1,16 @@
-This is NHibernate.Search: Compile it yourself for .Net4
+The goal of this project is to get NHibernate.Search compiled against .Net4 and newest dependencies
+
+BTW, you get .Net4-compatible NHibernate for free.
 
 I've gathered sources of most of the NHibernate.Search's dependencies and provided a common VS2010 solution to compile them all.
 
 WARNING: 
 Sources contain my patches to make them work together and compile on .Net4.
 I'm working on getting these patches into main dev branches of the respective projects.
+
+Hibernate changes:
+Iesi.collections: .Net4's System.Collections.Generic compatibility
+HQL handling: Parsers regenerated with newer version of antlr3
 
 Sources fetched from:
 
@@ -19,3 +25,9 @@ http://sourceforge.net/projects/nhibernate/files/NHibernate/3.3.0CR1/
 
 NHibernate.Search:
 http://nhcontrib.svn.sourceforge.net/viewvc/nhcontrib/trunk/src/NHibernate.Search/ @ r1683 
+
+Antlr3:
+http://www.tunnelvisionlabs.com/downloads/antlr/antlr-dotnet-source-3.4.1.9004.7z
+
+ReMotion:
+https://www.re-motion.org/builds/Remotion_1.13.144.zip

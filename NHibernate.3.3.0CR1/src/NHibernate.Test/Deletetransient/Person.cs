@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Test.Deletetransient
 {
@@ -7,7 +7,7 @@ namespace NHibernate.Test.Deletetransient
 	{
 		private long id;
 		private string name;
-		private ISet<Address> addresses = new HashedSet<Address>();
+		private ISet<Address> addresses = new IESI.HashedSet<Address>();
 		private IList<Person> friends = new List<Person>();
 		public Person() {}
 		public Person(string name)

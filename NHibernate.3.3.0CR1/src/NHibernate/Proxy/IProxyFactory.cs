@@ -1,5 +1,5 @@
 using System.Reflection;
-using Iesi.Collections.Generic;
+using System.Collections.Generic;
 using NHibernate.Engine;
 using NHibernate.Type;
 

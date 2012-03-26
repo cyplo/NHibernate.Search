@@ -1,5 +1,5 @@
 using System.Data;
-using Iesi.Collections.Generic;
+using System.Collections.Generic;
 
 namespace NHibernate.Dialect.Schema
 {

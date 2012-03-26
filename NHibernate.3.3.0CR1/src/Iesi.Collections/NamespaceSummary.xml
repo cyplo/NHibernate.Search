@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" ?>
 <namespaces>
-	<namespace name="Iesi.Collections">
+	<namespace name="Collections">
 <summary>
 		<p>
 			The System.Collections namespace in the .NET Framework provides a number of collection 
@@ -52,7 +52,7 @@
 			The following sample program demonstrates some of the features of sets:
 			<code>
 using System;
-using Iesi.Collections;
+using Collections;
 namespace RiverDemo
 {    
 	class Rivers
@@ -176,7 +176,7 @@ Rivers common to Arizona, California, Colorado, Nevada, and Utah:
 Colorado River
 
 The type of this complex operation is: 
-Iesi.Collections.SortedSet
+Collections.SortedSet
 Press any key to continue
 			</code>
 		</p> 

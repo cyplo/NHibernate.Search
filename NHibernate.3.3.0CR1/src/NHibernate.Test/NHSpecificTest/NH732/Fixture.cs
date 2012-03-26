@@ -1,6 +1,6 @@
 using System;
 using System.Data;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate;
 using NHibernate.Dialect;
 using NHibernate.SqlTypes;

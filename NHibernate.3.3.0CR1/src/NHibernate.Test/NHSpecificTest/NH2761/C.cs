@@ -6,8 +6,8 @@ namespace NHibernate.Test.NHSpecificTest.NH2761
 	{
 		public C()
 		{
-			this.As = new Iesi.Collections.Generic.HashedSet<A>();
-			this.Bs = new Iesi.Collections.Generic.HashedSet<B>();
+			this.As = new Iesi.Collections.Generic.IESI.HashedSet<A>();
+			this.Bs = new Iesi.Collections.Generic.IESI.HashedSet<B>();
 		}
 
 		public Int32 Id

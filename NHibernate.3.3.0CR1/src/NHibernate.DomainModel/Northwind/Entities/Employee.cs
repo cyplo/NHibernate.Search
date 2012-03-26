@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.DomainModel.Northwind.Entities
 {
@@ -24,8 +24,8 @@ namespace NHibernate.DomainModel.Northwind.Entities
 
         public Employee()
         {
-            _subordinates = new HashedSet<Employee>();
-            _orders = new HashedSet<Order>();
+            _subordinates = new IESI.HashedSet<Employee>();
+            _orders = new IESI.HashedSet<Order>();
             _territories = new List<Territory>();
         }
 

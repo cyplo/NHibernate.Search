@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Engine;
 using NHibernate.SqlCommand;
 using NHibernate.Type;
@@ -76,7 +76,7 @@ namespace NHibernate.Mapping
 		private string manyToManyWhere;
 		private string manyToManyOrderBy;
 		private bool optimisticLocked;
-		private readonly HashedSet<string> synchronizedTables = new HashedSet<string>();
+		private readonly IESI.HashedSet<string> synchronizedTables = new IESI.HashedSet<string>();
 		private IDictionary<string, string> typeParameters;
 
 
@@ -587,7 +587,7 @@ namespace NHibernate.Mapping
 
 		private void CheckColumnDuplication()
 		{
-			HashedSet<string> cols = new HashedSet<string>();
+			IESI.HashedSet<string> cols = new IESI.HashedSet<string>();
 			CheckColumnDuplication(cols, Key.ColumnIterator);
 			if (IsIndexed)
 			{

@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Mapping;
 
 namespace NHibernate.Tuple
@@ -11,7 +11,7 @@ namespace NHibernate.Tuple
 		public const string KEY = "$type$";
 
 		private readonly string entityName;
-		private readonly HashedSet<string> isInstanceEntityNames = new HashedSet<string>();
+        private readonly IESI.HashedSet<string> isInstanceEntityNames = new IESI.HashedSet<string>();
 
 		public DynamicMapInstantiator()
 		{

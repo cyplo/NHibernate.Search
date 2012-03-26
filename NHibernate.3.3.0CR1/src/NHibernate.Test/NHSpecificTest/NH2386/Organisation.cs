@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Test.NHSpecificTest.NH2386
 {
@@ -21,7 +21,7 @@ namespace NHibernate.Test.NHSpecificTest.NH2386
          public virtual ISet<ResponsibleLegalPerson> ResponsibleLegalPersons {
             get {
                 if (responsibleLegalPersons == null) {
-                    responsibleLegalPersons = new HashedSet<ResponsibleLegalPerson>();
+                    responsibleLegalPersons = new IESI.HashedSet<ResponsibleLegalPerson>();
                 }
                 return responsibleLegalPersons;
             }
@@ -34,7 +34,7 @@ namespace NHibernate.Test.NHSpecificTest.NH2386
         public virtual ISet<TradingName> TradingNames {
             get {
                 if (tradingNames == null) {
-                    tradingNames = new HashedSet<TradingName>();
+                    tradingNames = new IESI.HashedSet<TradingName>();
                 }
                 return tradingNames;
             }

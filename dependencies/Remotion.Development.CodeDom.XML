@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Remotion.Development.CodeDom</name>
+    </assembly>
+    <members>
+        <member name="T:Remotion.Development.CodeDom.ExtendedCodeProvider">
+            <summary>
+            Base class for extended code providers.
+            </summary>
+            <remarks>
+            <para>
+              Extended code providers extend the functionality of .NET CodeDOM code providers. In order to generate
+              code for a specific language, a subclass of ExtendedCodeProvider must be implemented that extends the
+              functionality of CodeDOM code providers.
+            <para></para>
+              <b>Note to inheritors:</b>
+            <para></para>
+              Inheritors must at least call the base class constructor with a valid <c>CodeDomProvider</c> and 
+              implement <see cref="P:Remotion.Development.CodeDom.ExtendedCodeProvider.IsCaseSensitive"/> and <see cref="M:Remotion.Development.CodeDom.ExtendedCodeProvider.CreateUnaryOperatorExpression(Remotion.Development.CodeDom.CodeUnaryOperatorType,System.CodeDom.CodeExpression)"/>.
+            <para></para>
+              If the specific language supports custom casting operators, override <see cref="P:Remotion.Development.CodeDom.ExtendedCodeProvider.SupportsCastingOperators"/> 
+              and <see cref="M:Remotion.Development.CodeDom.ExtendedCodeProvider.CreateCastingOperator(System.String,System.String,System.String,System.CodeDom.CodeStatementCollection,System.CodeDom.MemberAttributes,Remotion.Development.CodeDom.CodeCastOperatorKind)"/>. 
+            <para></para>
+              If the specific language supports operator overriding, override <see cref="P:Remotion.Development.CodeDom.ExtendedCodeProvider.SupportsOperatorOverriding"/> 
+              and <see cref="M:Remotion.Development.CodeDom.ExtendedCodeProvider.CreateBinaryOperator(System.String,System.String,System.String,Remotion.Development.CodeDom.CodeOverridableOperatorType,System.String,System.CodeDom.CodeStatementCollection,System.CodeDom.MemberAttributes)"/>. 
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Remotion.Development.CodeDom.ExtendedCodeProvider.#ctor(System.CodeDom.Compiler.CodeDomProvider,System.CodeDom.Compiler.ICodeGenerator)">
+            <summary>
+            Creates an <c>ExtendedCodeProvider</c> using a <c>CodeDomProvider</c> and a matching generator.
+            </summary>
+        </member>
+        <member name="M:Remotion.Development.CodeDom.ExtendedCodeProvider.#ctor(System.CodeDom.Compiler.CodeDomProvider)">
+            <summary>
+            Creates an <c>ExtendedCodeProvider</c> using a <c>CodeDomProvider</c>.
+            </summary>
+        </member>
+        <member name="M:Remotion.Development.CodeDom.ExtendedCodeProvider.CreateCastingOperator(System.String,System.String,System.String,System.CodeDom.CodeStatementCollection,System.CodeDom.MemberAttributes,Remotion.Development.CodeDom.CodeCastOperatorKind)">
+            <summary>
+            For derived classes that support casting operators, this method creates implicit or explicit casting operators.
+            </summary>
+            <param name="fromType">Type that the method casts from.</param>
+            <param name="toType">Type that the method casts to.</param>
+            <param name="argumentName">The name of the cast operator's argument.</param>
+            <param name="statements">Statements that perform the conversion, ending with a <c>CodeMethodReturnStatement</c>.</param>
+            <param name="attributes">Method attributes that define access and scope. Must be <see langword="static"/>.</param>
+            <param name="castOperatorKind"><c>Implicit</c> to create an implicit casting operator, <c>Explicit</c> otherwise.</param>
+            <returns>A <c>CodeTypeMember</c> object that can be appended to a CodeDOM type object.</returns>
+            <exception cref="T:System.NotSupportedException">The default implementation always throws this exception.</exception>
+        </member>
+        <member name="M:Remotion.Development.CodeDom.ExtendedCodeProvider.AddDocumentationComment(System.CodeDom.CodeTypeMember,System.String,System.String,System.String,System.String)">
+            <summary>
+            Adds a documentation comment if the provider supports it, a normal comment otherwise.
+            </summary>
+            <param name="item">The source code item the comment is to be attached to.</param>
+            <param name="elementName">The documentation comments element name.</param>
+            <param name="elementArguments">Optional. A string containing the XML attributes for this element.</param>
+            <param name="alternativeHeadline">Optional. A string that is written as a headline if the provider does not support documentation comments.</param>
+            <param name="description">The text of the comment.</param>
+        </member>
+        <member name="M:Remotion.Development.CodeDom.ExtendedCodeProvider.AddSummaryComment(System.CodeDom.CodeTypeMember,System.String)">
+            <summary>
+            Adds a <c>summary</c> documentation comment.
+            </summary>
+        </member>
+        <member name="M:Remotion.Development.CodeDom.ExtendedCodeProvider.AddRemarksComment(System.CodeDom.CodeTypeMember,System.String)">
+            <summary>
+            Adds a <c>remarks</c> documentation comment.
+            </summary>
+        </member>
+        <member name="M:Remotion.Development.CodeDom.ExtendedCodeProvider.AddParameterComment(System.CodeDom.CodeTypeMember,System.String,System.String)">
+            <summary>
+            Adds a <c>param</c> documentation comment.
+            </summary>
+        </member>
+        <member name="M:Remotion.Development.CodeDom.ExtendedCodeProvider.GetValidName(System.String)">
+            <summary>
+            This method returns a valid identifier name for the CodeDOM provider.
+            </summary>
+            <param name="name">The identifier.</param>
+            <returns>The parameter <c>name</c> itself.</returns>
+            <remarks>Override this method only if the CodeDOM provider you are using does not correctly escape all identifiers, as is
+            the case with the C# provider that does not escape the keyword <c>params</c>.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Development.CodeDom.ExtendedCodeProvider.AddOptionCreateXmlDocumentation(System.CodeDom.Compiler.CompilerParameters,System.String,System.Boolean)">
+            <summary>
+            If implemented by a derived class, modifies the specified <c>CompilerParameters</c> to create an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:Remotion.Development.CodeDom.ExtendedCodeProvider.AppendMemberAttributeString(System.Text.StringBuilder,Remotion.Development.CodeDom.ExtendedCodeProvider.MemberAttributeKeywordMapping[],System.CodeDom.MemberAttributes)">
+            <summary>
+            Writes the language-specific keywords that correspond to the values of the <c>attribute</c> parameter.
+            </summary>
+            <remarks>
+            This method aids in the implementation of <see cref="M:Remotion.Development.CodeDom.ExtendedCodeProvider.CreateCastingOperator(System.String,System.String,System.String,System.CodeDom.CodeStatementCollection,System.CodeDom.MemberAttributes,Remotion.Development.CodeDom.CodeCastOperatorKind)"/>.
+            </remarks>
+            <param name="sb">The StringBuilder object to write to.</param>
+            <param name="mappings">An array of <see cref="T:Remotion.Development.CodeDom.ExtendedCodeProvider.MemberAttributeKeywordMapping"/> mappings that define the language-specific keywords.</param>
+            <param name="attributes">The concrete attributes that are to be written.</param>
+        </member>
+        <member name="M:Remotion.Development.CodeDom.ExtendedCodeProvider.CreateEnumDeclaration(System.String)">
+            <summary>
+            Creates a type that contains integer values.
+            </summary>
+            <param name="name">The name of the new type.</param>
+            <returns>The default implementation returns a <c>CodeTypeDeclaration</c> object with its <c>IsEnum</c> property set to <see langword="true" />.</returns>
+        </member>
+        <member name="M:Remotion.Development.CodeDom.ExtendedCodeProvider.CreateEnumValue(System.CodeDom.CodeTypeReference,System.Int32,System.String)">
+            <summary>
+            Creates a member for an enum type.
+            </summary>
+            <param name="enumDeclaration">A reference to the enum type this member is intended for.</param>
+            <param name="numericValue">The numeric enumeration value.</param>
+            <param name="name">The name of the member.</param>
+            <returns>Returns a <c>CodeTypeMember</c> that can be added to the <c>Members</c> collection of an enum type created 
+            using <see cref="M:Remotion.Development.CodeDom.ExtendedCodeProvider.CreateEnumDeclaration(System.String)"/>. </returns>
+        </member>
+        <member name="M:Remotion.Development.CodeDom.ExtendedCodeProvider.CreateStructWithConstructors(System.String)">
+            <summary>
+            Use this method to create value types if you want to create constructors.
+            </summary>
+            <remarks>
+            This method allows the VB provider to create a workaround for a CodeDOM bug. See <see cref="M:Remotion.Development.CodeDom.ExtendedCodeProvider.CreateStructConstructor"/>.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Development.CodeDom.ExtendedCodeProvider.CreateStructConstructor">
+            <summary>
+            Use this method to create constructors for value types.
+            </summary>
+            <remarks>
+            This method allows the VB provider to create a workaround for a CodeDOM bug. See <see cref="M:Remotion.Development.CodeDom.ExtendedCodeProvider.CreateStructWithConstructors(System.String)"/>.
+            </remarks>
+        </member>
+        <member name="P:Remotion.Development.CodeDom.ExtendedCodeProvider.SupportsCastingOperators">
+            <summary>
+            Specifies whether the current provider supports casting operators.
+            </summary>
+            <value>The default implementation always returns <see langword="false" />.</value>
+        </member>
+        <member name="P:Remotion.Development.CodeDom.ExtendedCodeProvider.SupportsDocumentationComments">
+            <summary>
+            Specifies whether the provider supports documentation comments.
+            </summary>
+            <value>The default implementation always returns false.</value>
+        </member>
+        <member name="P:Remotion.Development.CodeDom.ExtendedCodeProvider.IsCaseSensitive">
+            <summary>
+            Specifies whether the language is case sensitive.
+            </summary>
+        </member>
+        <member name="T:Remotion.Development.CodeDom.ExtendedCodeProvider.MemberAttributeKeywordMapping">
+            <summary>
+            This class is used to create a mapping table for <c>AppendMemberAttributeString</c>.
+            <seealso cref="M:Remotion.Development.CodeDom.ExtendedCodeProvider.AppendMemberAttributeString(System.Text.StringBuilder,Remotion.Development.CodeDom.ExtendedCodeProvider.MemberAttributeKeywordMapping[],System.CodeDom.MemberAttributes)"/>
+            </summary>
+        </member>
+        <member name="T:Remotion.Development.CodeDom.CodeCastOperatorKind">
+            <summary>
+            Specifies one of the two kinds of casting operators.
+            </summary>
+        </member>
+        <member name="M:Remotion.Development.CodeDom.ExtendedVBCodeProvider.CreateStructWithConstructors(System.String)">
+            <summary>
+            Adds a dummy constructor that can be referenced by other constructors.
+            </summary>
+            <remarks>
+            This is a workaround for the VB CodeDOM bug that code for calling the base constructor
+            is always generated although this is not valid for value types.
+            Use <see cref="M:Remotion.Development.CodeDom.ExtendedVBCodeProvider.CreateStructConstructor"/> to define custom constructors.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Development.CodeDom.ExtendedVBCodeProvider.CreateStructConstructor">
+            <summary>
+            Calls the dummy constructor to avoid generation of a call to the base class constructor.
+            </summary>
+            <remarks>
+            Use <see cref="M:Remotion.Development.CodeDom.ExtendedVBCodeProvider.CreateStructWithConstructors(System.String)"/> to generate the dummy constructor.
+            </remarks>
+        </member>
+    </members>
+</doc>

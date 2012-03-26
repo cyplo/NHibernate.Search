@@ -1,4 +1,4 @@
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using log4net;
 
 namespace NHibernate.Test.NHSpecificTest.NH1810
@@ -8,7 +8,7 @@ namespace NHibernate.Test.NHSpecificTest.NH1810
 		private static readonly ILog Log = LogManager.GetLogger(typeof(Fixture));
 
 		int id;
-		ISet<Disease> diseases = new HashedSet<Disease>();
+		ISet<Disease> diseases = new IESI.HashedSet<Disease>();
 		string reference;
 
 		public virtual int Id

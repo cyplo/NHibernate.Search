@@ -1,11 +1,11 @@
 using System;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Test.Interceptor
 {
 	public class User
 	{
-		private ISet<string> actions = new HashedSet<string>();
+		private ISet<string> actions = new IESI.HashedSet<string>();
 		private DateTime? created;
 		private DateTime? lastUpdated;
 		private string name;

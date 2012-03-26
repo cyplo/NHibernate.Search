@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.DomainModel.Northwind.Entities
 {
@@ -16,7 +16,7 @@ namespace NHibernate.DomainModel.Northwind.Entities
 
         public Supplier() 
         {
-            _products = new HashedSet<Product>();
+            _products = new IESI.HashedSet<Product>();
         }
 
         public virtual int SupplierId 

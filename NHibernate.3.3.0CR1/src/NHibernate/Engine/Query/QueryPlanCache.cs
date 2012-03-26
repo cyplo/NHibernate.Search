@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 using NHibernate.Engine.Query.Sql;
 using NHibernate.Util;
@@ -189,11 +189,11 @@ namespace NHibernate.Engine.Query
 
 				if (enabledFilters == null || (enabledFilters.Count == 0))
 				{
-					filterNames = new HashedSet<string>();
+					filterNames = new IESI.HashedSet<string>();
 				}
 				else
 				{
-					filterNames = new HashedSet<string>(enabledFilters.Keys);
+					filterNames = new IESI.HashedSet<string>(enabledFilters.Keys);
 				}
 
 				int hash = query.GetHashCode();
@@ -255,11 +255,11 @@ namespace NHibernate.Engine.Query
 
 				if (enabledFilters == null || (enabledFilters.Count == 0))
 				{
-					filterNames = new HashedSet<string>();
+					filterNames = new IESI.HashedSet<string>();
 				}
 				else
 				{
-					filterNames = new HashedSet<string>(enabledFilters.Keys);
+					filterNames = new IESI.HashedSet<string>(enabledFilters.Keys);
 				}
 
 				int hash = query.GetHashCode();

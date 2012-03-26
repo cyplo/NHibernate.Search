@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Engine;
 using NHibernate.Persister.Entity;
 using NHibernate.SqlCommand;
@@ -31,7 +31,7 @@ namespace NHibernate.Criterion
 	public class Example : AbstractCriterion
 	{
 		private readonly object _entity;
-		private readonly ISet<string> _excludedProperties = new HashedSet<string>();
+		private readonly ISet<string> _excludedProperties = new IESI.HashedSet<string>();
 		private IPropertySelector _selector;
 		private bool _isLikeEnabled;
 		private char? escapeCharacter;

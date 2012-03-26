@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Text;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Cache;
 using NHibernate.Cfg;
 using NHibernate.Engine;
@@ -116,7 +116,7 @@ namespace NHibernate.Persister.Entity
 				spaces[i] = iSyncTab.Current;
 			}
 
-			HashedSet<string> subclassTables = new HashedSet<string>();
+			IESI.HashedSet<string> subclassTables = new IESI.HashedSet<string>();
 			foreach (Table table in persistentClass.SubclassTableClosureIterator)
 			{
 				subclassTables.Add(
@@ -354,7 +354,7 @@ namespace NHibernate.Persister.Entity
 				return model.Table.GetQualifiedName(dialect, settings.DefaultCatalogName, settings.DefaultSchemaName);
 			}
 
-			HashedSet<Column> columns = new HashedSet<Column>();
+			IESI.HashedSet<Column> columns = new IESI.HashedSet<Column>();
 			foreach (Table table in model.SubclassTableClosureIterator)
 			{
 				if (!table.IsAbstractUnionTable)

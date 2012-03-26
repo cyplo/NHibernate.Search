@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Engine;
 using NHibernate.Engine.Query;
 using NHibernate.Hql.Classic;
@@ -87,7 +87,7 @@ namespace NHibernate.Impl
 		{
 			if (parameterMetadata.NamedParameterNames.Count != namedParameters.Count + namedParameterLists.Count)
 			{
-				var missingParams = new HashedSet<string>(parameterMetadata.NamedParameterNames);
+				var missingParams = new IESI.HashedSet<string>(parameterMetadata.NamedParameterNames);
 				missingParams.RemoveAll(namedParameterLists.Keys);
 				missingParams.RemoveAll(namedParameters.Keys);
 				throw new QueryException("Not all named parameters have been set: " + CollectionPrinter.ToString(missingParams), QueryString);

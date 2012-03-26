@@ -1,0 +1,505 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Remotion.Security</name>
+    </assembly>
+    <members>
+        <member name="T:Remotion.Security.AccessType">
+            <summary>Represents an access type enum value.</summary>
+            <remarks>
+            Use the static <see cref="M:Remotion.Security.AccessType.Get(System.Enum)"/> methods to convert an enum to an access type.
+            <note>For the set of basic access types see <see cref="T:Remotion.Security.GeneralAccessTypes"/>.</note>
+            </remarks>
+        </member>
+        <member name="T:Remotion.Security.Configuration.SecurityProviderHelper">
+            <summary>Helper class that loads implementations of <see cref="T:Remotion.Security.ISecurityProvider"/> from the <see cref="T:Remotion.Security.Configuration.SecurityConfiguration"/> section.</summary>
+        </member>
+        <member name="T:Remotion.Security.EnumWrapper">
+            <summary>Represents an access type enum value.</summary>
+            <remarks>
+            Use the static <see cref="M:Remotion.Security.AccessType.Get(System.Enum)"/> methods to convert an enum to an access type.
+            <note>For the set of basic access types see <see cref="T:Remotion.Security.GeneralAccessTypes"/>.</note>
+            </remarks>
+            <summary>Wraps an enum and exposes the enum information as string.</summary>
+            <remarks>Used for example to cross web service boundaries, when the server is unaware of a given enum type.</remarks>
+        </member>
+        <member name="M:Remotion.Security.EnumWrapper.Get(System.String,System.String)">
+            <summary>
+            Gets an <see cref="T:Remotion.Security.EnumWrapper"/>, setting the wrapper's <see cref="P:Remotion.Security.EnumWrapper.Name"/> to a string of the format "valueName|typeName".
+            </summary>
+            <param name="valueName">The enum value name to be set.</param>
+            <param name="typeName">The type name to be integrated into the name.</param>
+        </member>
+        <member name="M:Remotion.Security.EnumWrapper.Get(System.String)">
+            <summary>
+            Gets an <see cref="T:Remotion.Security.EnumWrapper"/>, setting the wrapper's name to the specified string.
+            </summary>
+            <param name="name">The name to be set.</param>
+        </member>
+        <member name="M:Remotion.Security.EnumWrapper.Get(System.Enum)">
+            <summary>
+            Gets an <see cref="T:Remotion.Security.EnumWrapper"/>, setting the wrapper's name to a string of the format "enumValue|enumType".
+            </summary>
+            <param name="enumValue">The enum value.</param>
+        </member>
+        <member name="T:Remotion.Security.IFunctionalSecurityStrategy">
+            <summary>Encapsulates the security checks for static access to the business object.</summary>
+            <remarks><note type="inotes">Implementations are free to decide whether they provide object-independent caching.</note></remarks>
+        </member>
+        <member name="M:Remotion.Security.IFunctionalSecurityStrategy.HasAccess(System.Type,Remotion.Security.ISecurityProvider,Remotion.Security.ISecurityPrincipal,Remotion.Security.AccessType[])">
+            <summary>Determines whether the requested access is granted.</summary>
+            <param name="type">The <see cref="T:System.Type"/> of the business object.</param>
+            <param name="securityProvider">The <see cref="T:Remotion.Security.ISecurityProvider"/> used to determine the permissions.</param>
+            <param name="principal">The <see cref="T:Remotion.Security.ISecurityPrincipal"/> on whose behalf the permissions are evaluated.</param>
+            <param name="requiredAccessTypes">The access rights required for the access to be granted.</param>
+            <returns><see langword="true"/> if the <paramref name="requiredAccessTypes"/> are granted.</returns>
+            <remarks>
+            Typically called via <see cref="M:Remotion.Security.SecurityClient.HasAccess(Remotion.Security.ISecurableObject,Remotion.Security.AccessType[])"/> of 
+            <see cref="T:Remotion.Security.SecurityClient"/>.
+            The strategy incorporates <see cref="T:Remotion.Security.SecurityContext"/> in the permission query.
+            The <paramref name="requiredAccessTypes"/> are determined by the <see cref="T:Remotion.Security.SecurityClient"/>, 
+            taking the business object instance and the member name (property or method) into account.
+            </remarks>
+        </member>
+        <member name="T:Remotion.Security.IGlobalAccessTypeCacheProvider">
+            <summary>
+            Cache for the <see cref="T:Remotion.Security.AccessType"/> array, using the <see cref="T:Remotion.Security.SecurityContext"/> and the <see cref="T:Remotion.Security.ISecurityPrincipal"/> as key.
+            These are used as parameters for each call to the <see cref="M:Remotion.Security.ISecurityProvider.GetAccess(Remotion.Security.ISecurityContext,Remotion.Security.ISecurityPrincipal)"/> method of <see cref="T:Remotion.Security.ISecurityProvider"/>.
+            </summary>
+            <remarks><note type="inotes">Implementations are free to implement their own best practice for keeping the cache up to date.</note></remarks>
+        </member>
+        <member name="M:Remotion.Security.IGlobalAccessTypeCacheProvider.GetCache">
+            <summary>
+            Gets the <see cref="T:Remotion.Collections.ICache`2"/> for the <see cref="T:Remotion.Security.ISecurityContext"/> and <see cref="T:Remotion.Security.ISecurityPrincipal"/> key pair.
+            </summary>
+            <returns>The <see cref="T:Remotion.Collections.ICache`2"/> in use.</returns>
+        </member>
+        <member name="T:Remotion.Security.IObjectSecurityAdapter">
+            <summary>Defines an adapter between the security layer and the business object implementation.</summary>
+            <remarks>
+            It is registered in the <see cref="T:Remotion.AdapterRegistry"/> and is used for security checks 
+            in implementations of <see cref="I:Remotion.ObjectBinding.IBusinessObjectProperty"/>.
+            <note type="inotes">
+            A typical implementation uses a <see cref="T:Remotion.Security.SecurityClient"/> that further dispatches to an 
+            <see cref="T:Remotion.Security.IObjectSecurityStrategy"/> retrieved from the <see cref="T:Remotion.Security.ISecurableObject"/>.
+            </note>
+            </remarks>
+        </member>
+        <member name="T:Remotion.Security.ISecurityAdapter">
+            <summary>
+            Marker interface, used as type parameter for the <see cref="M:Remotion.BridgeInterfaces.IAdapterRegistryImplementation.SetAdapter(System.Type,Remotion.IAdapter)"/> and 
+            <see cref="M:Remotion.BridgeInterfaces.IAdapterRegistryImplementation.GetAdapter``1"/> methods of <see cref="T:Remotion.AdapterRegistry"/>.
+            </summary>
+        </member>
+        <member name="M:Remotion.Security.IObjectSecurityAdapter.HasAccessOnGetAccessor(Remotion.Security.ISecurableObject,Remotion.Reflection.IPropertyInformation)">
+            <summary>Determines whether read access to a property of <paramref name="securableObject"/> is granted.</summary>
+            <param name="securableObject">The <see cref="T:Remotion.Security.ISecurableObject"/> whose permissions are checked.</param>
+            <param name="propertyInformation">The property for which the permissions are checked.</param>
+            <returns><see langword="true"/> when the property value can be retrieved.</returns>
+            <remarks>If access is denied, the property is hidden in the UI.</remarks>
+        </member>
+        <member name="M:Remotion.Security.IObjectSecurityAdapter.HasAccessOnSetAccessor(Remotion.Security.ISecurableObject,Remotion.Reflection.IPropertyInformation)">
+            <summary>Determines whether write access to a property of <paramref name="securableObject"/> is granted.</summary>
+            <param name="securableObject">The <see cref="T:Remotion.Security.ISecurableObject"/> whose permissions are checked.</param>
+            <param name="propertyInformation">The property for which the permissions are checked.</param>
+            <returns><see langword="true"/> when the property can be changed.</returns>
+            <remarks>If access is denied, the property is displayed as read-only in the UI.</remarks>
+        </member>
+        <member name="T:Remotion.Security.IObjectSecurityStrategy">
+            <summary>Encapsulates the security checks for the business object.</summary>
+            <remarks>
+            Typically the <see cref="T:Remotion.Security.IObjectSecurityStrategy"/> knows its business object (possibly indirectly) 
+            and uses the security-relevant object state (as part of the <see cref="T:Remotion.Security.ISecurityContext"/>) as 
+            parameter when evaluating the required permissions.
+            <note type="inotes">Implementations are free to decide whether they provide caching.</note>
+            </remarks>
+        </member>
+        <member name="M:Remotion.Security.IObjectSecurityStrategy.HasAccess(Remotion.Security.ISecurityProvider,Remotion.Security.ISecurityPrincipal,Remotion.Security.AccessType[])">
+            <summary>Determines whether the requested access is granted.</summary>
+            <param name="securityProvider">The <see cref="T:Remotion.Security.ISecurityProvider"/> used to determine the permissions.</param>
+            <param name="principal">The <see cref="T:Remotion.Security.ISecurityPrincipal"/> on whose behalf the permissions are evaluated.</param>
+            <param name="requiredAccessTypes">The access rights required for the access to be granted.</param>
+            <returns><see langword="true"/> if the <paramref name="requiredAccessTypes"/> are granted.</returns>
+            <remarks>
+            Typically called via <see cref="M:Remotion.Security.SecurityClient.HasAccess(ISecurableObject, AccessType[])"/> of 
+            <see cref="T:Remotion.Security.SecurityClient"/>.
+            The strategy incorporates <see cref="T:Remotion.Security.ISecurityContext"/> in the permission query.
+            The <paramref name="requiredAccessTypes"/> are determined by the <see cref="T:Remotion.Security.SecurityClient"/>, 
+            taking the business object instance and the member name (property or method) into account.
+            </remarks>
+        </member>
+        <member name="T:Remotion.Security.IPrincipalProvider">
+            <summary>Defines an interface for retrieving the current principal.</summary>
+        </member>
+        <member name="M:Remotion.Security.IPrincipalProvider.GetPrincipal">
+            <summary>Gets the current user.</summary>
+            <returns>The <see cref="T:Remotion.Security.ISecurityPrincipal"/> representing the current principal.</returns>
+        </member>
+        <member name="T:Remotion.Security.IRevisionBasedSecurityProvider">
+            <summary>
+            Extends the <see cref="T:Remotion.Security.ISecurityProvider"/> interface to provide functionality for querying the revision of the 
+            <see cref="T:System.IServiceProvider"/>'s data.
+            </summary>
+            <remarks>
+            The revision feature is used in conjunction with the <see cref="T:Remotion.Security.RevisionBasedAccessTypeCacheProvider"/> to provide a second-level cache
+            for access types which will be invalidated when the revision of the <see cref="T:System.IServiceProvider"/>'s data increments, indicating an update
+            to the configured permissions.
+            </remarks>
+        </member>
+        <member name="T:Remotion.Security.ISecurityProvider">
+            <summary>Provides access to the permission management functionality.</summary>
+            <remarks>This service interface enables a plugable security system architecture, acting as single point of access to the permission management functionality.</remarks>
+        </member>
+        <member name="M:Remotion.Security.ISecurityProvider.GetAccess(Remotion.Security.ISecurityContext,Remotion.Security.ISecurityPrincipal)">
+            <summary>Determines permission for a user.</summary>
+            <param name="context">The <see cref="T:Remotion.Security.ISecurityContext"/> gouping all object-specific security information of the current permission check.</param>
+            <param name="principal">The <see cref="T:Remotion.Security.ISecurityPrincipal"/> on whose behalf the permissions are evaluated.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Remotion.Security.IRevisionBasedSecurityProvider.GetRevision">
+            <summary>Gets the current revison number.</summary>
+            <returns>The current revison number.</returns>
+            <remarks>
+            The revison number is incremented when any permission-related information becomes outdated. 
+            An incremented revision number indicates that the cache must be discared.
+            </remarks>
+        </member>
+        <member name="T:Remotion.Security.ISecurableObject">
+            <summary>The base interface for all business objects that need security features.</summary>
+        </member>
+        <member name="M:Remotion.Security.ISecurableObject.GetSecurityStrategy">
+            <summary>Gets the <see cref="T:Remotion.Security.IObjectSecurityStrategy"/> used by that business object.</summary>
+            <remarks>Primarily used by a <see cref="T:Remotion.Security.SecurityClient"/> to dispatch security checks.</remarks>
+            <returns>Returns the <see cref="T:Remotion.Security.IObjectSecurityStrategy"/>.</returns>
+        </member>
+        <member name="M:Remotion.Security.ISecurableObject.GetSecurableType">
+            <summary>Gets the <see cref="T:System.Type"/> representing the <see cref="T:Remotion.Security.ISecurableObject"/> in the security infrastructure.</summary>
+            <returns>Return a <see cref="T:System.Type"/> object.</returns>
+        </member>
+        <member name="T:Remotion.Security.ISecurityContext">
+            <summary>
+            The <see cref="T:Remotion.Security.ISecurityContext"/> interface collects all data required for evaluating the permissions a user has for an object.
+            </summary>
+            <remarks>
+            Use the the <see cref="T:Remotion.Security.ISecurityContextFactory"/> to create an instance of an object implementing <see cref="T:Remotion.Security.ISecurityContext"/>. This factory 
+            is typically used by the <see cref="T:Remotion.Security.ISecurityStrategy"/>'s <see cref="M:Remotion.Security.ISecurityStrategy.HasAccess(Remotion.Security.ISecurityContextFactory,Remotion.Security.ISecurityProvider,Remotion.Security.ISecurityPrincipal,Remotion.Security.AccessType[])"/> method to create a
+            security context for a security query.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Security.ISecurityContext.GetState(System.String)">
+            <summary>
+            Retrieves the value assigned to the specified property of the <see cref="T:Remotion.Security.ISecurableObject"/>.
+            </summary>
+            <param name="propertyName">
+            A <see cref="T:System.String"/> identifying a property of the <see cref="P:Remotion.Security.ISecurityContext.Class"/> that contains state relevant to evaluating 
+            the permissions of the object. Must not be <see langword="null"/> or empty.
+            </param>
+            <returns>
+            An <see cref="T:Remotion.Security.EnumWrapper"/> whose value uniquely identifies the state to the <see cref="T:Remotion.Security.ISecurityProvider"/>.
+            </returns>
+            <remarks>
+            Use <see cref="M:Remotion.Security.ISecurityContext.ContainsState(System.String)"/> to safely test if the security context contains a property with the specified <paramref name="propertyName"/>.    /// </remarks>
+            <exception cref="T:System.ArgumentException">
+            Thrown if the security context does not contain a property with the specified <paramref name="propertyName"/>.
+            </exception>
+        </member>
+        <member name="M:Remotion.Security.ISecurityContext.ContainsState(System.String)">
+            <summary>
+            Tests whether the <paramref name="propertyName"/> represents a state property defined for the <see cref="P:Remotion.Security.ISecurityContext.Class"/>.
+            </summary>
+            <param name="propertyName">
+            A <see cref="T:System.String"/> identifying a property of the <see cref="P:Remotion.Security.ISecurityContext.Class"/> that contains state relevant to evaluating 
+            the permissions of the object. Must not be <see langword="null"/> or empty.
+            </param>
+            <returns><see langword="true"/> if <see cref="M:Remotion.Security.ISecurityContext.GetState(System.String)"/> can be safely invoked with the <paramref name="propertyName"/>.</returns>
+        </member>
+        <member name="M:Remotion.Security.ISecurityContext.GetNumberOfStates">
+            <summary>
+            Gets the total number of state properties defined for the <see cref="P:Remotion.Security.ISecurityContext.Class"/>.
+            </summary>
+            <returns>A positive <see cref="T:System.Int32"/>.</returns>
+        </member>
+        <member name="P:Remotion.Security.ISecurityContext.Class">
+            <summary>
+            Gets the type name of the <see cref="T:Remotion.Security.ISecurableObject"/> for which the permissions are to be evaluated by the <see cref="T:Remotion.Security.ISecurityStrategy"/>.
+            </summary>
+            <value>
+            A <see cref="T:System.String"/> that uniquely identifies the type of the <see cref="T:Remotion.Security.ISecurableObject"/> to the <see cref="T:System.IServiceProvider"/>.
+            </value>
+            <remarks>
+            The default implementation of the security infrastructure in the re-motion framework uses partial assembly-qualified type names to identify 
+            the <see cref="P:Remotion.Security.ISecurityContext.Class"/> of the <see cref="T:Remotion.Security.ISecurableObject"/>. This results from the sole reliance on reflection information for extracting 
+            the  security metadata. If a different means of generating the security metadata is used, it is perfectly legal to use strings of any format
+            for the <see cref="P:Remotion.Security.ISecurityContext.Class"/>. The only requirement is that the <see cref="T:System.IServiceProvider"/> can find the <see cref="P:Remotion.Security.ISecurityContext.Class"/> within its 
+            datastore. Otherwise, the security query will fail and access will be denied.
+            </remarks>
+        </member>
+        <member name="P:Remotion.Security.ISecurityContext.Owner">
+            <summary>
+            Gets the name of the user that owns the <see cref="T:Remotion.Security.ISecurableObject"/>.
+            </summary>
+            <value>
+            A <see cref="T:System.String"/> that uniquely identifies the owning user of the <see cref="T:Remotion.Security.ISecurableObject"/> to the <see cref="T:Remotion.Security.ISecurityProvider"/>.
+            This property may return <see langword="null"/>.
+            </value>
+        </member>
+        <member name="P:Remotion.Security.ISecurityContext.OwnerGroup">
+            <summary>
+            Gets the name of the group that owns the <see cref="T:Remotion.Security.ISecurableObject"/>.
+            </summary>
+            <value>
+            A <see cref="T:System.String"/> that uniquely identifies the owning group of the <see cref="T:Remotion.Security.ISecurableObject"/> to the <see cref="T:Remotion.Security.ISecurityProvider"/>.
+            This property may return <see langword="null"/>.
+            </value>
+        </member>
+        <member name="P:Remotion.Security.ISecurityContext.OwnerTenant">
+            <summary>
+            Gets the name of the tenant that owns the <see cref="T:Remotion.Security.ISecurableObject"/>.
+            </summary>
+            <value>
+            A <see cref="T:System.String"/> that uniquely identifies the owning tenant of the <see cref="T:Remotion.Security.ISecurableObject"/> to the <see cref="T:Remotion.Security.ISecurityProvider"/>.
+            This property may return <see langword="null"/>.
+            </value>
+        </member>
+        <member name="P:Remotion.Security.ISecurityContext.AbstractRoles">
+            <summary>
+            Gets the list of abstract roles the current user has in regards to the <see cref="T:Remotion.Security.ISecurableObject"/>.
+            </summary>
+            <value>An <see cref="T:Remotion.Security.EnumWrapper"/> sequence containing zero or more abstract role identifiers.</value>
+        </member>
+        <member name="P:Remotion.Security.ISecurityContext.IsStateless">
+            <summary>
+            Gets a flag describing whether the context contains any state properties.
+            </summary>
+        </member>
+        <member name="T:Remotion.Security.ISecurityContextFactory">
+            <summary>
+            Objects implementing the <see cref="T:Remotion.Security.ISecurityContextFactory"/> interface are typically used by the <see cref="T:Remotion.Security.ISecurityStrategy"/> 
+            to create an <see cref="T:Remotion.Security.ISecurityContext"/> for a buiness object.
+            </summary>
+            <remarks>
+            <note type="inotes">
+            Usually directly implemented by a secured business object, thus acting as their own <see cref="T:Remotion.Security.ISecurityContextFactory"/>.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Remotion.Security.ISecurityContextFactory.CreateSecurityContext">
+            <summary>Gets the <see cref="T:Remotion.Security.ISecurityContext"/> for a business object.</summary>
+            <returns>The <see cref="T:Remotion.Security.ISecurityContext"/> for a business object.</returns>
+        </member>
+        <member name="T:Remotion.Security.ISecurityPrincipal">
+            <summary>
+            The <see cref="T:Remotion.Security.ISecurityPrincipal"/> interface represents a user, and optionally his active role and the user for whom he's acting as a substitue.
+            </summary>
+        </member>
+        <member name="P:Remotion.Security.ISecurityPrincipal.User">
+            <summary>
+            Gets the name of the user. The <see cref="P:Remotion.Security.ISecurityPrincipal.User"/> must always be specified.
+            </summary>
+        </member>
+        <member name="P:Remotion.Security.ISecurityPrincipal.Role">
+            <summary>
+            Gets the active role of the user. The <see cref="P:Remotion.Security.ISecurityPrincipal.Role"/> is optional.
+            </summary>
+        </member>
+        <member name="P:Remotion.Security.ISecurityPrincipal.SubstitutedUser">
+            <summary>
+            Gets the name of the user that is being substitued. 
+            The <see cref="P:Remotion.Security.ISecurityPrincipal.SubstitutedUser"/> must be specified if a <see cref="P:Remotion.Security.ISecurityPrincipal.SubstitutedRole"/> is specified as well.
+            </summary>
+        </member>
+        <member name="P:Remotion.Security.ISecurityPrincipal.SubstitutedRole">
+            <summary>
+            Gets the role that is being substituted. The <see cref="P:Remotion.Security.ISecurityPrincipal.SubstitutedRole"/> is optional.
+            </summary>
+        </member>
+        <member name="T:Remotion.Security.ISecurityPrincipalRole">
+            <summary>
+            The <see cref="T:Remotion.Security.ISecurityPrincipalRole"/> interface defines a role the user can be in.
+            </summary>
+        </member>
+        <member name="P:Remotion.Security.ISecurityPrincipalRole.Group">
+            <summary>
+            The group the user is a member of. 
+            </summary>
+        </member>
+        <member name="P:Remotion.Security.ISecurityPrincipalRole.Position">
+            <summary>
+            The position the user is a member of. Can be <see langword="null" />.
+            </summary>
+        </member>
+        <member name="T:Remotion.Security.ISecurityStrategy">
+            <summary>Encapsulates the security checks.</summary>
+            <remarks><note type="inotes">Implementations are free to decide whether they provide caching.</note></remarks>
+        </member>
+        <member name="M:Remotion.Security.ISecurityStrategy.HasAccess(Remotion.Security.ISecurityContextFactory,Remotion.Security.ISecurityProvider,Remotion.Security.ISecurityPrincipal,Remotion.Security.AccessType[])">
+            <summary>Determines whether the requested access is granted.</summary>
+            <param name="factory">The <see cref="T:Remotion.Security.ISecurityContextFactory"/> to be used.</param>
+            <param name="securityProvider">The <see cref="T:Remotion.Security.ISecurityProvider"/> used to determine the permissions.</param>
+            <param name="principal">The <see cref="T:Remotion.Security.ISecurityPrincipal"/> on whose behalf the permissions are evaluated.</param>
+            <param name="requiredAccessTypes">The access rights required for the access to be granted.</param>
+            <returns><see langword="true"/> if the <paramref name="requiredAccessTypes"/> are granted.</returns>
+            <remarks>
+            <note type="inotes">
+            When caching is provided by the implementation, <see cref="M:Remotion.Security.ISecurityContextFactory.CreateSecurityContext"/> of the <paramref name="factory"/>
+            shall only be called when the local cache does not already have a reference to a <see cref="T:Remotion.Security.ISecurityContext"/>.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Remotion.Security.ISecurityStrategy.InvalidateLocalCache">
+            <summary>Clears the cached access types of the <see cref="T:Remotion.Security.ISecurableObject"/> associated with this <see cref="T:Remotion.Security.ISecurityStrategy"/>.</summary>
+            <remarks>Called by application code when <see cref="T:Remotion.Security.ISecurableObject"/> properties that are relevant for the <see cref="T:Remotion.Security.ISecurityContext"/> change.</remarks>
+        </member>
+        <member name="T:Remotion.Security.Metadata.MemberAffiliation">
+            <summary>
+            Describes if a member is static or instance-based.
+            </summary>
+        </member>
+        <member name="T:Remotion.Security.Metadata.IMemberResolver">
+            <summary>
+            Class is used to get 
+            </summary>
+        </member>
+        <member name="T:Remotion.Security.NullSecurityPrincipal">
+            <summary>
+            Represents a nullable <see cref="T:Remotion.Security.ISecurityPrincipal"/> according to the "Null Object Pattern".
+            </summary>
+        </member>
+        <member name="T:Remotion.Security.NullSecurityClient">
+            <summary>
+            Represents a nullable <see cref="T:Remotion.Security.SecurityClient"/> according to the "Null Object Pattern".
+            </summary>
+            <threadsafety static="true" instance="true"/>
+        </member>
+        <member name="T:Remotion.Security.NullSecurityProvider">
+            <summary>
+            Provides an implementation of a nullable object according to the "Null Object Pattern", 
+            extending <see cref="T:System.Configuration.Provider.ProviderBase"/> and implementing <see cref="T:Remotion.Security.ISecurityProvider"/>.
+            </summary>
+            <threadsafety static="true" instance="true"/>
+        </member>
+        <member name="M:Remotion.Security.NullSecurityProvider.GetAccess(Remotion.Security.ISecurityContext,Remotion.Security.ISecurityPrincipal)">
+            <summary>
+            The "Null Object" implementation always returns an empty array.
+            </summary>
+            <returns>Always returns an empty array.</returns>
+        </member>
+        <member name="T:Remotion.Security.Configuration.PermissionProviderHelper">
+            <summary>Helper class that loads implementations of <see cref="T:Remotion.Security.Metadata.IPermissionProvider"/> from the <see cref="T:Remotion.Security.Configuration.SecurityConfiguration"/> section.</summary>
+        </member>
+        <member name="T:Remotion.Security.Configuration.GlobalAccessTypeCacheProviderHelper">
+            <summary>Helper class that loads implementations of <see cref="T:Remotion.Security.IGlobalAccessTypeCacheProvider"/> from the <see cref="T:Remotion.Security.Configuration.SecurityConfiguration"/> section.</summary>
+        </member>
+        <member name="T:Remotion.Security.Configuration.PrincipalProviderHelper">
+            <summary>Helper class that loads implementations of <see cref="T:Remotion.Security.IPrincipalProvider"/> from the <see cref="T:Remotion.Security.Configuration.SecurityConfiguration"/> section.</summary>
+        </member>
+        <member name="T:Remotion.Security.NullGlobalAccessTypeCacheProvider">
+            <summary>
+            Represents a nullable <see cref="T:Remotion.Security.IGlobalAccessTypeCacheProvider"/> according to the "Null Object Pattern".
+            </summary>
+        </member>
+        <member name="T:Remotion.Security.Configuration.SecurityConfiguration">
+            <summary> The configuration section for <see cref="N:Remotion.Security"/>. </summary>
+            <threadsafety static="true" instance="true"/>
+        </member>
+        <member name="T:Remotion.Security.Metadata.PermissionReflector">
+            <summary>
+            Implements the <see cref="T:Remotion.Security.Metadata.IPermissionProvider"/> for a reflection-based security declaration.
+            </summary>
+        </member>
+        <member name="T:Remotion.Security.NullPrincipalProvider">
+            <summary>
+            Represents a nullable <see cref="T:Remotion.Security.IPrincipalProvider"/> according to the "Null Object Pattern".
+            </summary>
+            <threadsafety static="true" instance="true"/>
+        </member>
+        <member name="T:Remotion.Security.PermissionDeniedException">
+            <summary>Exception thrown by the <see cref="T:Remotion.Security.SecurityClient"/> if access is denied.</summary>
+        </member>
+        <member name="T:Remotion.Security.SecurityContext">
+            <summary>Collects all security-specific information for a securable object, and is passed as parameter during the permission check.</summary>
+        </member>
+        <member name="M:Remotion.Security.SecurityContext.CreateStateless(System.Type)">
+            <summary>
+            Creates a new instance of the <see cref="T:Remotion.Security.SecurityContext"/> type initialized for a stateless scenario, i.e. before an actual instance of the
+            specified <paramref name="type"/> is available to supply state information. One such occurance would be the creation of a new instance of 
+            specified <paramref name="type"/>.
+            </summary>
+            <param name="type">
+            The <see cref="T:System.Type"/> of the securable class for which this <see cref="T:Remotion.Security.SecurityContext"/> is created. 
+            Must implement the <see cref="T:Remotion.Security.ISecurableObject"/> interface and not be <see langword="null"/>.
+            </param>
+            <returns>A new instance of the <see cref="T:Remotion.Security.SecurityContext"/> type.</returns>
+        </member>
+        <member name="M:Remotion.Security.SecurityContext.Create(System.Type,System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Enum},System.Collections.Generic.ICollection{System.Enum})">
+            <summary>
+            Creates a new instance of the <see cref="T:Remotion.Security.SecurityContext"/> type initialized for stateful scenarios, i.e. when a concrete instance of the 
+            specified <paramref name="type"/> is available to supply state information (e.g. the <paramref name="owner"/>, ...). This overload 
+            requires that all state and abstract role values must be defined by a dot.NET <see cref="T:System.Enum"/> type.
+            </summary>
+            <param name="type">
+            The <see cref="T:System.Type"/> of the securable class for which this <see cref="T:Remotion.Security.SecurityContext"/> is created. 
+            Must implement the <see cref="T:Remotion.Security.ISecurableObject"/> interface and not be <see langword="null"/>.
+            </param>
+            <param name="owner">The name of the user that owns the securable object for which this <see cref="T:Remotion.Security.SecurityContext"/> is created.</param>
+            <param name="ownerGroup">The name of the group that owns the securable object for which this <see cref="T:Remotion.Security.SecurityContext"/> is created.</param>
+            <param name="ownerTenant">The name of the tenant that owns the securable object for which this <see cref="T:Remotion.Security.SecurityContext"/> is created.</param>
+            <param name="states">
+            A dictionary containing a combination of property names and values, each of which describe a single security relevant property of the 
+            securable object for which this <see cref="T:Remotion.Security.SecurityContext"/> is created. Must not be <see langword="null"/>. Each <see cref="T:System.Enum"/> value
+            must be of an <see cref="T:System.Enum"/> type that has the <see cref="T:Remotion.Security.SecurityStateAttribute"/> applied.
+            </param>
+            <param name="abstractRoles">
+            The list abstract roles the current user has in regards to the securable object for which this <see cref="T:Remotion.Security.SecurityContext"/> is created.
+            Must not be <see langword="null"/>. Each <see cref="T:System.Enum"/> value must be of an <see cref="T:System.Enum"/> type that has the 
+            <see cref="T:Remotion.Security.AbstractRoleAttribute"/> applied.
+            </param>
+            <returns>A new instance of the <see cref="T:Remotion.Security.SecurityContext"/> type.</returns>
+        </member>
+        <member name="M:Remotion.Security.SecurityContext.Create(System.Type,System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,Remotion.Security.EnumWrapper},System.Collections.Generic.ICollection{Remotion.Security.EnumWrapper})">
+            <summary>
+            Creates a new instance of the <see cref="T:Remotion.Security.SecurityContext"/> type initialized for stateful scenarios, i.e. when a concrete instance of the 
+            specified paramref name is available to supply state information (e.g. the <paramref name="owner"/>, ...). Use this overload to supply
+            states and abstract roles that are not necessarily defined by a dot.NET <see cref="T:System.Enum"/> type.
+            </summary>
+            <param name="type">
+            The <see cref="T:System.Type"/> of the securable class for which this <see cref="T:Remotion.Security.SecurityContext"/> is created. 
+            Must implement the <see cref="T:Remotion.Security.ISecurableObject"/> interface and not be <see langword="null"/>.
+            </param>
+            <param name="owner">The name of the user that owns the securable object for which this <see cref="T:Remotion.Security.SecurityContext"/> is created.</param>
+            <param name="ownerGroup">The name of the group that owns the securable object for which this <see cref="T:Remotion.Security.SecurityContext"/> is created.</param>
+            <param name="ownerTenant">The name of the tenant that owns the securable object for which this <see cref="T:Remotion.Security.SecurityContext"/> is created.</param>
+            <param name="states">
+            A dictionary containing a combination of property names and values, each of which describe a single security relevant property of the 
+            securable object for which this <see cref="T:Remotion.Security.SecurityContext"/> is created. Must not be <see langword="null"/>.
+            </param>
+            <param name="abstractRoles">
+            The list abstract roles the current user has in regards to the securable object for which this <see cref="T:Remotion.Security.SecurityContext"/> is created.
+            Must not be <see langword="null"/>.
+            </param>
+            <returns>A new instance of the <see cref="T:Remotion.Security.SecurityContext"/> type.</returns>
+        </member>
+        <member name="T:Remotion.Security.SecurityFreeSection">
+            <summary>
+            Represents a scope within no security will be evaluated.
+            </summary>
+        </member>
+        <member name="T:Remotion.Security.SecurityPrincipal">
+            <summary>
+            The <see cref="T:Remotion.Security.SecurityPrincipal"/> type represents a user, and optionally his active role and the user for whom he's acting as a substitue.
+            </summary>
+        </member>
+        <member name="T:Remotion.Security.SecurityPrincipalRole">
+            <summary>
+            The <see cref="T:Remotion.Security.SecurityPrincipalRole"/> type defines a role the user can be in.
+            </summary>
+        </member>
+        <member name="M:Remotion.Security.SecurityPrincipalRole.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Remotion.Security.SecurityPrincipalRole"/> type.
+            </summary>
+            <param name="group">The group the user is a member of when he is this role. Must not be <see langword="null"/> or empty.</param>
+            <param name="position">The position in the <paramref name="group"/>. Must not be empty.</param>
+        </member>
+    </members>
+</doc>

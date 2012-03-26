@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Engine;
 using NHibernate.SqlCommand;
 using NHibernate.Util;
@@ -42,7 +42,7 @@ namespace NHibernate.Mapping
 		private readonly List<Join> joins = new List<Join>();
 		private readonly List<Join> subclassJoins = new List<Join>();
 		private readonly IDictionary<string, string> filters = new Dictionary<string, string>();
-		private readonly ISet<string> synchronizedTables = new HashedSet<string>();
+		private readonly ISet<string> synchronizedTables = new IESI.HashedSet<string>();
 		private string loaderName;
 		private bool? isAbstract;
 		private bool hasSubselectLoadableCollections;
@@ -962,7 +962,7 @@ namespace NHibernate.Mapping
 
 		private void CheckPropertyDuplication()
 		{
-			HashedSet<string> names = new HashedSet<string>();
+			IESI.HashedSet<string> names = new IESI.HashedSet<string>();
 			foreach (Property prop in PropertyIterator)
 			{
 				if (!names.Add(prop.Name))
@@ -1105,7 +1105,7 @@ namespace NHibernate.Mapping
 
 		protected internal virtual void CheckColumnDuplication()
 		{
-			HashedSet<string> cols = new HashedSet<string>();
+			IESI.HashedSet<string> cols = new IESI.HashedSet<string>();
 			if (IdentifierMapper == null)
 			{
 				//an identifier mapper => Key will be included in the NonDuplicatedPropertyIterator

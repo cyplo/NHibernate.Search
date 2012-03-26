@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Engine;
 using NHibernate.Hql;
 using NHibernate.Param;
@@ -25,7 +25,7 @@ namespace NHibernate.Loader.Custom
 		// Currently *not* cachable if autodiscover types is in effect (e.g. "select * ...")
 
 		private readonly SqlString sql;
-		private readonly ISet<string> querySpaces = new HashedSet<string>();
+		private readonly ISet<string> querySpaces = new IESI.HashedSet<string>();
 		private List<IParameterSpecification> parametersSpecifications;
 
 		private readonly IQueryable[] entityPersisters;

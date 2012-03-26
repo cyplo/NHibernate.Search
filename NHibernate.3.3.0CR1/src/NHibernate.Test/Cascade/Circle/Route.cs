@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Test.Cascade.Circle
 {
@@ -8,8 +8,8 @@ namespace NHibernate.Test.Cascade.Circle
 	{
 		private long routeId;
 		private long version;
-		private ISet<Node> nodes = new HashedSet<Node>();
-		private ISet<Vehicle> vehicles = new HashedSet<Vehicle>();
+		private ISet<Node> nodes = new IESI.HashedSet<Node>();
+		private ISet<Vehicle> vehicles = new IESI.HashedSet<Vehicle>();
 		private string name;
 		private string transientField = null;
 		

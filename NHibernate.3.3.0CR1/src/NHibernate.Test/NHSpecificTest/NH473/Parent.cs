@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Iesi.Collections;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Test.NHSpecificTest.NH473
 {

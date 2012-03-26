@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 using NHibernate.Engine;
 using NHibernate.Intercept;
@@ -76,7 +76,7 @@ namespace NHibernate.Tuple.Entity
 		private readonly bool inherited;
 		private readonly bool hasSubclasses;
 
-		private readonly HashedSet<string> subclassEntityNames = new HashedSet<string>();
+		private readonly IESI.HashedSet<string> subclassEntityNames = new IESI.HashedSet<string>();
 		private readonly bool hasInsertGeneratedValues;
 		private readonly bool hasUpdateGeneratedValues;
 

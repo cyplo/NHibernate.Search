@@ -1,6 +1,7 @@
 using System;
 using Antlr.Runtime.Tree;
-using Iesi.Collections.Generic;
+using System.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Engine;
 using NHibernate.Hql.Ast.ANTLR.Util;
 using NHibernate.Param;
@@ -52,7 +53,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			ValidateLhs(lhs);
 
 			string propertyPath = lhs.PropertyPath;
-			var temp = new HashedSet<string>();
+			var temp = new IESI.HashedSet<string>();
 			// yuck!
 			var usep = persister as UnionSubclassEntityPersister;
 			if (usep!=null)

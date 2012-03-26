@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Remotion.Development.Web</name>
+    </assembly>
+    <members>
+        <member name="T:Remotion.Development.Web.UnitTesting.AspNetFramework.HttpContextHelper">
+            <summary> 
+              Provides helper methods for initalizing an <see cref="T:System.Web.HttpContext"/> object when simulating ASP.NET request
+              cycles. 
+            </summary>
+        </member>
+        <member name="T:Remotion.Development.Web.UnitTesting.Configuration.WebConfigurationMock">
+            <summary> 
+              Provides helper methods for initalizing a <see cref="T:Remotion.Web.Configuration.WebConfiguration"/> object when simulating ASP.NET 
+              request cycles. 
+            </summary>
+        </member>
+        <member name="T:Remotion.Development.Web.UnitTesting.ExecutionEngine.WxeContextMock">
+            <summary> Provides a <see cref="T:Remotion.Web.ExecutionEngine.WxeContext"/> for simualating ASP.NET request life cycles. </summary>
+        </member>
+        <member name="T:Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase">
+            <summary>
+            Sets up an <see cref="T:System.Web.UI.HtmlTextWriter"/> (including underlying streams) to render to and
+            provides functionality to easily assert conditions in the rendered HTML document.
+            </summary>
+            <remarks>
+            Deriving classes must provide delegates to perform the actual assertions. 
+            This is required so that this class does not depend on any automatic testing framework.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.#ctor(Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.BinaryAssertDelegate,Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.BinaryAssertDelegate,Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.UnaryAssertDelegate,Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.UnaryAssertDelegate,Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.ConditionAssertDelegate)">
+            <summary>
+            Initializes the <see cref="T:System.Web.UI.HtmlTextWriter"/> and underlying streams.
+            The delegate parameters are needed for assertions and cannot be <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="M:Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.GetDocumentText">
+            <summary>
+            Gets the whole text that has been rendered to the <see cref="P:Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.Writer"/>.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.GetResultDocument">
+            <summary>
+            Parses the string obtained from <see cref="M:Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.GetDocumentText"/> and builds an XML DOM document.
+            </summary>
+            <returns>The <see cref="T:System.Xml.XmlDocument"/> built from the document text.</returns>
+        </member>
+        <member name="M:Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.AssertChildElementCount(System.Xml.XmlNode,System.Int32)">
+            <summary>
+            Asserts that <paramref name="parent"/> has exactly <paramref name="count"/> child nodes of type <see cref="F:System.Xml.XmlNodeType.Element"/>.
+            </summary>
+        </member>
+        <member name="M:Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.GetAssertedChildElement(System.Xml.XmlNode,System.String,System.Int32)">
+            <summary>
+            Asserts that <paramref name="parent"/> has a child element with a <see cref="P:System.Xml.XmlNode.Name"/> 
+            property value of <paramref name="tag"/> at position <paramref name="index"/> of its child node collection.
+            </summary>
+            <returns>The specified child element.</returns>
+        </member>
+        <member name="M:Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.AssertTextNode(System.Xml.XmlNode,System.String,System.Int32)">
+            <summary>
+            Asserts that <paramref name="parent"/> has a child text node with an <see cref="P:System.Xml.XmlNode.InnerText"/> 
+            property value of <paramref name="content"/> at position <paramref name="index"/> of its child node collection.
+            </summary>
+        </member>
+        <member name="M:Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.AssertAttribute(System.Xml.XmlNode,System.String,System.String)">
+            <summary>
+            Asserts that <paramref name="node"/> has an attribute named <paramref name="attributeName"/> with value <paramref name="attributeValue"/>.
+            </summary>
+        </member>
+        <member name="M:Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.AssertAttribute(System.Xml.XmlNode,System.String,System.String,Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.AttributeValueCompareMode)">
+            <summary>
+            Asserts that <paramref name="node"/> has an attribute named <paramref name="attributeName"/>,
+            and that the attribute's value is equal to or contains <paramref name="attributeValue"/>, 
+            depending on <paramref name="mode"/>.
+            </summary>
+        </member>
+        <member name="M:Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.AssertStyleAttribute(System.Xml.XmlNode,System.String,System.String)">
+            <summary>
+            Asserts that <paramref name="node"/> has a 'style' attribute that contains the name-value-pair
+            specified by <paramref name="cssProperty"/> and <paramref name="cssValue"/>.
+            </summary>
+        </member>
+        <member name="M:Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.AssertNoAttribute(System.Xml.XmlNode,System.String)">
+            <summary>
+            Asserts that <paramref name="node"/> does not contain an attribute named <paramref name="attributeName"/>.
+            </summary>
+            <param name="node"></param>
+            <param name="attributeName"></param>
+        </member>
+        <member name="M:Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.Dispose">
+            <summary>
+            Disposes of the <see cref="P:Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.Writer"/> and its underlying streams.
+            </summary>
+        </member>
+        <member name="P:Remotion.Development.Web.UnitTesting.UI.Controls.Rendering.HtmlHelperBase.Writer">
+            <summary>
+            The <see cref="T:System.Web.UI.HtmlTextWriter"/> to use for rendering in order work with this class.
+            </summary>
+        </member>
+        <member name="T:Remotion.Development.Web.UnitTesting.UI.WcagHelperMock">
+            <summary> Provides programmatically accessible feedback on the WCAG conformance </summary>
+        </member>
+    </members>
+</doc>

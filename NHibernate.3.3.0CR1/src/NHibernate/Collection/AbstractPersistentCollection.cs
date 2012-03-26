@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Engine;
 using NHibernate.Impl;
 using NHibernate.Loader;
@@ -712,7 +712,7 @@ namespace NHibernate.Collection
 			List<object> res = new List<object>();
 
 			// collect EntityIdentifier(s) of the *current* elements - add them into a HashSet for fast access
-			HashedSet<TypedValue> currentIds = new HashedSet<TypedValue>();
+			IESI.HashedSet<TypedValue> currentIds = new IESI.HashedSet<TypedValue>();
 			foreach (object current in currentElements)
 			{
 				if (current != null && ForeignKeys.IsNotTransient(entityName, current, null, session))

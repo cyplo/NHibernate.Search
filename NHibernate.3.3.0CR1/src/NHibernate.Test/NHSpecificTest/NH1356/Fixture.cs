@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NUnit.Framework;
 
 namespace NHibernate.Test.NHSpecificTest.NH1356
@@ -81,7 +81,7 @@ namespace NHibernate.Test.NHSpecificTest.NH1356
 
 		protected override ICollection<Address> NewCollection()
 		{
-			return new HashedSet<Address>();
+			return new IESI.HashedSet<Address>();
 		}
 	}
 }

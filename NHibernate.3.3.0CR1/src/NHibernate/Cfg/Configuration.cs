@@ -11,7 +11,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 using Iesi.Collections;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 using NHibernate.Bytecode;
 using NHibernate.Cfg.ConfigurationSchema;
@@ -181,7 +181,7 @@ namespace NHibernate.Cfg
 			mappingsQueue = new MappingsQueue();
 			eventListeners = new EventListeners();
 			typeDefs = new Dictionary<string, TypeDef>();
-			extendsQueue = new HashedSet<ExtendsQueueEntry>();
+			extendsQueue = new IESI.HashedSet<ExtendsQueueEntry>();
 			tableNameBinding = new Dictionary<string, Mappings.TableDescription>();
 			columnNameBindingPerTable = new Dictionary<Table, Mappings.ColumnNames>();
 			filtersSecondPasses = new Queue<FilterSecondPassArgs>();
@@ -965,7 +965,7 @@ namespace NHibernate.Cfg
 
 		private void ValidateFilterDefs()
 		{
-			var filterNames = new HashedSet<string>();
+			var filterNames = new IESI.HashedSet<string>();
 			foreach (var filterDefinition in FilterDefinitions)
 			{
 				if (filterDefinition.Value == null)
@@ -1023,7 +1023,7 @@ namespace NHibernate.Cfg
 		private void ValidateEntities()
 		{
 			bool validateProxy = PropertiesHelper.GetBoolean(Environment.UseProxyValidator, properties, true);
-			HashedSet<string> allProxyErrors = null;
+			IESI.HashedSet<string> allProxyErrors = null;
 			IProxyValidator pvalidator = Environment.BytecodeProvider.ProxyFactoryFactory.ProxyValidator;
 
 			foreach (var clazz in classes.Values)
@@ -1037,7 +1037,7 @@ namespace NHibernate.Cfg
 					{
 						if (allProxyErrors == null)
 						{
-							allProxyErrors = new HashedSet<string>(errors);
+							allProxyErrors = new IESI.HashedSet<string>(errors);
 						}
 						else
 						{

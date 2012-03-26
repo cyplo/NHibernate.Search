@@ -1,0 +1,757 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Remotion.Scripting</name>
+    </assembly>
+    <members>
+        <member name="T:Remotion.Scripting.ExpressionScript`1">
+            <summary>
+            An <see cref="T:Remotion.Scripting.ExpressionScript`1"/> is a script which contains only a single expression. During script execution this 
+            expression is evaluated and the result returned. 
+            </summary>
+            <remarks>
+            Under IronPython, <see cref="T:Remotion.Scripting.ExpressionScript`1"/>|s are safer than 
+            full blown <see cref="T:Remotion.Scripting.ScriptFunction`1"/>|s, since they cannot contain import statements, i.e. they can only access the objects
+            which can be reached from within their <see cref="T:Microsoft.Scripting.Hosting.ScriptScope"/>.
+            </remarks>
+            <typeparam name="TResult">The expression result type.</typeparam>
+        </member>
+        <member name="T:Remotion.Scripting.ScriptBase">
+            <summary>
+            Base of all re-motion classes representing scripts (<see cref="T:Remotion.Scripting.ExpressionScript`1"/>, <see cref="T:Remotion.Scripting.ScriptFunction`1"/>, 
+            <see cref="T:Remotion.Scripting.ScriptFunction`2"/>, etc).
+            Each script knows its <see cref="P:Remotion.Scripting.ScriptBase.ScriptContext"/> and <see cref="T:Remotion.Scripting.ScriptLanguageType"/>.
+            </summary>
+        </member>
+        <member name="M:Remotion.Scripting.ExpressionScript`1.#ctor(Remotion.Scripting.ScriptContext,Remotion.Scripting.ScriptLanguageType,System.String,Remotion.Scripting.ScriptEnvironment)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Remotion.Scripting.ExpressionScript`1"/> class.
+            </summary>
+            <param name="scriptContext">
+              The <see cref="T:Remotion.Scripting.ScriptContext"/> to use when executing the script. The script context is used to isolate re-motion modules from each other.
+            </param>
+            <param name="scriptLanguageType">The script language to use for the script.</param>
+            <param name="scriptText">
+              The source code of the script. This must be an expression in the language defined by <paramref name="scriptLanguageType"/>.
+            </param>
+            <param name="scriptEnvironment">
+              The <see cref="T:Remotion.Scripting.ScriptEnvironment"/> defining the variables and imported symbols the script has access to.
+            </param>
+        </member>
+        <member name="M:Remotion.Scripting.ExpressionScript`1.Execute">
+            <summary>
+            Executes the script expression in compiled form. If the script hasn't been compiled yet, it is compiled before execution. The compilation
+            results are reused when this <see cref="T:Remotion.Scripting.ExpressionScript`1"/> is executed again.
+            </summary>
+            <returns>The result of running the script.</returns>   
+        </member>
+        <member name="M:Remotion.Scripting.ExpressionScript`1.ExecuteUncompiled">
+            <summary>
+            Executes the script expression without compiling it. Use to avoid the compilation overhead of running a script.
+            </summary>
+            <remarks>An uncompiled script executes orders of magnitude slower than a compiled one. So make sure the
+            compiliation overhead saved is not offset by the increased runtime cost.</remarks>
+            <returns>The result of running the script.</returns>
+        </member>
+        <member name="T:Remotion.Scripting.ScriptVariable`1">
+            <summary>
+            Contains the value of a variable retrieved from a <see cref="T:Remotion.Scripting.ScriptEnvironment"/>, together with the information 
+            whether the value is valid (i.e. the variable existed).
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Remotion.Scripting.ScriptVariable`1.Value">
+            <summary>
+            Value of the variable. Defined only if <see cref="P:Remotion.Scripting.ScriptVariable`1.IsValid"/> is <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:Remotion.Scripting.ScriptVariable`1.IsValid">
+            <summary>
+            <see langword="true"/> if the variable existed, <see langword="false"/> otherwise.
+            </summary>
+        </member>
+        <member name="T:Remotion.Scripting.StableBindingImplementation.ForwardingProxyBuilder">
+            <summary>
+            Helper class to create a proxy object which forwards explcitely added methods/properties to its proxied instance. 
+            </summary>
+            <remarks>
+            <para/> 
+            Used by <see cref="T:Remotion.Scripting.StableBindingImplementation.StableBindingProxyBuilder"/>.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Scripting.StableBindingImplementation.ForwardingProxyBuilder.BuildProxyType">
+            <summary>
+            Builds the proxy <see cref="T:System.Type"/> with the members added through <see cref="M:Remotion.Scripting.StableBindingImplementation.ForwardingProxyBuilder.AddForwardingExplicitInterfaceMethod(System.Reflection.MethodInfo)"/> etc.
+            </summary>
+        </member>
+        <member name="M:Remotion.Scripting.StableBindingImplementation.ForwardingProxyBuilder.CreateInstance(System.Object)">
+            <summary>
+            Calls <see cref="M:Remotion.Scripting.StableBindingImplementation.ForwardingProxyBuilder.BuildProxyType"/> and returns an instance of the generated proxy type proxying the passed <see cref="T:System.Object"/>.
+            </summary>
+            <param name="proxied">The <see cref="T:System.Object"/> to be proxied. Must be of the <see cref="T:System.Type"/> 
+            the <see cref="T:Remotion.Scripting.StableBindingImplementation.ForwardingProxyBuilder"/> was initialized with.</param>
+        </member>
+        <member name="M:Remotion.Scripting.StableBindingImplementation.ForwardingProxyBuilder.AddForwardingPropertyFromClassOrInterfacePropertyInfoCopy(System.Reflection.PropertyInfo)">
+            <summary>
+            Adds a forwarding property to the proxy based on the passed <see cref="T:System.Reflection.PropertyInfo"/>. 
+            </summary>
+        </member>
+        <member name="M:Remotion.Scripting.StableBindingImplementation.ForwardingProxyBuilder.AddForwardingMethodFromClassOrInterfaceMethodInfoCopy(System.Reflection.MethodInfo)">
+            <summary>
+            Adds a forwarding method to the proxy based on the passed <see cref="T:System.Reflection.MethodInfo"/>. 
+            </summary>
+            <remarks>
+            Note that this works for interface methods only, if the <see cref="T:System.Reflection.MethodInfo"/> comes from the interface, not the 
+            type implementing the interface.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Scripting.StableBindingImplementation.ForwardingProxyBuilder.AddForwardingMethodFromClassOrInterfaceMethodInfoCopy(System.Reflection.MethodInfo,System.Reflection.MethodAttributes)">
+            <summary>
+            Adds a forwarding method to the proxy based on the passed <see cref="T:System.Reflection.MethodInfo"/>, using the passed <see cref="T:System.Reflection.MethodAttributes"/>. 
+            </summary>
+            <remarks>
+            Note that this works for interface methods only, if the <see cref="T:System.Reflection.MethodInfo"/> comes from the interface, not the 
+            type implementing the interface.
+            </remarks>
+        </member>
+        <member name="T:Remotion.Scripting.StableBindingImplementation.IProxy">
+            <summary>
+            Reflection performance enhancement interface that allows setting of the proxied type instance in a proxy object.
+            </summary>
+        </member>
+        <member name="T:Remotion.Scripting.StableBindingImplementation.MethodMetadataToken">
+            <summary>
+            Wrapper around a <see cref="P:Remotion.Scripting.StableBindingImplementation.MethodMetadataToken.MethodInfo"/>.<see cref="T:System.Reflection.MetadataToken"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Scripting.StableBindingImplementation.ReflectionHelper">
+            <summary>
+            Helps with typical reflection tasks such as creating a ModuleScope.
+            </summary>
+        </member>
+        <member name="T:Remotion.Scripting.ScriptFunction`1">
+            <summary>
+            Encapsulates a script containing multiple statements and a main function definition. For script execution, this
+            function is evaluated and the result returned.
+            </summary>
+            <typeparam name="TResult">The result type of the function definition.</typeparam>
+            <remarks>
+            Under IronPython, <see cref="T:Remotion.Scripting.ScriptFunction`1"/> scripts are less safe than <see cref="T:Remotion.Scripting.ExpressionScript`1"/>-based scripts because
+            they can contain import statements, allowing them to access objects and classes not directly accessible via their <see cref="T:Remotion.Scripting.ScriptEnvironment"/>.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptFunction`1.#ctor(Remotion.Scripting.ScriptContext,Remotion.Scripting.ScriptLanguageType,System.String,Remotion.Scripting.ScriptEnvironment,System.String)">
+            <summary>
+            Initializes a new script instance. This immediately executes the given 
+            <paramref name="scriptText"/>, and stores a delegate to the <paramref name="scriptFunctionName"/>, which is run when <see cref="M:Remotion.Scripting.ScriptFunction`1.Execute"/>
+            is called.
+            </summary>
+            <param name="scriptContext">
+              The <see cref="T:Remotion.Scripting.ScriptContext"/> to use when executing the script. The script context is used to isolate re-motion modules from each other.
+            </param>
+            <param name="scriptLanguageType">The script language to use for the script.</param>
+            <param name="scriptText">
+              The source code of the script. This must be source code matching the language defined by <paramref name="scriptLanguageType"/>. The script
+              is immediately executed, i.e., all global statements are immediately run. After that, a delegate defining the main function (defined by 
+              <paramref name="scriptFunctionName"/>) is stored for later use. When <see cref="M:Remotion.Scripting.ScriptFunction`1.Execute"/> is invoked, that function is run and its result
+              returned.
+            </param>
+            <param name="scriptEnvironment">
+              The <see cref="T:Remotion.Scripting.ScriptEnvironment"/> defining the variables and imported symbols the script has access to.
+            </param>
+            <param name="scriptFunctionName">
+              The name of the script's main function. This function must be defined by <paramref name="scriptText"/>, and it is invoked when the
+              script is executed.
+            </param>
+        </member>
+        <member name="T:Remotion.Scripting.ScriptFunction`3">
+            <summary>
+            Encapsulates a script containing multiple statements and a main function definition. For script execution, this
+            function is evaluated and the result returned.
+            </summary>
+            <typeparam name="TResult">The result type of the function definition.</typeparam>
+            <remarks>
+            Under IronPython, <see cref="T:Remotion.Scripting.ScriptFunction`1"/> scripts are less safe than <see cref="T:Remotion.Scripting.ExpressionScript`1"/>-based scripts because
+            they can contain import statements, allowing them to access objects and classes not directly accessible via their <see cref="T:Remotion.Scripting.ScriptEnvironment"/>.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptFunction`3.#ctor(Remotion.Scripting.ScriptContext,Remotion.Scripting.ScriptLanguageType,System.String,Remotion.Scripting.ScriptEnvironment,System.String)">
+            <summary>
+            Initializes a new script instance. This immediately executes the given 
+            <paramref name="scriptText"/>, and stores a delegate to the <paramref name="scriptFunctionName"/>, which is run when <see cref="M:Remotion.Scripting.ScriptFunction`3.Execute(`0,`1)"/>
+            is called.
+            </summary>
+            <param name="scriptContext">
+              The <see cref="T:Remotion.Scripting.ScriptContext"/> to use when executing the script. The script context is used to isolate re-motion modules from each other.
+            </param>
+            <param name="scriptLanguageType">The script language to use for the script.</param>
+            <param name="scriptText">
+              The source code of the script. This must be source code matching the language defined by <paramref name="scriptLanguageType"/>. The script
+              is immediately executed, i.e., all global statements are immediately run. After that, a delegate defining the main function (defined by 
+              <paramref name="scriptFunctionName"/>) is stored for later use. When <see cref="M:Remotion.Scripting.ScriptFunction`3.Execute(`0,`1)"/> is invoked, that function is run and its result
+              returned.
+            </param>
+            <param name="scriptEnvironment">
+              The <see cref="T:Remotion.Scripting.ScriptEnvironment"/> defining the variables and imported symbols the script has access to.
+            </param>
+            <param name="scriptFunctionName">
+              The name of the script's main function. This function must be defined by <paramref name="scriptText"/>, and it is invoked when the
+              script is executed.
+            </param>
+        </member>
+        <member name="T:Remotion.Scripting.ScriptFunction`4">
+            <summary>
+            Encapsulates a script containing multiple statements and a main function definition. For script execution, this
+            function is evaluated and the result returned.
+            </summary>
+            <typeparam name="TResult">The result type of the function definition.</typeparam>
+            <remarks>
+            Under IronPython, <see cref="T:Remotion.Scripting.ScriptFunction`1"/> scripts are less safe than <see cref="T:Remotion.Scripting.ExpressionScript`1"/>-based scripts because
+            they can contain import statements, allowing them to access objects and classes not directly accessible via their <see cref="T:Remotion.Scripting.ScriptEnvironment"/>.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptFunction`4.#ctor(Remotion.Scripting.ScriptContext,Remotion.Scripting.ScriptLanguageType,System.String,Remotion.Scripting.ScriptEnvironment,System.String)">
+            <summary>
+            Initializes a new script instance. This immediately executes the given 
+            <paramref name="scriptText"/>, and stores a delegate to the <paramref name="scriptFunctionName"/>, which is run when <see cref="M:Remotion.Scripting.ScriptFunction`4.Execute(`0,`1,`2)"/>
+            is called.
+            </summary>
+            <param name="scriptContext">
+              The <see cref="T:Remotion.Scripting.ScriptContext"/> to use when executing the script. The script context is used to isolate re-motion modules from each other.
+            </param>
+            <param name="scriptLanguageType">The script language to use for the script.</param>
+            <param name="scriptText">
+              The source code of the script. This must be source code matching the language defined by <paramref name="scriptLanguageType"/>. The script
+              is immediately executed, i.e., all global statements are immediately run. After that, a delegate defining the main function (defined by 
+              <paramref name="scriptFunctionName"/>) is stored for later use. When <see cref="M:Remotion.Scripting.ScriptFunction`4.Execute(`0,`1,`2)"/> is invoked, that function is run and its result
+              returned.
+            </param>
+            <param name="scriptEnvironment">
+              The <see cref="T:Remotion.Scripting.ScriptEnvironment"/> defining the variables and imported symbols the script has access to.
+            </param>
+            <param name="scriptFunctionName">
+              The name of the script's main function. This function must be defined by <paramref name="scriptText"/>, and it is invoked when the
+              script is executed.
+            </param>
+        </member>
+        <member name="T:Remotion.Scripting.ScriptFunction`5">
+            <summary>
+            Encapsulates a script containing multiple statements and a main function definition. For script execution, this
+            function is evaluated and the result returned.
+            </summary>
+            <typeparam name="TResult">The result type of the function definition.</typeparam>
+            <remarks>
+            Under IronPython, <see cref="T:Remotion.Scripting.ScriptFunction`1"/> scripts are less safe than <see cref="T:Remotion.Scripting.ExpressionScript`1"/>-based scripts because
+            they can contain import statements, allowing them to access objects and classes not directly accessible via their <see cref="T:Remotion.Scripting.ScriptEnvironment"/>.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptFunction`5.#ctor(Remotion.Scripting.ScriptContext,Remotion.Scripting.ScriptLanguageType,System.String,Remotion.Scripting.ScriptEnvironment,System.String)">
+            <summary>
+            Initializes a new script instance. This immediately executes the given 
+            <paramref name="scriptText"/>, and stores a delegate to the <paramref name="scriptFunctionName"/>, which is run when <see cref="M:Remotion.Scripting.ScriptFunction`5.Execute(`0,`1,`2,`3)"/>
+            is called.
+            </summary>
+            <param name="scriptContext">
+              The <see cref="T:Remotion.Scripting.ScriptContext"/> to use when executing the script. The script context is used to isolate re-motion modules from each other.
+            </param>
+            <param name="scriptLanguageType">The script language to use for the script.</param>
+            <param name="scriptText">
+              The source code of the script. This must be source code matching the language defined by <paramref name="scriptLanguageType"/>. The script
+              is immediately executed, i.e., all global statements are immediately run. After that, a delegate defining the main function (defined by 
+              <paramref name="scriptFunctionName"/>) is stored for later use. When <see cref="M:Remotion.Scripting.ScriptFunction`5.Execute(`0,`1,`2,`3)"/> is invoked, that function is run and its result
+              returned.
+            </param>
+            <param name="scriptEnvironment">
+              The <see cref="T:Remotion.Scripting.ScriptEnvironment"/> defining the variables and imported symbols the script has access to.
+            </param>
+            <param name="scriptFunctionName">
+              The name of the script's main function. This function must be defined by <paramref name="scriptText"/>, and it is invoked when the
+              script is executed.
+            </param>
+        </member>
+        <member name="T:Remotion.Scripting.ScriptFunction`6">
+            <summary>
+            Encapsulates a script containing multiple statements and a main function definition. For script execution, this
+            function is evaluated and the result returned.
+            </summary>
+            <typeparam name="TResult">The result type of the function definition.</typeparam>
+            <remarks>
+            Under IronPython, <see cref="T:Remotion.Scripting.ScriptFunction`1"/> scripts are less safe than <see cref="T:Remotion.Scripting.ExpressionScript`1"/>-based scripts because
+            they can contain import statements, allowing them to access objects and classes not directly accessible via their <see cref="T:Remotion.Scripting.ScriptEnvironment"/>.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptFunction`6.#ctor(Remotion.Scripting.ScriptContext,Remotion.Scripting.ScriptLanguageType,System.String,Remotion.Scripting.ScriptEnvironment,System.String)">
+            <summary>
+            Initializes a new script instance. This immediately executes the given 
+            <paramref name="scriptText"/>, and stores a delegate to the <paramref name="scriptFunctionName"/>, which is run when <see cref="M:Remotion.Scripting.ScriptFunction`6.Execute(`0,`1,`2,`3,`4)"/>
+            is called.
+            </summary>
+            <param name="scriptContext">
+              The <see cref="T:Remotion.Scripting.ScriptContext"/> to use when executing the script. The script context is used to isolate re-motion modules from each other.
+            </param>
+            <param name="scriptLanguageType">The script language to use for the script.</param>
+            <param name="scriptText">
+              The source code of the script. This must be source code matching the language defined by <paramref name="scriptLanguageType"/>. The script
+              is immediately executed, i.e., all global statements are immediately run. After that, a delegate defining the main function (defined by 
+              <paramref name="scriptFunctionName"/>) is stored for later use. When <see cref="M:Remotion.Scripting.ScriptFunction`6.Execute(`0,`1,`2,`3,`4)"/> is invoked, that function is run and its result
+              returned.
+            </param>
+            <param name="scriptEnvironment">
+              The <see cref="T:Remotion.Scripting.ScriptEnvironment"/> defining the variables and imported symbols the script has access to.
+            </param>
+            <param name="scriptFunctionName">
+              The name of the script's main function. This function must be defined by <paramref name="scriptText"/>, and it is invoked when the
+              script is executed.
+            </param>
+        </member>
+        <member name="T:Remotion.Scripting.ScriptFunction`7">
+            <summary>
+            Encapsulates a script containing multiple statements and a main function definition. For script execution, this
+            function is evaluated and the result returned.
+            </summary>
+            <typeparam name="TResult">The result type of the function definition.</typeparam>
+            <remarks>
+            Under IronPython, <see cref="T:Remotion.Scripting.ScriptFunction`1"/> scripts are less safe than <see cref="T:Remotion.Scripting.ExpressionScript`1"/>-based scripts because
+            they can contain import statements, allowing them to access objects and classes not directly accessible via their <see cref="T:Remotion.Scripting.ScriptEnvironment"/>.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptFunction`7.#ctor(Remotion.Scripting.ScriptContext,Remotion.Scripting.ScriptLanguageType,System.String,Remotion.Scripting.ScriptEnvironment,System.String)">
+            <summary>
+            Initializes a new script instance. This immediately executes the given 
+            <paramref name="scriptText"/>, and stores a delegate to the <paramref name="scriptFunctionName"/>, which is run when <see cref="M:Remotion.Scripting.ScriptFunction`7.Execute(`0,`1,`2,`3,`4,`5)"/>
+            is called.
+            </summary>
+            <param name="scriptContext">
+              The <see cref="T:Remotion.Scripting.ScriptContext"/> to use when executing the script. The script context is used to isolate re-motion modules from each other.
+            </param>
+            <param name="scriptLanguageType">The script language to use for the script.</param>
+            <param name="scriptText">
+              The source code of the script. This must be source code matching the language defined by <paramref name="scriptLanguageType"/>. The script
+              is immediately executed, i.e., all global statements are immediately run. After that, a delegate defining the main function (defined by 
+              <paramref name="scriptFunctionName"/>) is stored for later use. When <see cref="M:Remotion.Scripting.ScriptFunction`7.Execute(`0,`1,`2,`3,`4,`5)"/> is invoked, that function is run and its result
+              returned.
+            </param>
+            <param name="scriptEnvironment">
+              The <see cref="T:Remotion.Scripting.ScriptEnvironment"/> defining the variables and imported symbols the script has access to.
+            </param>
+            <param name="scriptFunctionName">
+              The name of the script's main function. This function must be defined by <paramref name="scriptText"/>, and it is invoked when the
+              script is executed.
+            </param>
+        </member>
+        <member name="T:Remotion.Scripting.ScriptFunction`8">
+            <summary>
+            Encapsulates a script containing multiple statements and a main function definition. For script execution, this
+            function is evaluated and the result returned.
+            </summary>
+            <typeparam name="TResult">The result type of the function definition.</typeparam>
+            <remarks>
+            Under IronPython, <see cref="T:Remotion.Scripting.ScriptFunction`1"/> scripts are less safe than <see cref="T:Remotion.Scripting.ExpressionScript`1"/>-based scripts because
+            they can contain import statements, allowing them to access objects and classes not directly accessible via their <see cref="T:Remotion.Scripting.ScriptEnvironment"/>.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptFunction`8.#ctor(Remotion.Scripting.ScriptContext,Remotion.Scripting.ScriptLanguageType,System.String,Remotion.Scripting.ScriptEnvironment,System.String)">
+            <summary>
+            Initializes a new script instance. This immediately executes the given 
+            <paramref name="scriptText"/>, and stores a delegate to the <paramref name="scriptFunctionName"/>, which is run when <see cref="M:Remotion.Scripting.ScriptFunction`8.Execute(`0,`1,`2,`3,`4,`5,`6)"/>
+            is called.
+            </summary>
+            <param name="scriptContext">
+              The <see cref="T:Remotion.Scripting.ScriptContext"/> to use when executing the script. The script context is used to isolate re-motion modules from each other.
+            </param>
+            <param name="scriptLanguageType">The script language to use for the script.</param>
+            <param name="scriptText">
+              The source code of the script. This must be source code matching the language defined by <paramref name="scriptLanguageType"/>. The script
+              is immediately executed, i.e., all global statements are immediately run. After that, a delegate defining the main function (defined by 
+              <paramref name="scriptFunctionName"/>) is stored for later use. When <see cref="M:Remotion.Scripting.ScriptFunction`8.Execute(`0,`1,`2,`3,`4,`5,`6)"/> is invoked, that function is run and its result
+              returned.
+            </param>
+            <param name="scriptEnvironment">
+              The <see cref="T:Remotion.Scripting.ScriptEnvironment"/> defining the variables and imported symbols the script has access to.
+            </param>
+            <param name="scriptFunctionName">
+              The name of the script's main function. This function must be defined by <paramref name="scriptText"/>, and it is invoked when the
+              script is executed.
+            </param>
+        </member>
+        <member name="T:Remotion.Scripting.ScriptFunction`9">
+            <summary>
+            Encapsulates a script containing multiple statements and a main function definition. For script execution, this
+            function is evaluated and the result returned.
+            </summary>
+            <typeparam name="TResult">The result type of the function definition.</typeparam>
+            <remarks>
+            Under IronPython, <see cref="T:Remotion.Scripting.ScriptFunction`1"/> scripts are less safe than <see cref="T:Remotion.Scripting.ExpressionScript`1"/>-based scripts because
+            they can contain import statements, allowing them to access objects and classes not directly accessible via their <see cref="T:Remotion.Scripting.ScriptEnvironment"/>.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptFunction`9.#ctor(Remotion.Scripting.ScriptContext,Remotion.Scripting.ScriptLanguageType,System.String,Remotion.Scripting.ScriptEnvironment,System.String)">
+            <summary>
+            Initializes a new script instance. This immediately executes the given 
+            <paramref name="scriptText"/>, and stores a delegate to the <paramref name="scriptFunctionName"/>, which is run when <see cref="M:Remotion.Scripting.ScriptFunction`9.Execute(`0,`1,`2,`3,`4,`5,`6,`7)"/>
+            is called.
+            </summary>
+            <param name="scriptContext">
+              The <see cref="T:Remotion.Scripting.ScriptContext"/> to use when executing the script. The script context is used to isolate re-motion modules from each other.
+            </param>
+            <param name="scriptLanguageType">The script language to use for the script.</param>
+            <param name="scriptText">
+              The source code of the script. This must be source code matching the language defined by <paramref name="scriptLanguageType"/>. The script
+              is immediately executed, i.e., all global statements are immediately run. After that, a delegate defining the main function (defined by 
+              <paramref name="scriptFunctionName"/>) is stored for later use. When <see cref="M:Remotion.Scripting.ScriptFunction`9.Execute(`0,`1,`2,`3,`4,`5,`6,`7)"/> is invoked, that function is run and its result
+              returned.
+            </param>
+            <param name="scriptEnvironment">
+              The <see cref="T:Remotion.Scripting.ScriptEnvironment"/> defining the variables and imported symbols the script has access to.
+            </param>
+            <param name="scriptFunctionName">
+              The name of the script's main function. This function must be defined by <paramref name="scriptText"/>, and it is invoked when the
+              script is executed.
+            </param>
+        </member>
+        <member name="T:Remotion.Scripting.ScriptFunction`10">
+            <summary>
+            Encapsulates a script containing multiple statements and a main function definition. For script execution, this
+            function is evaluated and the result returned.
+            </summary>
+            <typeparam name="TResult">The result type of the function definition.</typeparam>
+            <remarks>
+            Under IronPython, <see cref="T:Remotion.Scripting.ScriptFunction`1"/> scripts are less safe than <see cref="T:Remotion.Scripting.ExpressionScript`1"/>-based scripts because
+            they can contain import statements, allowing them to access objects and classes not directly accessible via their <see cref="T:Remotion.Scripting.ScriptEnvironment"/>.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptFunction`10.#ctor(Remotion.Scripting.ScriptContext,Remotion.Scripting.ScriptLanguageType,System.String,Remotion.Scripting.ScriptEnvironment,System.String)">
+            <summary>
+            Initializes a new script instance. This immediately executes the given 
+            <paramref name="scriptText"/>, and stores a delegate to the <paramref name="scriptFunctionName"/>, which is run when <see cref="M:Remotion.Scripting.ScriptFunction`10.Execute(`0,`1,`2,`3,`4,`5,`6,`7,`8)"/>
+            is called.
+            </summary>
+            <param name="scriptContext">
+              The <see cref="T:Remotion.Scripting.ScriptContext"/> to use when executing the script. The script context is used to isolate re-motion modules from each other.
+            </param>
+            <param name="scriptLanguageType">The script language to use for the script.</param>
+            <param name="scriptText">
+              The source code of the script. This must be source code matching the language defined by <paramref name="scriptLanguageType"/>. The script
+              is immediately executed, i.e., all global statements are immediately run. After that, a delegate defining the main function (defined by 
+              <paramref name="scriptFunctionName"/>) is stored for later use. When <see cref="M:Remotion.Scripting.ScriptFunction`10.Execute(`0,`1,`2,`3,`4,`5,`6,`7,`8)"/> is invoked, that function is run and its result
+              returned.
+            </param>
+            <param name="scriptEnvironment">
+              The <see cref="T:Remotion.Scripting.ScriptEnvironment"/> defining the variables and imported symbols the script has access to.
+            </param>
+            <param name="scriptFunctionName">
+              The name of the script's main function. This function must be defined by <paramref name="scriptText"/>, and it is invoked when the
+              script is executed.
+            </param>
+        </member>
+        <member name="T:Remotion.Scripting.ScriptFunction`2">
+            <summary>
+            Encapsulates a script containing multiple statements and a main function definition. For script execution, this
+            function is evaluated and the result returned.
+            </summary>
+            <typeparam name="TResult">The result type of the function definition.</typeparam>
+            <remarks>
+            Under IronPython, <see cref="T:Remotion.Scripting.ScriptFunction`1"/> scripts are less safe than <see cref="T:Remotion.Scripting.ExpressionScript`1"/>-based scripts because
+            they can contain import statements, allowing them to access objects and classes not directly accessible via their <see cref="T:Remotion.Scripting.ScriptEnvironment"/>.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptFunction`2.#ctor(Remotion.Scripting.ScriptContext,Remotion.Scripting.ScriptLanguageType,System.String,Remotion.Scripting.ScriptEnvironment,System.String)">
+            <summary>
+            Initializes a new script instance. This immediately executes the given 
+            <paramref name="scriptText"/>, and stores a delegate to the <paramref name="scriptFunctionName"/>, which is run when <see cref="M:Remotion.Scripting.ScriptFunction`2.Execute(`0)"/>
+            is called.
+            </summary>
+            <param name="scriptContext">
+              The <see cref="T:Remotion.Scripting.ScriptContext"/> to use when executing the script. The script context is used to isolate re-motion modules from each other.
+            </param>
+            <param name="scriptLanguageType">The script language to use for the script.</param>
+            <param name="scriptText">
+              The source code of the script. This must be source code matching the language defined by <paramref name="scriptLanguageType"/>. The script
+              is immediately executed, i.e., all global statements are immediately run. After that, a delegate defining the main function (defined by 
+              <paramref name="scriptFunctionName"/>) is stored for later use. When <see cref="M:Remotion.Scripting.ScriptFunction`2.Execute(`0)"/> is invoked, that function is run and its result
+              returned.
+            </param>
+            <param name="scriptEnvironment">
+              The <see cref="T:Remotion.Scripting.ScriptEnvironment"/> defining the variables and imported symbols the script has access to.
+            </param>
+            <param name="scriptFunctionName">
+              The name of the script's main function. This function must be defined by <paramref name="scriptText"/>, and it is invoked when the
+              script is executed.
+            </param>
+        </member>
+        <member name="T:Remotion.Scripting.ScriptEnvironment">
+            <summary>
+            Wrapper around a DLR <see cref="T:Microsoft.Scripting.Hosting.ScriptScope"/>. 
+            A <see cref="T:Remotion.Scripting.ScriptEnvironment"/> contains the symbols (DLR: objects) visible to a script running in this environment.
+            </summary>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptEnvironment.Create">
+            <summary>
+            <see cref="T:Remotion.Scripting.ScriptEnvironment"/> factory method.
+            </summary>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptEnvironment.#ctor(Microsoft.Scripting.Hosting.ScriptScope)">
+            <summary>
+            Wraps the passed <see cref="P:Remotion.Scripting.ScriptEnvironment.ScriptScope"/> in a <see cref="T:Remotion.Scripting.ScriptEnvironment"/>. 
+            </summary>
+            <param name="scriptScope"></param>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptEnvironment.ImportClr">
+            <summary>
+            Imports the special CLR module into the <see cref="T:Remotion.Scripting.ScriptEnvironment"/>. This enables .NET interop functionalities, and it is necessary to
+            import additional assemblies.
+            </summary>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptEnvironment.ImportIifHelperFunctions">
+            <summary>
+            Introduces IIf(condition,trueValue,falseValue) and LazyIIf(condition,lambda:trueValue,lambda:falseValue)
+            functions into the <see cref="T:Remotion.Scripting.ScriptEnvironment"/>. This enables script code to use these functions to return values based on a condition.
+            </summary>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptEnvironment.Import(System.String,System.String,System.String[])">
+            <summary>
+            Imports the passed symbols from the given namespace in the given assembly into the <see cref="T:Remotion.Scripting.ScriptEnvironment"/>. 
+            </summary>
+            <param name="assembly">Partial name of the assembly to import from (e.g. "Remotion")</param>
+            <param name="nameSpace">Namespace name in assembly to import from (e.g. "Remotion.Diagnostics.ToText")</param>
+            <param name="symbols">array of symbol names to import (e.g. "To", "ToTextBuilder", ...)</param>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptEnvironment.SetVariable(System.String,System.Object)">
+            <summary>
+            Sets a variable with the passed <paramref name="name"/> to the passed <paramref name="value"/> within the <see cref="T:Remotion.Scripting.ScriptEnvironment"/>.
+            </summary>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptEnvironment.GetVariable``1(System.String)">
+            <summary>
+            Gets the value of the variable with the passed <paramref name="name"/> as a <see cref="T:Remotion.Scripting.ScriptVariable`1"/> struct.
+            If the variable does not exist within the <see cref="T:Remotion.Scripting.ScriptEnvironment"/>, the 
+            <see cref="T:Remotion.Scripting.ScriptVariable`1"/>.<see cref="P:Remotion.Scripting.ScriptVariable`1.IsValid"/>-property is <see langword="false"/>.
+            </summary> 
+        </member>
+        <member name="P:Remotion.Scripting.ScriptEnvironment.ScriptScope">
+            <summary>
+            Gets the <see cref="P:Remotion.Scripting.ScriptEnvironment.ScriptScope"/> wrapped by this <see cref="T:Remotion.Scripting.ScriptEnvironment"/>.
+            </summary>
+            <value>The <see cref="P:Remotion.Scripting.ScriptEnvironment.ScriptScope"/>.</value>
+        </member>
+        <member name="T:Remotion.Scripting.ScriptLanguageType">
+            <summary>
+            Enumeration of script languages supported by re-motion.
+            </summary>
+        </member>
+        <member name="T:Remotion.Scripting.StableBindingImplementation.ITypeFilter">
+            <summary>
+            Supplies functionality to categorize passed <see cref="T:System.Type"/>|s into "valid" and "invalid" types 
+            through its <see cref="M:Remotion.Scripting.StableBindingImplementation.ITypeFilter.IsTypeValid(System.Type)"/> member.
+            </summary>
+        </member>
+        <member name="M:Remotion.Scripting.StableBindingImplementation.ITypeFilter.IsTypeValid(System.Type)">
+            <summary>
+            Decides whether passed <see cref="T:System.Type"/> passes the filter test.
+            </summary>
+            <returns><see langword="true"/> if <see cref="T:System.Type"/> is valid, <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="T:Remotion.Scripting.ScriptContext">
+            <summary>
+            Represents a re-motion script context, which is used to isolate different re-motion modules from one another.
+            Static members give access to the currently active script context.
+            </summary>
+            <remarks>
+            <seealso cref="T:Remotion.Scripting.ScriptEnvironment"/>
+            <seealso cref="T:Remotion.Scripting.ExpressionScript`1"/>
+            <seealso cref="T:Remotion.Scripting.ScriptFunction`1"/>
+            </remarks>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptContext.Create(System.String,Remotion.Scripting.StableBindingImplementation.ITypeFilter)">
+            <summary>
+            Creates a new <see cref="T:Remotion.Scripting.ScriptContext"/>.
+            </summary>
+            <param name="name">The tag name of the <see cref="T:Remotion.Scripting.ScriptContext"/>. Must be unique. Suggested naming scheme: 
+            company domain name + namespace of module (e.g. "rubicon.eu.Remotion.Data.DomainObjects.Scripting", "microsoft.com.Word.Scripting").
+            </param>
+            <param name="typeFilter">
+            The <see cref="T:Remotion.Scripting.StableBindingImplementation.ITypeFilter"/> which decides which <see cref="T:System.Type"/>|s are known in the <see cref="T:Remotion.Scripting.ScriptContext"/>.
+            </param>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptContext.GetScriptContext(System.String)">
+            <summary>
+            Retrieves the <see cref="T:Remotion.Scripting.ScriptContext"/> corresponding the passed <paramref name="name"/>. 
+            </summary>
+            <returns>The <see cref="T:Remotion.Scripting.ScriptContext"/>, or <see langword="null"/> if no context with the given name has been defined using 
+            <see cref="M:Remotion.Scripting.ScriptContext.Create(System.String,Remotion.Scripting.StableBindingImplementation.ITypeFilter)"/>.</returns>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptContext.ClearScriptContexts">
+            <summary>
+            Clears the registry of script contexts created so far via <see cref="M:Remotion.Scripting.ScriptContext.Create(System.String,Remotion.Scripting.StableBindingImplementation.ITypeFilter)"/>.
+            </summary>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptContext.Execute``1(System.Func{``0})">
+            <summary>
+            Executes the specified delegate in the scope of this <see cref="T:Remotion.Scripting.ScriptContext"/>. During delegate execution, this <see cref="T:Remotion.Scripting.ScriptContext"/>
+            will become the <see cref="P:Remotion.Scripting.ScriptContext.Current"/> context. After execution, the <see cref="P:Remotion.Scripting.ScriptContext.Current"/> is cleaned up.
+            </summary>
+            <typeparam name="TResult">The result type of the <paramref name="func"/> delegate to be executed.</typeparam>
+            <param name="func">The delegate to be executed.</param>
+            <returns>The result of the delegate.</returns>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptContext.GetAttributeProxy(System.Object,System.String)">
+            <summary>
+            Given a DLR object, returns a proxy object that should be used to look up a member (= attribute) of that DLR object. 
+            The proxy object implements stable binding, and objects requiring stable binding support should call this method from their implementation of
+            <c>GetCustomMember</c>. (See also <see cref="T:Remotion.Scripting.StableBindingMixin"/>, which automatically calls <see cref="M:Remotion.Scripting.ScriptContext.GetAttributeProxy(System.Object,System.String)"/>.)
+            </summary>
+            <param name="proxied">The object whose attribute should be looked up.</param>
+            <param name="attributeName">The name of the attribute to be looked up.</param>
+            <returns>A proxy object that can be returned to the DLR for look-up of <paramref name="attributeName"/> on the <paramref name="proxied"/>
+            object.</returns>
+        </member>
+        <member name="P:Remotion.Scripting.ScriptContext.Current">
+            <summary>
+            The currently active <see cref="T:Remotion.Scripting.ScriptContext"/>. Thread safe through <see cref="T:Remotion.Context.SafeContext"/>. When a script is executed, it cally
+            <see cref="M:Remotion.Scripting.ScriptContext.Execute``1(System.Func{``0})"/>, which temporarily sets <see cref="P:Remotion.Scripting.ScriptContext.Current"/> to the context associated with the script.
+            </summary>
+        </member>
+        <member name="P:Remotion.Scripting.ScriptContext.Name">
+            <summary>
+            The name through which this <see cref="T:Remotion.Scripting.ScriptContext"/> is uniquely identified.
+            </summary>
+        </member>
+        <member name="P:Remotion.Scripting.ScriptContext.TypeFilter">
+            <summary>
+            The <see cref="T:Remotion.Scripting.StableBindingImplementation.ITypeFilter"/> used in this <see cref="T:Remotion.Scripting.ScriptContext"/> to discern which methods/properties 
+            shall be exposed to the DLR (see <see cref="T:Remotion.Scripting.StableBindingImplementation.ForwardingProxyBuilder"/>).
+            </summary>
+        </member>
+        <member name="P:Remotion.Scripting.ScriptContext.StableBindingProxyProvider">
+            <summary>
+            The <see cref="P:Remotion.Scripting.ScriptContext.StableBindingProxyProvider"/> used in this <see cref="T:Remotion.Scripting.ScriptContext"/> to create stable binding proxies 
+            (see <see cref="T:Remotion.Scripting.StableBindingImplementation.ForwardingProxyBuilder"/>).
+            </summary>
+        </member>
+        <member name="T:Remotion.Scripting.ScriptingHost">
+            <summary>
+            Provides access to Dynamic Language Runtime <see cref="T:Microsoft.Scripting.Hosting.ScriptEngine"/>|s through its static members. 
+            Returned <see cref="T:Microsoft.Scripting.Hosting.ScriptEngine"/>|s are local to the calling thread.
+            </summary>
+            <remarks>
+            <para>
+            Note: Script Languages must be registered in the "App.config" &lt;microsoft.scripting&gt;-section of the scriptable application
+            with the string representation of the respective <see cref="T:Remotion.Scripting.ScriptLanguageType"/> given under the &lt;languages&gt;-tag
+            names-attribute. e.g.: 
+            <code lang="XML"><![CDATA[
+            <microsoft.scripting>
+              <languages>
+                <language names="Python" extensions=".py" displayName="IronPython 2.0" type="IronPython.Runtime.PythonContext, IronPython, Version=2.0.0.0000, Culture=neutral" />
+              </languages>  
+            </microsoft.scripting>
+            ]]></code>
+            </para>
+            <para>
+            <example>
+            <code escaped="true" lang="C#">
+            // Retrieve IronPython DLR ScriptEngine
+            var pythonEngine = ScriptingHost.GetScriptEngine (ScriptLanguageType.Python);
+            </code>
+            </example>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Remotion.Scripting.ScriptingHost.GetScriptEngine(Remotion.Scripting.ScriptLanguageType)">
+            <summary>
+            Retrieves the ScriptEngine given by the <paramref name="languageType"/> parameter. Throws if requested engine is not available on system.
+            </summary>
+            <remarks>
+            Note: Executing scripts directly through a <see cref="T:Microsoft.Scripting.Hosting.ScriptEngine"/> will bypass re-motion's Extension Module separation
+            (see <see cref="T:Remotion.Scripting.ScriptContext"/>). For guaranteed re-motion mixin stable binding use re-motion  
+            <see cref="T:Remotion.Scripting.ScriptFunction`2"/>.<see cref="M:Remotion.Scripting.ScriptFunction`2.Execute(`0)"/> etc instead.
+            </remarks>
+        </member>
+        <member name="P:Remotion.Scripting.ScriptingHost.Current">
+            <summary>
+            The currently active <see cref="T:Remotion.Scripting.ScriptingHost"/>. Thread safe through <see cref="T:Remotion.Context.SafeContext"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Scripting.StableBindingImplementation.AssemblyLevelTypeFilter">
+            <summary>
+            Categorizes <see cref="T:System.Type"/>|s into "valid" and "invalid" types, 
+            based on whether their assembly is a member of the class's assembly collection.
+            </summary>
+        </member>
+        <member name="M:Remotion.Scripting.StableBindingImplementation.AssemblyLevelTypeFilter.IsTypeValid(System.Type)">
+            <summary>
+            Returns true if the passed <see cref="T:System.Type"/> is a member of the <see cref="T:Remotion.Scripting.StableBindingImplementation.AssemblyLevelTypeFilter"/>|s assemblies.
+            </summary>
+        </member>
+        <member name="T:Remotion.Scripting.StableBindingMixin">
+            <summary>
+            Mix (shaken not stirred) to your class to get stable binding in DLR scripts 
+            (see <see cref="T:Remotion.Scripting.ScriptContext"/> and <see cref="T:Remotion.Scripting.StableBindingImplementation.StableBindingProxyProvider"/>). 
+            </summary>
+        </member>
+        <member name="T:Remotion.Scripting.StableBindingImplementation.StableBindingProxyBuilder">
+            <summary>
+            Builds a proxy object which exposes only selected methods/properties, as decided by its <see cref="T:Remotion.Scripting.StableBindingImplementation.ITypeFilter"/>. 
+            </summary>
+            <remarks>
+            What methods/properties are to be exposed is dependent on whether the method/property comes from a type which is
+            classified as "valid" by the <see cref="T:Remotion.Scripting.StableBindingImplementation.ITypeFilter"/> of the class.
+            <para/> 
+            Used by <see cref="T:Remotion.Scripting.StableBindingImplementation.StableBindingProxyProvider"/>.
+            <para/> 
+            Uses <see cref="T:Remotion.Scripting.StableBindingImplementation.ForwardingProxyBuilder"/>.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Scripting.StableBindingImplementation.StableBindingProxyBuilder.BuildProxyType">
+            <summary>
+            Builds the proxy <see cref="T:System.Type"/> which exposes all known methods and properties and forwards calls to the proxied <see cref="T:System.Type"/>.
+            </summary>
+        </member>
+        <member name="M:Remotion.Scripting.StableBindingImplementation.StableBindingProxyBuilder.IsMethodBound(System.Reflection.MethodInfo,System.Reflection.MethodInfo[])">
+            <summary>
+            Returns <see langword="true"/> if the passed <paramref name="method"/> would be picked by C#
+            out of the passed methods when calling a method with the <paramref name="method"/>|s name and parameter <see cref="T:System.Type"/>|s.
+            </summary>
+        </member>
+        <member name="T:Remotion.Scripting.StableBindingImplementation.StableBindingProxyProvider">
+            <summary>
+            Creates and caches forwarding proxy objects which expose only the members known in the current <see cref="T:Remotion.Scripting.ScriptContext"/>.
+            </summary>
+            <remarks>
+            Used by the re-motion mixin engine to present only the members of a class known in the current <see cref="T:Remotion.Scripting.ScriptContext"/>
+            to the Dynamic Language Runtime, thereby guaranteeing that mixins coming from different re-motion modules do not 
+            interfere with the mixins and scripts coming from a specific module.
+            </remarks>
+        </member>
+        <member name="T:Remotion.Scripting.StableBindingImplementation.AttributeProxyCached">
+            <summary>
+            Used by <see cref="T:Remotion.Scripting.StableBindingImplementation.StableBindingProxyProvider"/> to cache the results of the DLR returned attibute proxy.
+            </summary>
+        </member>
+        <member name="T:Remotion.Scripting.StableBindingImplementation.StableMetadataToken">
+            <summary>
+            Base class for <see cref="T:Remotion.Scripting.StableBindingImplementation.StableMethodMetadataToken"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Scripting.StableBindingImplementation.StableMethodMetadataToken">
+            <summary>
+            Wrapper around a <see cref="T:System.Reflection.MethodInfo"/>.<see cref="T:System.Reflection.MetadataToken"/> which is the same 
+            between <see cref="T:System.Reflection.MethodInfo"/>|s coming from related types.
+            </summary>
+            <remarks>
+            <see cref="P:System.Reflection.MemberInfo.MetadataToken"/>|s referring to the the same method  but coming from different,
+            related types are not the same if the method was overridden in a child type.
+            </remarks>
+        </member>
+        <member name="T:Remotion.Scripting.StableBindingImplementation.StableMetadataTokenToMethodInfoMap">
+            <summary>
+            Map between <see cref="T:Remotion.Scripting.StableBindingImplementation.StableMethodMetadataToken"/> and <see cref="T:System.Reflection.MethodInfo"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Scripting.StableBindingImplementation.TypeLevelTypeFilter">
+            <summary>
+            Categorizes <see cref="T:System.Type"/>|s into "valid" and "invalid" types, 
+            based on whether the type is a member of the class's type collection.
+            </summary>
+        </member>
+    </members>
+</doc>

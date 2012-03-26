@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>dbschema</name>
+    </assembly>
+    <members>
+        <member name="T:Remotion.Data.DomainObjects.RdbmsTools.RdbmsToolsParameters">
+            <summary>
+            <see cref="T:Remotion.Data.DomainObjects.RdbmsTools.RdbmsToolsParameters"/> type is a combination of a parameter object for <see cref="T:Remotion.Data.DomainObjects.RdbmsTools.RdbmsToolsRunner"/> 
+            and a command line arguments class as required by <see cref="T:Remotion.Text.CommandLine.CommandLineClassParser"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Data.DomainObjects.RdbmsTools.RdbmsToolsRunner">
+            <summary>
+            The <see cref="T:Remotion.Data.DomainObjects.RdbmsTools.RdbmsToolsRunner"/> type contains the encapsulates the execution of the various functionality provided by the 
+            <b>Remotion.Data.DomainObjects.RdbmsTools</b> assembly.
+            </summary>
+        </member>
+    </members>
+</doc>

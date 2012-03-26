@@ -1,4 +1,4 @@
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Cfg;
 using NHibernate.Engine;
 using NHibernate.Mapping;
@@ -39,7 +39,7 @@ namespace NHibernate.Tool.hbm2ddl
 
 		private static ISet<string> GetReservedWords(Dialect.Dialect dialect, IConnectionHelper connectionHelper)
 		{
-			ISet<string> reservedDb = new HashedSet<string>();
+			ISet<string> reservedDb = new IESI.HashedSet<string>();
 			connectionHelper.Prepare();
 			try
 			{

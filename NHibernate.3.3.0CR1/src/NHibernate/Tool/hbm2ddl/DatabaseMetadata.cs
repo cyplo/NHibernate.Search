@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 using NHibernate.Dialect.Schema;
 using NHibernate.Exceptions;
@@ -17,7 +17,7 @@ namespace NHibernate.Tool.hbm2ddl
 		private static readonly IInternalLogger log = LoggerProvider.LoggerFor(typeof (DatabaseMetadata));
 
 		private readonly IDictionary<string, ITableMetadata> tables = new Dictionary<string, ITableMetadata>();
-		private readonly ISet<string> sequences = new HashedSet<string>();
+		private readonly ISet<string> sequences = new IESI.HashedSet<string>();
 		private readonly bool extras;
 	    private readonly Dialect.Dialect dialect;
 		private readonly IDataBaseSchema meta;

@@ -1,4 +1,4 @@
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Test.MappingByCode.NatureDemo.Naturalness
 {
@@ -24,7 +24,7 @@ namespace NHibernate.Test.MappingByCode.NatureDemo.Naturalness
 		{
 			if (Offspring == null)
 			{
-				Offspring = new HashedSet<Animal>();
+				Offspring = new IESI.HashedSet<Animal>();
 			}
 
 			Offspring.Add(offSpring);

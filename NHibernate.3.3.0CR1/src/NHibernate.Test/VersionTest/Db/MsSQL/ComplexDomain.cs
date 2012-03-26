@@ -1,4 +1,4 @@
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Test.VersionTest.Db.MsSQL
 {
@@ -14,7 +14,7 @@ namespace NHibernate.Test.VersionTest.Db.MsSQL
 	{
 		public Foo()
 		{
-			Bars = new HashedSet<Bar>();
+			Bars = new IESI.HashedSet<Bar>();
 		}
 		public virtual int Id { get; set; }
 		public virtual byte[] Timestamp { get; protected set; }

@@ -1,0 +1,1033 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Remotion.Linq.SqlBackend</name>
+    </assembly>
+    <members>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.ConversionUtility">
+            <summary>
+            Provides utility services involving type comparisons.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.DefaultMappingResolutionStage">
+            <summary>
+            Provides a default implementation of <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.IMappingResolutionStage"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.IMappingResolutionStage">
+            <summary>
+            Provides entry points for all transformations that occur during the mapping resolution phase.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.GroupAggregateSimplifier">
+            <summary>
+            Provides functionality to simplify sub-statements that contain an <see cref="T:Remotion.Linq.Parsing.Structure.IntermediateModel.AggregateExpressionNode"/> aggregating over the
+            elements of a grouping. The sub-statements must be resolved before they can be simplified.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.IUnresolvedSqlExpressionVisitor">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.IUnresolvedSqlExpressionVisitor"/> provides methods to visit expressions held by the <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.IMappingResolutionContext">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.IMappingResolutionContext"/> provides methods to handle a concrete mapping resolution context.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.IMappingResolver">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.IMappingResolver"/> provides methods to resolve expressions with database-specific information delivered by an O/R mapper. This
+            interface is implemented by LINQ providers making use of the re-linq SQL backend.
+            </summary>
+        </member>
+        <member name="M:Remotion.Linq.SqlBackend.MappingResolution.IMappingResolver.ResolveTableInfo(Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedTableInfo,Remotion.Linq.UniqueIdentifierGenerator)">
+            <summary>
+            Takes an <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedTableInfo"/> and an <see cref="T:Remotion.Linq.UniqueIdentifierGenerator"/> 
+            to generate an <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.IResolvedTableInfo"/> that represents the table in the database.
+            </summary>
+            <param name="tableInfo">The <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedTableInfo"/> which is to be resolved.</param>
+            <param name="generator">A <see cref="T:Remotion.Linq.UniqueIdentifierGenerator"/> that can be used to generate unique identifiers such as table aliases.</param>
+            <returns>An <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.IResolvedTableInfo"/> instance representing the  <paramref name="tableInfo"/> in the database.</returns>
+            <exception cref="T:Remotion.Linq.UnmappedItemException">The given <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedTableInfo"/> cannot be resolved to a mapped database item.</exception>
+        </member>
+        <member name="M:Remotion.Linq.SqlBackend.MappingResolution.IMappingResolver.ResolveJoinInfo(Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedJoinInfo,Remotion.Linq.UniqueIdentifierGenerator)">
+            <summary>
+            Takes an <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedJoinInfo"/> and an <see cref="T:Remotion.Linq.UniqueIdentifierGenerator"/> to generate a 
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.ResolvedJoinInfo"/> that represents the join in the database.
+            </summary>
+            <param name="joinInfo">The <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedJoinInfo"/> which is to be resolved.</param>
+            <param name="generator">A <see cref="T:Remotion.Linq.UniqueIdentifierGenerator"/> that can be used to generate unique identifiers such as table aliases.</param>
+            <returns>An instance of <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.ResolvedJoinInfo"/> representing the <paramref name="joinInfo"/> in the database.</returns>
+            <exception cref="T:Remotion.Linq.UnmappedItemException">The given <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedJoinInfo"/> cannot be resolved to a mapped database item.</exception>
+        </member>
+        <member name="M:Remotion.Linq.SqlBackend.MappingResolution.IMappingResolver.ResolveSimpleTableInfo(Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.IResolvedTableInfo,Remotion.Linq.UniqueIdentifierGenerator)">
+             <summary>
+             Analyzes the given <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.IResolvedTableInfo"/> and returns a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityDefinitionExpression"/> , which represents the entity 
+             described by the <paramref name="tableInfo"/> in the database. If the item type of the <paramref name="tableInfo"/> is not a 
+             queryable entity, the resolver should throw an <see cref="T:Remotion.Linq.UnmappedItemException"/>.
+             </summary>
+             <param name="tableInfo">The <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.IResolvedTableInfo"/> to be resolved.</param>
+             <param name="generator">A <see cref="T:Remotion.Linq.UniqueIdentifierGenerator"/> that can be used to generate unique identifiers such as column aliases.</param>
+             <returns>A <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityDefinitionExpression"/> which contains all the columns of the referenced <paramref name="tableInfo"/> item type.
+            </returns>
+        </member>
+        <member name="M:Remotion.Linq.SqlBackend.MappingResolution.IMappingResolver.ResolveMemberExpression(Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityExpression,System.Reflection.MemberInfo)">
+            <summary>
+            Analyzes the given <see cref="T:System.Reflection.MemberInfo"/> and returns an expression representing that member in the database. The resolved version will 
+            usually be a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlColumnExpression"/> if the member represents a simple column, or a
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.SqlEntityRefMemberExpression"/> if the member references another entity.
+            </summary>
+            <param name="originatingEntity">The <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityExpression"/> representing the entity the member is accessed on.</param> 
+            <param name="memberInfo">The <see cref="T:System.Reflection.MemberInfo"/> to be resolved.</param>
+            <returns>Usually a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlColumnExpression"/> if the member is resolved to a simple column, or a 
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.SqlEntityRefMemberExpression"/>  if the member references another entity.
+            This method can return a partial result that itself again needs to be resolved.</returns>
+            <exception cref="T:Remotion.Linq.UnmappedItemException">The given <see cref="T:System.Reflection.MemberInfo"/> cannot be resolved to a mapped database item.</exception>
+        </member>
+        <member name="M:Remotion.Linq.SqlBackend.MappingResolution.IMappingResolver.ResolveMemberExpression(Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlColumnExpression,System.Reflection.MemberInfo)">
+            <summary>
+            Analyzes a <see cref="T:System.Reflection.MemberInfo"/> that is applied to a column and returns an expression representing that member in the database. The 
+            resolved version will usually be a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlColumnExpression"/> if the member represents a simple column access, but it can also be any
+            other expression if more complex calculations are needed.
+            </summary>
+            <param name="sqlColumnExpression">The <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlColumnExpression"/> the member is accessed on.</param>
+            <param name="memberInfo">The <see cref="T:System.Reflection.MemberInfo"/> which is needed to identify a mapped property.</param>
+            <returns>Returns a modified Expression which is usually a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlColumnExpression"/>.</returns>
+            <exception cref="T:Remotion.Linq.UnmappedItemException">The given <see cref="T:System.Reflection.MemberInfo"/> cannot be resolved.</exception>
+        </member>
+        <member name="M:Remotion.Linq.SqlBackend.MappingResolution.IMappingResolver.ResolveConstantExpression(System.Linq.Expressions.ConstantExpression)">
+            <summary>
+            Analyses the given <see cref="T:System.Linq.Expressions.ConstantExpression"/> and resolves it to a database-compatible expression if necessary. For example, if the 
+            constant value is another entity, this method should return a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityConstantExpression"/>.
+            </summary>
+            <param name="constantExpression">The <see cref="T:System.Linq.Expressions.ConstantExpression"/> to be analyzed.</param>
+            <returns>A resolved version of <paramref name="constantExpression"/>, usually a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityConstantExpression"/>, or the
+            <paramref name="constantExpression"/> itself.</returns>
+            <exception cref="T:Remotion.Linq.UnmappedItemException">The given <see cref="T:System.Reflection.MemberInfo"/> cannot be resolved.</exception>
+        </member>
+        <member name="M:Remotion.Linq.SqlBackend.MappingResolution.IMappingResolver.ResolveTypeCheck(System.Linq.Expressions.Expression,System.Type)">
+            <summary>
+            Analyzes the given <see cref="T:System.Linq.Expressions.Expression"/> and returns an expression that evaluates to <see langword="true"/> if it is of a desired 
+            <see cref="T:System.Type"/>. This will usually be a comparison of a type identifier column with a constant value.
+            </summary>
+            <param name="expression">The <see cref="T:System.Linq.Expressions.Expression"/> to be analyzed.</param>
+            <param name="desiredType">The <see cref="T:System.Type"/> to check for.</param>
+            <returns>An expression representing a type check of the given <paramref name="expression"/>. 
+            This method can return a partial result that itself again needs to be resolved.</returns>
+            <exception cref="T:Remotion.Linq.UnmappedItemException">The given type check cannot be resolved because no database-level check can be constructed for it.</exception>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.MappingResolutionContext">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.MappingResolutionContext"/> holds context information required during mapping resolution stage.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.MemberAccessResolver">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.MemberAccessResolver"/> is used by <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.DefaultMappingResolutionStage"/> to resolve <see cref="T:System.Reflection.MemberInfo"/>s applied to
+            expressions. The <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.MemberAccessResolver"/> class assumes that its input expression has already been resolved, and it may return a
+            result that itself needs to be resolved again.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.INamedExpressionVisitor">
+            <summary>
+            Defines a custom visit method for <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.NamedExpression"/> <see cref="T:Remotion.Linq.Clauses.Expressions.ExtensionExpression"/> instances.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.IResolvedSqlExpressionVisitor">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.IResolvedSqlExpressionVisitor"/> provides methods to resolve expressions and returns sql specific text.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.ISqlGroupingSelectExpressionVisitor">
+            <summary>
+            Defines a custom visit method for <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlGroupingSelectExpression"/> <see cref="T:Remotion.Linq.Clauses.Expressions.ExtensionExpression"/> instances.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.NamedExpressionCombiner">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.NamedExpressionCombiner"/> analyzes the inner expression of a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.NamedExpression"/> and returns a combined expression 
+            if possible. A combined expression is an expression equivalent to the inner expression but with the name included.
+            The process of combining named expressions must be performed during the mapping resolution stage because the name of an entity or value in
+            a sub-statement must be defined before an outer statement's reference to that entity or value is resolved by 
+            <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.SubStatementReferenceResolver"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.ResolvingSelectExpressionVisitor">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.ResolvingSelectExpressionVisitor"/> is used to resolve sql select projection expressions in the mapping resolutin stage.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.ResolvingExpressionVisitor">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.ResolvingExpressionVisitor"/> analyzes a prepared <see cref="T:System.Linq.Expressions.Expression"/> for things that need to be analyzed by the 
+            <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.IMappingResolver"/> and resolves member accesses and similar structures. Substatements are recursively resolved.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.ISqlSubStatementVisitor">
+            <summary>
+            Defines a custom visit method for <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSubStatementExpression"/> <see cref="T:Remotion.Linq.Clauses.Expressions.ExtensionExpression"/> instances.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.IJoinConditionExpressionVisitor">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.IJoinConditionExpressionVisitor"/> provides a method to resolve join conditions and returns sql specific text.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.IJoinInfoVisitor">
+            <summary>
+            Provides a visitor for implementations of <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.ITableInfo"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.SqlContextSelectionAdjuster">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.SqlContextSelectionAdjuster"/> applies <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.SqlExpressionContext"/> to a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.ITableInfoVisitor">
+            <summary>
+            Provides a visitor for implementations of <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.ITableInfo"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.SubStatementReferenceResolver">
+            <summary>
+            Creates a reference to the given expression stemming from a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.ResolvedSubStatementTableInfo"/>. References can only be made to 
+            expressions with names. Expressions without names will be copied (but their child expressions resolved). For example, a 
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.NamedExpression"/> is referenced via a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlColumnExpression"/>; but a <see cref="T:System.Linq.Expressions.NewExpression"/> is referenced by an
+            equivalent <see cref="T:System.Linq.Expressions.NewExpression"/> (whose arguments reference the arguments of the original <see cref="T:System.Linq.Expressions.NewExpression"/>).
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlGeneration.ColumnID">
+            <summary>
+            Represents a column in the SQL result returned by a LINQ query. The in-memory projections generated by re-linq use this as a parameter
+            to the methods of <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.IDatabaseResultRow"/> when they need to retrieve a value from a result row. Each column is identified both by
+            its <see cref="F:Remotion.Linq.SqlBackend.SqlGeneration.ColumnID.ColumnName"/> and its <see cref="F:Remotion.Linq.SqlBackend.SqlGeneration.ColumnID.Position"/>. The implementer of <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.IDatabaseResultRow"/> is free to choose which 
+            identifier to use when retrieving a value from a result row.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlGeneration.IDatabaseResultRow">
+            <summary>
+            Used by re-linq's in-memory projections (see <see cref="M:Remotion.Linq.SqlBackend.SqlGeneration.SqlCommandData.GetInMemoryProjection``1"/>) in order to access values and entities from
+            the database result. Implementers of <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.IDatabaseResultRow"/> must represent a row in the database result for an executed SQL command.
+            When the <see cref="M:Remotion.Linq.SqlBackend.SqlGeneration.SqlCommandData.GetInMemoryProjection``1"/> is executed against the row, it will read all values and entities needed by the
+            LINQ query's select projection and then construct the full projection in-memory.
+            </summary>
+            <remarks>
+            The result of scalar or single queries should be represented as if there was one row with one value.
+            </remarks>
+        </member>
+        <member name="M:Remotion.Linq.SqlBackend.SqlGeneration.IDatabaseResultRow.GetValue``1(Remotion.Linq.SqlBackend.SqlGeneration.ColumnID)">
+            <summary>
+            Gets the value indicated by <paramref name="columnID"/>. The value is of type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The expected type of the value coming from the database result row.</typeparam>
+            <param name="columnID">The <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.ColumnID"/> identifying the value.</param>
+            <returns>The value of the given column in the current result row.</returns>
+        </member>
+        <member name="M:Remotion.Linq.SqlBackend.SqlGeneration.IDatabaseResultRow.GetEntity``1(Remotion.Linq.SqlBackend.SqlGeneration.ColumnID[])">
+            <summary>
+            Gets an entity indicated by a number of <paramref name="columnIDs"/>. The entity is of type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The expected type of the entity coming from the database result row.</typeparam>
+            <param name="columnIDs">A list of <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.ColumnID"/> instances that identify all values to be used for instantiating the entity. These
+            values identify the columns returned by <see cref="M:Remotion.Linq.SqlBackend.MappingResolution.IMappingResolver.ResolveSimpleTableInfo(Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.IResolvedTableInfo,Remotion.Linq.UniqueIdentifierGenerator)"/>, and they are given in the same order in which 
+            that method returned them.</param>
+            <returns>An entity constructed of the given columns in the current result row.</returns>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlGeneratingOuterSelectExpressionVisitor">
+            <summary>
+            Extends <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlGeneratingSelectExpressionVisitor"/> by building an in-memory projection. This should be used for the 
+            <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement.SelectProjection"/> of the outermost <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement"/> in a query. For substatements, 
+            <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlGeneratingSelectExpressionVisitor"/> should be used instead.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlGeneratingSelectExpressionVisitor">
+            <summary>
+            Extends <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlGeneratingExpressionVisitor"/> by emitting "AS" aliases for <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.NamedExpression"/> and 
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityExpression"/> instances. This should be used for the 
+            <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement.SelectProjection"/> of substatements. For the outermost statement, <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlGeneratingOuterSelectExpressionVisitor"/>
+            should be used.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlGeneratingExpressionVisitor">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlGeneratingExpressionVisitor"/> generates SQL text for <see cref="T:System.Linq.Expressions.Expression"/> trees that have been prepared and resolved.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.ISqlSpecificExpressionVisitor">
+            <summary>
+            This interface should be implemented by visitors that handle SQL-specific expressions.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.IAggregationExpressionVisitor">
+            <summary>
+            Defines an interface for <see cref="T:Remotion.Linq.Parsing.ExpressionTreeVisitor"/> subclasses that can handle <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.AggregationExpression"/> instances.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.IConvertedBooleanExpressionVisitor">
+            <summary>
+            Defines an interface for <see cref="T:Remotion.Linq.Parsing.ExpressionTreeVisitor"/> subclasses that can handle <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.ConvertedBooleanExpression"/> instances.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.AttributeBasedMethodCallTransformerProvider">
+            <summary>
+            Retrieves <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> instances based on an attribute implementing <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformerAttribute"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformerProvider">
+            <summary>
+            Defines a common interface for classes yielding <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> objects for <see cref="T:System.Linq.Expressions.MethodCallExpression"/> instances.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.FromExpressionInfo">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.FromExpressionInfo"/> is returned by <see cref="M:Remotion.Linq.SqlBackend.SqlPreparation.SqlPreparationFromExpressionVisitor.AnalyzeFromExpression(System.Linq.Expressions.Expression,Remotion.Linq.SqlBackend.SqlPreparation.ISqlPreparationStage,Remotion.Linq.UniqueIdentifierGenerator,Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformerProvider,Remotion.Linq.SqlBackend.SqlPreparation.ISqlPreparationContext,System.Func{Remotion.Linq.SqlBackend.SqlStatementModel.ITableInfo,Remotion.Linq.SqlBackend.SqlStatementModel.SqlTableBase})"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> is implemented by classes generating SQL-emittable expressions (e.g., <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.SqlFunctionExpression"/>)
+            from <see cref="T:System.Linq.Expressions.MethodCallExpression"/> instances.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlGeneration.ISqlCommandBuilder">
+            <summary>
+            Used by the classes in the SQL generation stage to build a SQL command. Use <see cref="M:Remotion.Linq.SqlBackend.SqlGeneration.ISqlCommandBuilder.GetCommand"/> to access the command when the stage
+            has finished.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlCompositeCustomTextGeneratorExpression">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlCompositeCustomTextGeneratorExpression"/> holds a list of expressions and generates sql text for each expression.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlCustomTextGeneratorExpressionBase">
+            <summary>
+            Acts as a base class for expression nodes that need to take part in the SQL generation peformed by <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlGeneratingExpressionVisitor"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlCustomTextExpression">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlCustomTextExpression"/> can be used to insert custom SQL text into the SQL generated by <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlGeneratingExpressionVisitor"/>. 
+            The custom text is inserted into the statement as is, it is not escaped. Therefore, the provider making use of <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlCustomTextExpression"/> 
+            has to make sure the custom text cannot lead to SQL injection attacks.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformerAttribute">
+            <summary>
+            Defines an interface for custom attributes that, when applied to a method (or property get accessor), defines that the SQL backend should use 
+            a specific <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> to handle that method (or property). The attribute is evaluated by 
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.AttributeBasedMethodCallTransformerProvider"/>, and there must only be one attribute implementing 
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformerAttribute"/> on any method.
+            </summary>
+        </member>
+        <member name="M:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformerAttribute.GetTransformer">
+            <summary>
+            Gets the transformer identified by this <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformerAttribute"/>.
+            </summary>
+            <returns>An instance of the <see cref="P:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformerAttribute.TransformerType"/>.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            There was an error when instantiating the transformer. The exception message describes the problem. The 
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.AttributeBasedMethodCallTransformerProvider"/> wraps this exception.
+            </exception>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ISqlPreparationContext">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.ISqlPreparationContext"/> provides methods to handle a concrete preparation context.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformerAttribute">
+            <summary>
+            When applied to a method (or property get accessor), defines that the SQL backend should use the specified <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/>
+            to handle that method (or property). The attribute is evaluated only if there isn't already a <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> registered
+            by <see cref="T:System.Reflection.MethodInfo"/>, but it is evaluated before a transformer is searched by name.
+            </summary>
+        </member>
+        <member name="M:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformerAttribute.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformerAttribute"/> class.
+            </summary>
+            <param name="transformerType">
+            The type of <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> to use for handling the method this attribute is applied to. This type must have a public
+            default constructor.
+            </param>
+        </member>
+        <member name="M:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformerAttribute.GetTransformer">
+            <summary>
+            Gets the transformer identified by this <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformerAttribute"/>.
+            </summary>
+            <returns>An instance of the <see cref="P:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformerAttribute.TransformerType"/>.</returns>
+        </member>
+        <member name="P:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformerAttribute.TransformerType">
+            <summary>
+            Gets the type of <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> to use for handling the method this attribute is applied to.
+            </summary>
+            <value>The type of <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> to use.</value>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.ConcatMethodCallTransformer">
+            <summary>
+            Implements the <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> interface for the <see cref="M:System.String.Concat(System.String,System.String)"/> overloads. 
+            </summary>
+            <remarks>
+            Calls to those methods
+            are represented as simple 
+            <see cref="M:System.Linq.Expressions.Expression.Equal(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Boolean,System.Reflection.MethodInfo)"/> 
+            expressions that refer to the <see cref="M:System.String.Concat(System.String,System.String)"/> method. Arguments that are not of static type <see cref="T:System.String"/>
+            are converted to the nvarchar data type via <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.SqlConvertExpression"/>.
+            </remarks>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.ContainsFreetextMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.ContainsFreetextMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the 
+            <see cref="M:Remotion.Linq.SqlBackend.StringExtensions.SqlContainsFreetext(System.String,System.String)"/> extension methods.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.ContainsFulltextMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.ContainsFulltextMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the 
+            <see cref="M:Remotion.Linq.SqlBackend.StringExtensions.SqlContainsFulltext(System.String,System.String)"/> extension methods.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.ConvertMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.ConvertMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for different methods of the <see cref="T:System.Convert"/>
+            class.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.EndsWithMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.EndsWithMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the <see cref="M:System.String.EndsWith(System.String)"/> method.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.EqualsMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.EqualsMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for different Equals methods. The transformer
+            is registered by name, not by method, so it will handle every method named "Equals" unless a specific <see cref="T:System.Reflection.MethodInfo"/>-based transformer
+            has been registered for that method.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.InsertMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.InsertMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the <see cref="M:System.String.Trim"/> method.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.IsNullOrEmptyMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.IsNullOrEmptyMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the <see cref="M:System.String.IsNullOrEmpty(System.String)"/> 
+            method.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.IndexOfMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.IndexOfMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the <see cref="M:System.String.IndexOf(System.Char)"/> methods.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.ContainsMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.ContainsMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the <see cref="M:System.String.Contains(System.String)"/> method.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.LikeMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.LikeMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the <see cref="M:Remotion.Linq.SqlBackend.StringExtensions.SqlLike(System.String,System.String)"/> extension 
+            method.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.LowerMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.LowerMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the <see cref="M:System.String.ToLower"/> method.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.MethodCallTransformerUtility">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.MethodCallTransformerUtility"/> provides utility methods for MethodCallTransformers.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.RemoveMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.RemoveMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the <see cref="M:System.String.Remove(System.Int32)"/> methods.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.ReplaceMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.ReplaceMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the <see cref="M:System.String.Replace(System.String,System.String)"/> 
+            method.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.StartsWithMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.StartsWithMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the <see cref="M:System.String.StartsWith(System.String)"/> 
+            method.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.StringLengthMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.StringLengthMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the <see cref="P:System.String.Length"/> property.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.SubstringMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.SubstringMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the <see cref="M:System.String.Substring(System.Int32)"/> methods.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.ToStringMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.ToStringMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the <see cref="M:System.Object.ToString"/> method.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.TrimMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.TrimMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the <see cref="M:System.String.Trim"/> method.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.UpperMethodCallTransformer">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodCallTransformers.UpperMethodCallTransformer"/> implements <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> for the <see cref="M:System.String.ToUpper"/> method.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.MethodInfoBasedMethodCallTransformerRegistry">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.CompoundMethodCallTransformerProvider"/> is used to register methods and get <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> instances.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.NameBasedMethodCallTransformerRegistry">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.NameBasedMethodCallTransformerRegistry"/> is used to register method names and get <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/> instances.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlerRegistry">
+            <summary>
+            The <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlerRegistry"/> holds the implementations of <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IResultOperatorHandler"/> used by 
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.SqlPreparationQueryModelVisitor"/> for incorporating result operators into a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement"/>.
+            Use <see cref="M:Remotion.Linq.Utilities.RegistryBase`3.CreateDefault"/> to create the default set of result operator handlers, 
+            which can then be extended by custom handlers.
+            </summary>
+        </member>
+        <member name="M:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlerRegistry.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlerRegistry"/> class. Use 
+            <see cref="M:Remotion.Linq.Utilities.RegistryBase`3.CreateDefault"/> to create an instance pre-initialized with the default handlers instead.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.AggregationResultOperatorHandler`1">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.AggregationResultOperatorHandler`1"/> is the base class for all specific aggregation <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.ResultOperatorHandler`1"/>s.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.ResultOperatorHandler`1">
+            <summary>
+            Default implementation of <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IResultOperatorHandler"/> providing commonly needed functionality.
+            </summary>
+            <typeparam name="T">The result operator type handled by the concrete subclass of <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.ResultOperatorHandler`1"/>.</typeparam>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.AnyResultOperatorHandler">
+            <summary>
+            Handles the <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.AnyResultOperatorHandler"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.AverageResultOperatorHandler">
+            <summary>
+            Handles the <see cref="T:Remotion.Linq.Clauses.ResultOperators.AverageResultOperator"/>. When the <see cref="T:Remotion.Linq.Clauses.ResultOperators.AverageResultOperator"/> occurs after a 
+            <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/> has been set, a sub-statement is created for 
+            everything up to the <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.CastResultOperatorHandler">
+            <summary>
+            Handles the <see cref="T:Remotion.Linq.Clauses.ResultOperators.CastResultOperator"/> by adjusting the <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.DataInfo"/> of the current 
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.ContainsResultOperatorHandler">
+            <summary>
+            Handles the <see cref="T:Remotion.Linq.Clauses.ResultOperators.ContainsResultOperator"/> by generating a SQL IN expression.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.CountResultOperatorHandler">
+            <summary>
+            Handles the <see cref="T:Remotion.Linq.Clauses.ResultOperators.CountResultOperator"/>. When the <see cref="T:Remotion.Linq.Clauses.ResultOperators.CountResultOperator"/> occurs after a 
+            <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/> has been set, a sub-statement is created for 
+            everything up to the <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.DefaultIfEmptyResultOperatorHandler">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.DefaultIfEmptyResultOperatorHandler"/> handles the <see cref="T:Remotion.Linq.Clauses.ResultOperators.DefaultIfEmptyResultOperator"/>. It wraps the SQL statement into
+            a subquery and puts that subquery into a left join.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.DistinctResultOperatorHandler">
+            <summary>
+            Handles the <see cref="T:Remotion.Linq.Clauses.ResultOperators.DistinctResultOperator"/> by setting the <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.IsDistinctQuery"/> flag. When the 
+            <see cref="T:Remotion.Linq.Clauses.ResultOperators.DistinctResultOperator"/> occurs after a <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/> has been set, a sub-statement is created.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.FirstResultOperatorHandler">
+            <summary>
+            Handles the <see cref="T:Remotion.Linq.Clauses.ResultOperators.FirstResultOperator"/> by setting a <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/>. When the 
+            <see cref="T:Remotion.Linq.Clauses.ResultOperators.FirstResultOperator"/> occurs after a <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/> has been set, a sub-statement is created.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.GroupResultOperatorHandler">
+            <summary>
+            Handles the <see cref="T:Remotion.Linq.Clauses.ResultOperators.GroupResultOperator"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.MaxResultOperatorHandler">
+            <summary>
+            Handles the <see cref="T:Remotion.Linq.Clauses.ResultOperators.MaxResultOperator"/>. When the <see cref="T:Remotion.Linq.Clauses.ResultOperators.MaxResultOperator"/> occurs after a 
+            <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/> has been set, a sub-statement is created for 
+            everything up to the <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.MinResultOperatorHandler">
+            <summary>
+            Handles the <see cref="T:Remotion.Linq.Clauses.ResultOperators.MinResultOperator"/>. When the <see cref="T:Remotion.Linq.Clauses.ResultOperators.MinResultOperator"/> occurs after a 
+            <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/> has been set, a sub-statement is created for 
+            everything up to the <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.OfTypeResultOperatorHandler">
+            <summary>
+            Handles the <see cref="T:Remotion.Linq.Clauses.ResultOperators.OfTypeResultOperator"/> by adding a type check to the <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.WhereCondition"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.SingleResultOperatorHandler">
+            <summary>
+            Handles the <see cref="T:Remotion.Linq.Clauses.ResultOperators.SingleResultOperator"/> by setting a <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/>. When the 
+            <see cref="T:Remotion.Linq.Clauses.ResultOperators.SingleResultOperator"/> occurs after a <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/> has been set, a sub-statement is created.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.SkipResultOperatorHandler">
+            <summary>
+            Handles the <see cref="T:Remotion.Linq.Clauses.ResultOperators.SkipResultOperator"/> by transforming the query analyzed so far into a sub-statement construct including a 
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.SqlRowNumberExpression"/>. The outer query selects from that sub-statement, orders the result correctly, and filters on the 
+            row number.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.SumResultOperatorHandler">
+            <summary>
+            Handles the <see cref="T:Remotion.Linq.Clauses.ResultOperators.SumResultOperator"/>. When the <see cref="T:Remotion.Linq.Clauses.ResultOperators.SumResultOperator"/> occurs after a 
+            <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/> has been set, a sub-statement is created for 
+            everything up to the <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ResultOperatorHandlers.TakeResultOperatorHandler">
+            <summary>
+            Handles the <see cref="T:Remotion.Linq.Clauses.ResultOperators.TakeResultOperator"/> by setting a <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/>. When the 
+            <see cref="T:Remotion.Linq.Clauses.ResultOperators.TakeResultOperator"/> occurs after a <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder.TopExpression"/> has been set, a sub-statement is created.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.SqlPreparationSubStatementTableFactory">
+            <summary>
+            Creates a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlTableBase"/> object from a given <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement"/>, extracting all <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement.Orderings"/> in the
+            statement as required by SQL.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.AggregationExpression">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.AggregationExpression"/> holds an aggregation modifier for a warapped expression.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.AggregationModifier">
+            <summary>
+            Defines the aggregation modifier for a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.ConvertedBooleanExpression">
+            <summary>
+            Holds an <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.ConvertedBooleanExpression.Expression"/> that originally had <see cref="T:System.Boolean"/> type but was converted to <see cref="T:System.Int32"/> because SQL doesn't know
+            a boolean data type.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.ISqlTableBaseVisitor">
+            <summary>
+            Provides a visitor for implementations of <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlTableBase"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.ResolvingJoinInfoVisitor">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.ResolvingJoinInfoVisitor"/> modifies <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedJoinInfo"/>s and generates <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.ResolvedJoinInfo"/>s.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.ResolvingTableInfoVisitor">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.ResolvingTableInfoVisitor"/> modifies <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedTableInfo"/>s and generates <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.ResolvedSimpleTableInfo"/>s.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.SqlStatementResolver">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.SqlStatementResolver"/> provides methods to visit sql-statement classes.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlGeneration.BinaryExpressionTextGenerator">
+            <summary>
+            Generates SQL text for <see cref="T:System.Linq.Expressions.BinaryExpression"/> instances.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlGeneration.DefaultSqlGenerationStage">
+            <summary>
+            Provides a default implementation of <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.ISqlGenerationStage"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlGeneration.ISqlGenerationStage">
+            <summary>
+            Provides entry points for all sql text generation that occur during the SQL generation process.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.CompoundMethodCallTransformerProvider">
+            <summary>
+            Aggregates a number of <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformerProvider"/> instances, checking each of them when the <see cref="M:Remotion.Linq.SqlBackend.SqlPreparation.CompoundMethodCallTransformerProvider.GetTransformer(System.Linq.Expressions.MethodCallExpression)"/>
+            is called, until one of them returns a <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.IMethodCallTransformer"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlCommandData">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlCommandData"/> contains the SQL command text and parameters generated for a LINQ query. In addition, it provides the possibility
+            to get an in-memory projection expression that can be compiled to a delegate and executed on every row of the result set in order to construct
+            a projection result as defined by the LINQ query.
+            </summary>
+        </member>
+        <member name="M:Remotion.Linq.SqlBackend.SqlGeneration.SqlCommandData.GetInMemoryProjection``1">
+            <summary>
+            Gets the in-memory projection associated with this <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlCommandData"/>. The in-memory projection can be used to construct the
+            objects selected by a LINQ query by applying it to each of the rows returned for the query defined by <see cref="P:Remotion.Linq.SqlBackend.SqlGeneration.SqlCommandData.CommandText"/>. The result
+            for each row is accessed via an implementation of <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.IDatabaseResultRow"/> supplied by the LINQ provider. Compile the returned
+            expression in order to get an executable delegate that executes the in-memory projection.
+            </summary>
+            <typeparam name="T">The type of the values to be returned by the projection. This corresponds to the type parameters passed to the methods of 
+            <see cref="T:Remotion.Linq.IQueryExecutor"/>. If the type is not known, pass <see cref="T:System.Object"/>.</typeparam>
+            <returns>
+            The in-memory projection associated with this <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlCommandData"/>.
+            </returns>
+        </member>
+        <member name="P:Remotion.Linq.SqlBackend.SqlGeneration.SqlCommandData.CommandText">
+            <summary>
+            Gets the SQL command text. This is the command to be executed against the database. For each result row, a delegate compiled from the
+            <see cref="M:Remotion.Linq.SqlBackend.SqlGeneration.SqlCommandData.GetInMemoryProjection``1">in-memory projection</see>
+            should be executed in order to retrieve the constructed projection.
+            </summary>
+            <value>The SQL command text.</value>
+        </member>
+        <member name="P:Remotion.Linq.SqlBackend.SqlGeneration.SqlCommandData.Parameters">
+            <summary>
+            Gets the parameters to be used when executing <see cref="P:Remotion.Linq.SqlBackend.SqlGeneration.SqlCommandData.CommandText"/> as a SQL command.
+            </summary>
+            <value>The parameters of the query.</value>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlCommandBuilder">
+            <summary>
+            Default implementation of <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.ISqlCommandBuilder"/> with SQL Server identifier semantics.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.SqlContextExpressionVisitor">
+            <summary>
+            Ensures that a given expression matches SQL server value semantics.
+            </summary>
+            <remarks>
+            <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.SqlContextExpressionVisitor"/> traverses an expression tree and ensures that the tree fits SQL server requirements for
+            boolean expressions. In scenarios where a value is required as per SQL server standards, bool expressions are converted to integers using
+            CASE WHEN expressions. In such situations, <see langword="true"/> and <see langword="false"/> constants are converted to 1 and 0 values,
+            and boolean columns are interpreted as integer values. In scenarios where a predicate is required, boolean expressions are constructed by 
+            comparing those integer values to 1 and 0 literals.
+            </remarks>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.MappingResolution.SqlExpressionContext">
+            <summary>
+            Describes whether predicate or value semantics is required for boolean expressions in the current context.
+            </summary>
+        </member>
+        <member name="F:Remotion.Linq.SqlBackend.MappingResolution.SqlExpressionContext.ValueRequired">
+            <summary>
+            A single value or an entity is required; boolean expressions need to be converted using CASE WHEN.
+            </summary>
+        </member>
+        <member name="F:Remotion.Linq.SqlBackend.MappingResolution.SqlExpressionContext.SingleValueRequired">
+            <summary>
+            A single value is required; boolean expressions need to be converted using CASE WHEN, of <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityExpression"/> instances, only 
+            the primary key is used.
+            </summary>
+        </member>
+        <member name="F:Remotion.Linq.SqlBackend.MappingResolution.SqlExpressionContext.PredicateRequired">
+            <summary>
+            A predicate is required; non-boolean expressions need to be converted, e.g., by comparing them to the literal value 1.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlStatementTextGenerator">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlStatementTextGenerator"/> generates SQL text for a resolved <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlTableAndJoinTextGenerator">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlGeneration.SqlTableAndJoinTextGenerator"/> generates sql-text for <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.ResolvedSimpleTableInfo"/> and <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.ResolvedJoinInfo"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.DefaultSqlPreparationStage">
+            <summary>
+            Provides a default implementation of <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.ISqlPreparationStage"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.ISqlPreparationStage">
+            <summary>
+            Provides entry points for all transformations that occur during the SQL preparation phase.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.SqlPreparationContext">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.SqlPreparationContext"/> holds context information required during SQL preparation stage.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.SqlPreparationExpressionVisitor">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.SqlPreparationExpressionVisitor"/> transforms the expressions stored by <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement"/> to a SQL-specific
+            format.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.SqlPreparationFromExpressionVisitor">
+            <summary>
+            Analyzes the <see cref="P:Remotion.Linq.Clauses.FromClauseBase.FromExpression"/> of a <see cref="T:Remotion.Linq.Clauses.FromClauseBase"/> and returns a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlTableBase"/> that 
+            represents the data source of the <see cref="T:Remotion.Linq.Clauses.FromClauseBase"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlPreparation.SqlPreparationQueryModelVisitor">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlPreparation.SqlPreparationQueryModelVisitor"/> generates a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement"/> from a query model.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.IJoinInfo">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.IJoinInfo"/> defines the details about a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlJoinedTable"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.ITableInfo">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.ITableInfo"/> represents the actual data in a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlTable"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.JoinCardinality">
+            <summary>
+            Defines whether a join represents a "to-n" relation or a "to-1" relation.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.JoinSemantics">
+            <summary>
+            Defines whether a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlJoinedTable"/> represents a left- or inner join.
+            </summary>
+        </member>
+        <member name="F:Remotion.Linq.SqlBackend.SqlStatementModel.JoinSemantics.Left">
+            <summary>
+            SQL-style LEFT OUTER JOIN semantics: All records of the left table are returned. If the right table holds no matching records, the right 
+            side's columns contain NULL. 
+            </summary>
+        </member>
+        <member name="F:Remotion.Linq.SqlBackend.SqlStatementModel.JoinSemantics.Inner">
+            <summary>
+            SQL-style INNER JOIN semantics: Only records that produce a match are returned.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.NamedExpression">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.NamedExpression"/> holds an expression and a name for it. If the name is null, a default name is used (or omitted if possible).
+            When a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.NamedExpression"/> holds an expression resolved to a 
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityExpression"/>, the entity's name is set to the 
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.NamedExpression"/>'s name. Otherwise, the <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.NamedExpression"/> is retained and used to emit "AS ..." clauses in SQL 
+            generation. Therefore, <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.NamedExpression"/> must only be used in parts of a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement"/> where "AS ..." clauses are 
+            allowed.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.IResolvedTableInfo">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.IResolvedTableInfo"/> provides nested members and methods for all kinds of tables. 
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.ResolvedJoinInfo">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.ResolvedJoinInfo"/> represents a join between two database tables.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.ResolvedSimpleTableInfo">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.ResolvedSimpleTableInfo"/> represents the data source defined by a table in a relational database.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.ResolvedSubStatementTableInfo">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.ResolvedSubStatementTableInfo"/> represents the data source defined by a table of a subquery in a relational database.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlColumnDefinitionExpression">
+            <summary>
+            Defines a SQL column as an item with a given name coming from a given table alias. The column is represented as [alias].[name].
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlColumnExpression">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlColumnExpression"/> represents a sql-specific column expression.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlColumnReferenceExpression">
+            <summary>
+            Defines a SQL column as a reference to a column of a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityExpression"/>. The column is represented as [alias].[entityname_name].
+            This is used to reference columns of entities defined by substatements, e.g., in from x in (from c in Cooks select c).Distinct() select x.FirstName;
+            x.FirstName is a column that references the entity defined by the substatement.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityConstantExpression">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityConstantExpression"/> holds the primary key for a constant entity.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityDefinitionExpression">
+            <summary>
+            Implementation of <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityExpression"/> for entity definitions, i.e., entities that are directly defined by a table.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityExpression">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityExpression"/> represents an entity in a SQL expression. It consists of a list of columns, a primary key (which is usually
+            part of the columns list), and a table alias identifying the table or substatement the entity stems from. An entity can have a name, which
+            is used to prefix all of its columns with in the generated SQL. 
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityReferenceExpression">
+            <summary>
+            Implementation of <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityExpression"/> for entity references, i.e., entities that stem from a substatement. Entity references
+            know the <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlEntityExpression"/> inside the substatement (the referenced entity), and their columns are of type
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.SqlColumnReferenceExpression"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.ResolvedJoinedGroupingTableInfo">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Resolved.ResolvedJoinedGroupingTableInfo"/> constitutes an implementation of <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.ITableInfo"/> that contains a sub-statement
+            that returns items from groupings produced by another <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlTable"/>. <see cref="T:Remotion.Linq.SqlBackend.MappingResolution.ResolvingTableInfoVisitor"/> creates this for
+            an <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedGroupReferenceTableInfo"/> that points to a <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedGroupReferenceTableInfo.ReferencedGroupSource"/> 
+            with a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlGroupingSelectExpression"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlJoinedTable">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlJoinedTable"/> represents a joined data source in a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlTableBase">
+            <summary>
+            Provides a base class for SQL tables, both stand-alone tables and joined tables.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.SqlConvertExpression">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.SqlConvertExpression"/> is used to represent a convert expression.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.SqlExistsExpression">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.SqlExistsExpression"/> is used to represent a sql exists expression.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.SqlFunctionExpression">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.SqlFunctionExpression"/> holds the sql specific function with its parameters.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlGroupingSelectExpression">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlGroupingSelectExpression"/> represents the data returned by a Group-By query.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.SqlIsNotNullExpression">
+            <summary>
+            Represents 'is not null' in a comparison.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.SqlIsNullExpression">
+            <summary>
+            Represents 'is null' in a comparison.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.SqlLengthExpression">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.SqlLengthExpression"></see> emits SQL that deals with spaces when calculating lengths.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.SqlLikeExpression">
+            <summary>
+            Represents a sql 'LIKE' command
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.SqlRowNumberExpression">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSpecificExpressions.SqlRowNumberExpression"/> represents the Sql ROW_NUMBER() function.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement"/> represents a SQL database query. The <see cref="T:Remotion.Linq.QueryModel"/> is translated to this model, and the 
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement"/> is transformed several times until it can easily be translated to SQL text.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatementBuilder"/> holds the specific SQL statement data and populates a build method.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSubStatementExpression">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSubStatementExpression"/> represents a SQL database subquery. The <see cref="T:Remotion.Linq.QueryModel"/> of the subquery is translated to 
+            this model, and the <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlSubStatementExpression"/> is transformed several times until it can easily be translated to SQL text.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlTable">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlTable"/> represents a data source in a <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlStatement"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.JoinConditionExpression">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.JoinConditionExpression"/> represents the data source defined by a member access in the from part of a linq expression.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.SqlEntityRefMemberExpression">
+            <summary>
+            Describes a member reference representing an entity rather than a simple column.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.SqlBinaryOperatorExpression">
+            <summary>
+            Represents a SQL "a OPERATOR b" expression.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.SqlTableReferenceExpression">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.SqlTableReferenceExpression"/> represents a data row in a <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.SqlTableReferenceExpression.SqlTable"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedCollectionJoinInfo">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedCollectionJoinInfo"/> represents the data source defined by a member access to a collection in a LINQ expression.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedGroupReferenceTableInfo">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedGroupReferenceTableInfo"/> constitutes an implementation of <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.ITableInfo"/> for data sources returning
+            items from a sequence produced by another <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.SqlTable"/> called the <see cref="P:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedGroupReferenceTableInfo.ReferencedGroupSource"/>.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedJoinInfo">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedJoinInfo"/> represents the data source defined by a member access in a LINQ expression.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedTableInfo">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.SqlStatementModel.Unresolved.UnresolvedTableInfo"/> holds a <see cref="T:System.Linq.Expressions.ConstantExpression"/> representing the data source defined by a LINQ query.
+            </summary>
+        </member>
+        <member name="T:Remotion.Linq.SqlBackend.StringExtensions">
+            <summary>
+            <see cref="T:Remotion.Linq.SqlBackend.StringExtensions"/> provides extension methods for strings.
+            </summary>
+        </member>
+    </members>
+</doc>

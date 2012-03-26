@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NUnit.Framework;
 
 namespace NHibernate.Test.Events.Collections.Association.Bidirectional.ManyToMany
@@ -20,7 +20,7 @@ namespace NHibernate.Test.Events.Collections.Association.Bidirectional.ManyToMan
 
 		public override ICollection<IChild> CreateCollection()
 		{
-			return new HashedSet<IChild>();
+			return new IESI.HashedSet<IChild>();
 		}
 	}
 }

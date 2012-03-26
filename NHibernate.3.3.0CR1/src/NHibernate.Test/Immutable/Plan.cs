@@ -1,5 +1,5 @@
 using System;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Test.Immutable
 {
@@ -19,8 +19,8 @@ namespace NHibernate.Test.Immutable
 		public Plan(string description)
 		{
 			this.description = description;
-			this.contracts = new HashedSet<Contract>();
-			this.infos = new HashedSet<Info>();
+			this.contracts = new IESI.HashedSet<Contract>();
+			this.infos = new IESI.HashedSet<Info>();
 		}
 		
 		public virtual long Id

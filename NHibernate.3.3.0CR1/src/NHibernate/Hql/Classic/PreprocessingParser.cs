@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Text;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Util;
 
 namespace NHibernate.Hql.Classic
@@ -13,7 +13,7 @@ namespace NHibernate.Hql.Classic
 
 		static PreprocessingParser()
 		{
-			operators = new HashedSet<string>();
+            operators = new IESI.HashedSet<string>();
 			operators.Add("<=");
 			operators.Add(">=");
 			operators.Add("=>");

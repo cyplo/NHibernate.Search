@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Collection;
 using NHibernate.Engine;
 using NHibernate.Persister.Collection;
@@ -16,7 +16,7 @@ namespace NHibernate.Loader
 	{
 		private readonly ISessionFactoryImplementor factory;
 		protected readonly IList<OuterJoinableAssociation> associations = new List<OuterJoinableAssociation>();
-		private readonly ISet<AssociationKey> visitedAssociationKeys = new HashedSet<AssociationKey>();
+		private readonly ISet<AssociationKey> visitedAssociationKeys = new IESI.HashedSet<AssociationKey>();
 		private readonly IDictionary<string, IFilter> enabledFilters;
 		private readonly IDictionary<string, IFilter> enabledFiltersForManyToOne;
 		private static readonly Regex aliasRegex = new Regex(@"([\w]+)\.", RegexOptions.IgnoreCase | RegexOptions.Compiled);

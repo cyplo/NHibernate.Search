@@ -1,4 +1,4 @@
-﻿using Iesi.Collections.Generic;
+﻿using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Test.NHSpecificTest.NH2746
 {
@@ -10,7 +10,7 @@ namespace NHibernate.Test.NHSpecificTest.NH2746
 
 		public T1()
 		{
-			this.Children = new HashedSet<T2>();
+			this.Children = new IESI.HashedSet<T2>();
 		}
 	}
 

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Iesi.Collections;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Cache;
 using NHibernate.Criterion;
 using NHibernate.Driver;
@@ -97,7 +97,7 @@ namespace NHibernate.Impl
 
 			ISet filterKeys = FilterKey.CreateFilterKeys(session.EnabledFilters, session.EntityMode);
 
-			ISet<string> querySpaces = new HashedSet<string>();
+			ISet<string> querySpaces = new IESI.HashedSet<string>();
 			List<IType[]> resultTypesList = new List<IType[]>();
 			int[] maxRows = new int[loaders.Count];
 			int[] firstRows = new int[loaders.Count];
@@ -281,7 +281,7 @@ namespace NHibernate.Impl
 				string[] implementors = factory.GetImplementors(criteria.EntityOrClassName);
 				int size = implementors.Length;
 
-				ISet<string> spaces = new HashedSet<string>();
+				ISet<string> spaces = new IESI.HashedSet<string>();
 
 				for (int i = 0; i < size; i++)
 				{

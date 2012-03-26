@@ -1,4 +1,4 @@
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Test.NHSpecificTest.NH1027
 {
@@ -6,8 +6,8 @@ namespace NHibernate.Test.NHSpecificTest.NH1027
 	{
 		private int id;
 		private string name;
-		private ISet<Container> containers = new HashedSet<Container>();
-		private ISet<Ship> ships = new HashedSet<Ship>();
+		private ISet<Container> containers = new IESI.HashedSet<Container>();
+		private ISet<Ship> ships = new IESI.HashedSet<Ship>();
 
 		public virtual int Id
 		{

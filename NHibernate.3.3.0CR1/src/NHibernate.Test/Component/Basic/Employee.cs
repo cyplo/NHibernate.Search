@@ -1,5 +1,5 @@
 ﻿using System;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Test.Component.Basic
 {

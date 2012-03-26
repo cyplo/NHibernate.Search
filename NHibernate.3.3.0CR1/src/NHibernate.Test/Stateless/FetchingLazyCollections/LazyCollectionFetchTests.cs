@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using NHibernate.Cfg.MappingSchema;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
@@ -88,7 +88,7 @@ namespace NHibernate.Test.Stateless.FetchingLazyCollections
 				{
 					Father = rf,
 					Mother = rm,
-					Childs = new HashedSet<Reptile> { rc1, rc2 }
+					Childs = new IESI.HashedSet<Reptile> { rc1, rc2 }
 				};
 				s.Save("ReptileFamily", rfamily);
 				tx.Commit();
@@ -106,7 +106,7 @@ namespace NHibernate.Test.Stateless.FetchingLazyCollections
 				{
 					Father = hf,
 					Mother = hm,
-					Childs = new HashedSet<Human> { hc1 }
+					Childs = new IESI.HashedSet<Human> { hc1 }
 				};
 				s.Save("HumanFamily", hfamily);
 				tx.Commit();

@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Remotion.Data</name>
+    </assembly>
+    <members>
+        <member name="T:Remotion.Data.ITransaction">
+            <summary> The <see cref="T:Remotion.Data.ITransaction"/> interface provides functionality needed when working with a transaction.</summary>
+        </member>
+        <member name="M:Remotion.Data.ITransaction.To``1">
+            <summary> Gets the native transaction.</summary>
+            <typeparam name="TTransaction">The type of the transaction abstracted by this instance.</typeparam>
+        </member>
+        <member name="M:Remotion.Data.ITransaction.Commit">
+            <summary> Commits the transaction. </summary>
+        </member>
+        <member name="M:Remotion.Data.ITransaction.Rollback">
+            <summary> Rolls the transaction back. </summary>
+        </member>
+        <member name="M:Remotion.Data.ITransaction.CreateChild">
+            <summary> Creates a new child transaction for the current transaction. </summary>
+            <returns> 
+              A new instance of the of a type implementing <see cref="T:Remotion.Data.ITransaction"/> that has the creating transaction
+              as a parent.
+            </returns>
+            <exception cref="T:System.NotSupportedException"> 
+              Thrown if the method is invoked while <see cref="P:Remotion.Data.ITransaction.CanCreateChild"/> is <see langword="false"/>.
+            </exception>
+        </member>
+        <member name="M:Remotion.Data.ITransaction.Release">
+            <summary> Allows the transaction to implement clean up logic. </summary>
+            <remarks> This method is called when the transaction is no longer needed. </remarks>
+        </member>
+        <member name="M:Remotion.Data.ITransaction.EnterScope">
+            <summary>
+            Enters a new scope for the given transaction, making it the active transaction while the scope exists.
+            </summary>
+            <returns>The scope keeping the transaction active.</returns>
+            <remarks>The scope must not discard the transaction when it is left.</remarks>
+        </member>
+        <member name="M:Remotion.Data.ITransaction.RegisterObjects(System.Collections.IEnumerable)">
+            <summary>Registers the <paramref name="objects"/> with the transaction.</summary>
+            <param name="objects">The objects to be registered. Must not be <see langword="null" />.</param>
+            <remarks>If the type of of of the objects is not supported by the transaction, the object must be ignored.</remarks>
+        </member>
+        <member name="M:Remotion.Data.ITransaction.Reset">
+            <summary>Resets the transaction.</summary>
+            <remarks>Performs an operation that is logically equivalent to replacing the transaction with a new transaction.</remarks>
+        </member>
+        <member name="P:Remotion.Data.ITransaction.CanCreateChild">
+            <summary> 
+              Gets a flag that describes whether the transaction supports creating child transactions by invoking
+              <see cref="M:Remotion.Data.ITransaction.CreateChild"/>.
+            </summary>
+        </member>
+        <member name="P:Remotion.Data.ITransaction.Parent">
+            <summary> Gets the transaction's parent transaction. </summary>
+            <value> 
+              An instance of the of a type implementing <see cref="T:Remotion.Data.ITransaction"/> or <see langword="null"/> if the
+              transaction is a root transaction.
+            </value>
+        </member>
+        <member name="P:Remotion.Data.ITransaction.IsChild">
+            <summary>Gets a flag describing whether the transaction is a child transaction.</summary>
+            <value> <see langword="true"/> if the transaction is a child transaction. </value>
+        </member>
+        <member name="P:Remotion.Data.ITransaction.HasUncommittedChanges">
+            <summary>Gets a flag describing whether the transaction has been changed since the last commit or rollback.</summary>
+            <value> <see langword="true"/> if the transaction has uncommitted changes. </value>
+        </member>
+        <member name="P:Remotion.Data.ITransaction.IsReadOnly">
+            <summary>Gets a flag describing whether the transaction is in a read-only state.</summary>
+            <value> <see langword="true"/> if the transaction cannot be modified. </value>
+            <remarks>Implementations that do not support read-only transactions should always return false.</remarks>
+        </member>
+        <member name="T:Remotion.Data.ITransactionFactory">
+            <summary>
+            The <see cref="T:Remotion.Data.ITransactionFactory"/> interface defines a factory method for creating root transactions in 
+            user interface application such as a web application using the Execution Engine flow control infrastructure.
+            </summary>
+        </member>
+        <member name="M:Remotion.Data.ITransactionFactory.CreateRootTransaction">
+            <summary>
+            Creates a new root transaction instance. This instance is not yet managed by a scope.
+            </summary>
+            <returns>A new root transaction.</returns>
+        </member>
+        <member name="T:Remotion.Data.ITransactionScope">
+            <summary>
+            Represents a transaction scope, ie. an execution region where a certain <cref see="ITransaction"/> is the current transaction.
+            </summary>
+        </member>
+        <member name="M:Remotion.Data.ITransactionScope.Leave">
+            <summary>
+            Leaves the scope, which means that <see cref="P:Remotion.Data.ITransactionScope.ScopedTransaction"/> is no loner the current transaction. 
+            </summary>
+            <remarks>
+            This method reactivates the scope surrounding this scope. If no surrounding scope exists, there is no current transaction after this method 
+            is executed.
+            </remarks>
+        </member>
+        <member name="P:Remotion.Data.ITransactionScope.IsActiveScope">
+            <summary>
+            Gets a flag that describes whether this is the active scope.
+            </summary>
+        </member>
+        <member name="P:Remotion.Data.ITransactionScope.ScopedTransaction">
+            <summary>
+            Gets the transaction managed by this scope.
+            </summary>
+            <value>The scoped transaction.</value>
+        </member>
+    </members>
+</doc>

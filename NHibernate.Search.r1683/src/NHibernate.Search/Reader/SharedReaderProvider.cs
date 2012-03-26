@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using Iesi.Collections.Generic;
+using IESI = Iesi.Collections.Generic;
 using Lucene.Net.Index;
 using NHibernate.Search.Engine;
 using NHibernate.Search.Impl;
@@ -331,8 +331,8 @@ namespace NHibernate.Search.Reader
                                                                BindingFlags.IgnoreCase);
             }
 
-            HashedSet<IDirectoryProvider> providers =
-                new HashedSet<IDirectoryProvider>(searchFactoryImplementor.GetLockableDirectoryProviders().Keys);
+            IESI.HashedSet<IDirectoryProvider> providers =
+                new IESI.HashedSet<IDirectoryProvider>(searchFactoryImplementor.GetLockableDirectoryProviders().Keys);
             perDirectoryProviderManipulationLocks = new Dictionary<IDirectoryProvider, object>();
             foreach (IDirectoryProvider dp in providers)
                 perDirectoryProviderManipulationLocks[dp] = new object();
