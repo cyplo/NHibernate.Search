@@ -1,4 +1,5 @@
 ﻿using System;
+using IESI = Iesi.Collections.Generic;
 
 namespace NHibernate.Test.NHSpecificTest.NH2761
 {
@@ -6,7 +7,7 @@ namespace NHibernate.Test.NHSpecificTest.NH2761
 	{
 		public B()
 		{
-			this.As = new Iesi.Collections.Generic.IESI.HashedSet<A>();
+			this.As = new Iesi.Collections.Generic.HashedSet<A>();
 		}
 
 		public Int32 Id
@@ -27,7 +28,7 @@ namespace NHibernate.Test.NHSpecificTest.NH2761
 			set;
 		}
 
-		public Iesi.Collections.Generic.IESI.ISet<A> As
+		public Iesi.Collections.Generic.ISet<A> As
 		{
 			get;
 			set;

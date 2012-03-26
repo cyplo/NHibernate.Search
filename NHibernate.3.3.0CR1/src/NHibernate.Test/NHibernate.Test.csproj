@@ -15,7 +15,7 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -34,6 +34,7 @@
     <StartAction>Program</StartAction>
     <StartProgram>$(MSBuildProjectDirectory)\..\..\Tools\nunit\nunit-x86.exe</StartProgram>
     <StartArguments>NHibernate.Test.dll</StartArguments>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,25 +65,11 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Antlr3.Runtime, Version=3.1.0.39271, Culture=neutral, PublicKeyToken=3a9cab8f8d22bfb7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\net\3.5\Antlr3.Runtime.dll</HintPath>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\dependencies\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Iesi.Collections, Version=1.0.0.1, Culture=neutral, PublicKeyToken=154fdcb44c4484fc">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\net\3.5\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\net\3.5\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.5.0.9122, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\net\3.5\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpTestsEx.NUnit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8c60d8070630b1c1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\net\3.5\SharpTestsEx.NUnit.dll</HintPath>
+    <Reference Include="SharpTestsEx.NUnit">
+      <HintPath>..\..\..\dependencies\SharpTestsEx.NUnit.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -92,9 +79,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Linq.Dynamic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\net\3.5\System.Linq.Dynamic.dll</HintPath>
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\..\..\dependencies\System.Linq.Dynamic.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
@@ -2336,8 +2322,20 @@
     <EmbeddedResource Include="NHSpecificTest\NH2554\Mappings.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Antlr3\CSharp3\Sources\Antlr3.Runtime\Antlr3.Runtime.csproj">
+      <Project>{8fdc0a87-9005-4d5a-ab75-e55ceb575559}</Project>
+      <Name>Antlr3.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\log4net.1.2.11\src\log4net.vs2010.csproj">
+      <Project>{181fe707-e161-4722-9f38-6aaab6faa106}</Project>
+      <Name>log4net.vs2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Iesi.Collections\Iesi.Collections.csproj">
+      <Project>{4c251e3e-6ea1-4a51-bbcb-f9c42ae55344}</Project>
+      <Name>Iesi.Collections</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NHibernate.DomainModel\NHibernate.DomainModel.csproj">
-      <Project>{5C649B55-1B3F-4C38-9998-1B043E94A244}</Project>
+      <Project>{5c649b55-1b3f-4c38-9998-1b043e94a244}</Project>
       <Name>NHibernate.DomainModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\NHibernate\NHibernate.csproj">

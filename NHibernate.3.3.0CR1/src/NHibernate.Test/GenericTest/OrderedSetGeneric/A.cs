@@ -4,7 +4,7 @@ namespace NHibernate.Test.GenericTest.OrderedSetGeneric
 {
 	public class A
 	{
-		private IESI.ISet<B> _items = new OrderedSet<B>();
+        private IESI.ISet<B> _items = new IESI.OrderedSet<B>();
 
 		public int Id { get; set; }
 

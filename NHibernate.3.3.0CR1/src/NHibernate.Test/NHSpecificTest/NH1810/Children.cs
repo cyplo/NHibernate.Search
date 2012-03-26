@@ -34,7 +34,7 @@ namespace NHibernate.Test.NHSpecificTest.NH1810
 	}
 
 	// Using a IESI.HashedSet<Child> instead SortedSet<Child> all work fine.
-	public class Children : SortedSet<Child>, IChildren
+	public class Children : IESI.SortedSet<Child>, IChildren
 	{
 		private readonly IChildrenBehaviour behaviour;
 
